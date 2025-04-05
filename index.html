@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pipe Services Slider</title>
+  <title>Pak Pipes Services</title>
   <style>
     body {
       margin: 0;
@@ -16,7 +16,7 @@
     .heading {
       text-align: center;
       font-size: 36px;
-      margin-top: 30px;
+      margin: 20px 0;
       color: white;
     }
 
@@ -27,10 +27,8 @@
     .slider-container {
       position: relative;
       max-width: 800px;
-      margin: 40px auto;
+      margin: 20px auto;
       overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
     }
 
     .slider {
@@ -40,36 +38,38 @@
 
     .slide {
       min-width: 100%;
-      padding: 20px;
-      text-align: center;
-      background: #1a1a1a;
-    }
-
-    .slide img {
-      width: 100%;
-      max-height: 300px;
-      object-fit: contain;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
-
-    .pipe-info {
-      border: 2px solid #00ff55;
-      border-radius: 6px;
       padding: 10px;
-      background-color: rgba(0, 255, 0, 0.05);
+      box-sizing: border-box;
+    }
+
+    .pipe-card {
+      border: 2px solid #00ff55;
+      border-radius: 8px;
+      padding: 15px;
+      background: #1a1a1a;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+      text-align: center;
+    }
+
+    .pipe-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 5px;
     }
 
     .pipe-info h4 {
       font-size: 20px;
-      margin-bottom: 5px;
-      color: #00ff55;
+      margin: 10px 0 5px;
+      color: white;
     }
 
     .pipe-info p {
       font-size: 14px;
       line-height: 1.4;
-      color: white;
+      color: #ccc;
+      margin: 0;
     }
 
     .slider-btn {
@@ -98,7 +98,11 @@
       .heading {
         font-size: 28px;
       }
-
+      
+      .pipe-card {
+        padding: 10px;
+      }
+      
       .pipe-info h4 {
         font-size: 18px;
       }
@@ -117,50 +121,62 @@
       <div class="slider" id="slider">
 
         <div class="slide">
-          <img src="https://i.postimg.cc/pXMtyW17/Whats-App-Image-2025-02-17-at-7-40-40-PM.jpg" alt="">
-          <div class="pipe-info">
-            <h4>Zebra Band Pipe</h4>
-            <p>Used for water supply and agriculture fittings.</p>
+          <div class="pipe-card">
+            <img src="https://i.postimg.cc/pXMtyW17/Whats-App-Image-2025-02-17-at-7-40-40-PM.jpg" alt="Zebra Band Pipe">
+            <div class="pipe-info">
+              <h4>Zebra Band Pipe</h4>
+              <p>Used for water supply and agriculture fittings.</p>
+            </div>
           </div>
         </div>
 
         <div class="slide">
-          <img src="https://i.postimg.cc/v8VsQgXf/Whats-App-Image-2025-02-17-at-7-37-09-PM.jpg" alt="">
-          <div class="pipe-info">
-            <h4>Garden Transparent Pipe</h4>
-            <p>Ideal for garden watering and transparent flow view.</p>
+          <div class="pipe-card">
+            <img src="https://i.postimg.cc/v8VsQgXf/Whats-App-Image-2025-02-17-at-7-37-09-PM.jpg" alt="Garden Transparent Pipe">
+            <div class="pipe-info">
+              <h4>Garden Transparent Pipe</h4>
+              <p>Ideal for garden watering and transparent flow view.</p>
+            </div>
           </div>
         </div>
 
         <div class="slide">
-          <img src="https://i.postimg.cc/bN0ft77v/Whats-App-Image-2025-02-17-at-7-40-42-PM.jpg" alt="">
-          <div class="pipe-info">
-            <h4>Pona Flex Gas Pipe</h4>
-            <p>Flexible and durable, used for gas connections.</p>
+          <div class="pipe-card">
+            <img src="https://i.postimg.cc/bN0ft77v/Whats-App-Image-2025-02-17-at-7-40-42-PM.jpg" alt="Pona Flex Gas Pipe">
+            <div class="pipe-info">
+              <h4>Pona Flex Gas Pipe</h4>
+              <p>Flexible and durable, used for gas connections.</p>
+            </div>
           </div>
         </div>
 
         <div class="slide">
-          <img src="https://i.postimg.cc/j5ZymD2C/4bc90dbf-60be-49f6-9b4f-e55425846e9a.jpg" alt="">
-          <div class="pipe-info">
-            <h4>Yellow Plastic Poly Pipe</h4>
-            <p>Best for underground water and drainage systems.</p>
+          <div class="pipe-card">
+            <img src="https://i.postimg.cc/j5ZymD2C/4bc90dbf-60be-49f6-9b4f-e55425846e9a.jpg" alt="Yellow Plastic Poly Pipe">
+            <div class="pipe-info">
+              <h4>Yellow Plastic Poly Pipe</h4>
+              <p>Best for underground water and drainage systems.</p>
+            </div>
           </div>
         </div>
 
         <div class="slide">
-          <img src="https://i.postimg.cc/2yynDCLG/392c5b26-d31f-4132-8d97-abc209dbd00c.jpg" alt="">
-          <div class="pipe-info">
-            <h4>Black Plastic Poly Pipe</h4>
-            <p>Commonly used for water distribution and fields.</p>
+          <div class="pipe-card">
+            <img src="https://i.postimg.cc/2yynDCLG/392c5b26-d31f-4132-8d97-abc209dbd00c.jpg" alt="Black Plastic Poly Pipe">
+            <div class="pipe-info">
+              <h4>Black Plastic Poly Pipe</h4>
+              <p>Commonly used for water distribution and fields.</p>
+            </div>
           </div>
         </div>
 
         <div class="slide">
-          <img src="https://i.postimg.cc/Fz35G81D/41a90c19-e298-4679-81eb-871154018613.jpg" alt="">
-          <div class="pipe-info">
-            <h4>Garden Pipe</h4>
-            <p>Used for home gardens and low-pressure flow.</p>
+          <div class="pipe-card">
+            <img src="https://i.postimg.cc/Fz35G81D/41a90c19-e298-4679-81eb-871154018613.jpg" alt="Garden Pipe">
+            <div class="pipe-info">
+              <h4>Garden Pipe</h4>
+              <p>Used for home gardens and low-pressure flow.</p>
+            </div>
           </div>
         </div>
 
