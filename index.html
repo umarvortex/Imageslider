@@ -3,37 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Slider</title>
+    <title>Stylish Image Slider</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            background-color: #f5f5f5;
         }
         .slider-container {
-            position: relative;
-            width: 60%;
-            max-width: 600px;
+            width: 90%;
+            max-width: 500px;
             overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
         .slider {
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
-        .slider img {
-            width: 100%;
-            border-radius: 10px;
+        .slide {
+            min-width: 100%;
+            height: auto;
         }
-        .prev, .next {
+        .nav-buttons {
             position: absolute;
             top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
             transform: translateY(-50%);
+        }
+        .nav-buttons button {
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
@@ -41,38 +44,38 @@
             cursor: pointer;
             border-radius: 5px;
         }
-        .prev { left: 10px; }
-        .next { right: 10px; }
+        @media (min-width: 768px) {
+            .slider-container {
+                max-width: 700px;
+                box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+            }
+        }
     </style>
 </head>
 <body>
     <div class="slider-container">
         <div class="slider">
-            <img src="https://i.postimg.cc/pXMtyW17/Whats-App-Image-2025-02-17-at-7-40-40-PM.jpg" alt="Zebra Band Pipe">
-            <img src="https://i.postimg.cc/v8VsQgXf/Whats-App-Image-2025-02-17-at-7-37-09-PM.jpg" alt="Garden Transparent Pipe">
-            <img src="https://i.postimg.cc/bN0ft77v/Whats-App-Image-2025-02-17-at-7-40-42-PM.jpg" alt="Pona Flex Gas Pipe">
-            <img src="https://i.postimg.cc/j5ZymD2C/4bc90dbf-60be-49f6-9b4f-e55425846e9a.jpg" alt="Yellow Plastic Poly Pipe">
-            <img src="https://i.postimg.cc/2yynDCLG/392c5b26-d31f-4132-8d97-abc209dbd00c.jpg" alt="Black Plastic Poly Pipe">
-            <img src="https://i.postimg.cc/Fz35G81D/41a90c19-e298-4679-81eb-871154018613.jpg" alt="Garden Pipe">
+            <img src="https://i.postimg.cc/bN0ft77v/Whats-App-Image-2025-02-17-at-7-40-42-PM.jpg" class="slide" alt="Image 1">
+            <img src="https://i.postimg.cc/2yynDCLG/392c5b26-d31f-4132-8d97-abc209dbd00c.jpg" class="slide" alt="Image 2">
+            <img src="https://i.postimg.cc/v8VsQgXf/Whats-App-Image-2025-02-17-at-7-37-09-PM.jpg" class="slide" alt="Image 3">
         </div>
-        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="next" onclick="moveSlide(1)">&#10095;</button>
-    </div><script>
-    let slideIndex = 0;
-    const slides = document.querySelectorAll(".slider img");
-    function moveSlide(step) {
-        slideIndex = (slideIndex + step + slides.length) % slides.length;
-        updateSlider();
-    }
-    function updateSlider() {
-        document.querySelector(".slider").style.transform = `translateX(${-slideIndex * 100}%)`;
-    }
-    function autoSlide() {
-        moveSlide(1);
-        setTimeout(autoSlide, 3000);
-    }
-    setTimeout(autoSlide, 3000);
-</script>
-
+        <div class="nav-buttons">
+            <button onclick="prevSlide()">&#10094;</button>
+            <button onclick="nextSlide()">&#10095;</button>
+        </div>
+    </div>
+    <script>
+        let currentIndex = 0;
+        function showSlide(index) {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            if (index >= slides.length) currentIndex = 0;
+            else if (index < 0) currentIndex = slides.length - 1;
+            else currentIndex = index;
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        function nextSlide() { showSlide(currentIndex + 1); }
+        function prevSlide() { showSlide(currentIndex - 1); }
+    </script>
 </body>
-  </html>
+</html>
