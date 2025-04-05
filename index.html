@@ -1,242 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pak Pipes - Premium Garden Pipes</title>
-    <style>
-        /* Main Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-        }
-
-        /* Stock Container */
-        .in-stock-container {
-            max-width: 380px;
-            margin: 20px auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Stock Header */
-        .stock-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #eee;
-        }
-
-        .stock-header h2 {
-            margin: 0;
-            font-size: 20px;
-            color: #2c3e50;
-            font-weight: 600;
-        }
-
-        .stock-indicator {
-            background-color: #27ae60;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        /* Product Card */
-        .product-card {
-            padding: 20px;
-            position: relative;
-        }
-
-        /* Badges */
-        .product-badges {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .best-seller-badge {
-            background-color: #e74c3c;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .fast-delivery-badge {
-            background-color: #3498db;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        /* Product Info */
-        .product-card h3 {
-            margin: 10px 0 5px;
-            font-size: 18px;
-            color: #2c3e50;
-            font-weight: 600;
-            width: 80%;
-        }
-
-        .rating {
-            color: #f39c12;
-            font-size: 16px;
-            margin: 5px 0 10px;
-        }
-
-        .product-description {
-            font-size: 14px;
-            color: #7f8c8d;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        /* Color Options */
-        .color-options {
-            margin: 15px 0;
-            display: flex;
-            gap: 8px;
-        }
-
-        .color-dot {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Price Section */
-        .price-section {
-            display: flex;
-            align-items: center;
-            margin: 15px 0;
-        }
-
-        .original-price {
-            text-decoration: line-through;
-            color: #95a5a6;
-            font-size: 14px;
-            margin-right: 10px;
-        }
-
-        .discounted-price {
-            font-size: 20px;
-            font-weight: bold;
-            color: #e74c3c;
-            margin-right: 10px;
-        }
-
-        .discount-badge {
-            background-color: #e74c3c;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        /* Add to Cart Button */
-        .add-to-cart-btn {
-            width: 100%;
-            padding: 12px;
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .add-to-cart-btn:hover {
-            background-color: #2ecc71;
-        }
-
-        /* Slider Navigation */
-        .slider-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            border-top: 1px solid #eee;
-            background-color: #f8f9fa;
-        }
-
-        .nav-arrow {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .slider-navigation span {
-            color: #7f8c8d;
-            font-size: 13px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pak Pipes Gallery</title>
+  <style>
+    /* RESET & BASE STYLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      color: #333;
+      padding: 10px;
+    }
+    
+    /* MAIN CONTAINER */
+    .alumni-container {
+      max-width: 100%;
+      margin: 10px 0;
+      padding: 0;
+      background: #111;
+      border: 0.5px solid #45ffca;
+      box-shadow: 0 0 10px #45ffca;
+      border-radius: 0;
+    }
+    
+    /* HEADER */
+    .alumni-heading {
+      text-align: center;
+      font-size: 28px;
+      padding: 15px 0;
+      color: #45ffca;
+      text-shadow: 0 0 5px #45ffca;
+    }
+    
+    /* SLIDER CONTAINER */
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* SLIDES */
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    
+    .slide {
+      min-width: 100%;
+      padding: 0;
+    }
+    
+    /* IMAGE CONTAINER */
+    .slide-image-container {
+      width: 100%;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+    
+    .slide-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    
+    /* SLIDE CONTENT */
+    .slide-content {
+      padding: 15px;
+      text-align: center;
+    }
+    
+    .stock-badge {
+      display: block;
+      background: #45ffca22;
+      color: #45ffca;
+      padding: 5px 0;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    .slide-title {
+      font-size: 22px;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+    
+    .rating {
+      color: gold;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+    
+    .slide-description {
+      color: #ddd;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+    
+    /* NAVIGATION */
+    .slider-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px 15px;
+    }
+    
+    .nav-btn {
+      background: #45ffca;
+      color: #111;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    
+    .nav-btn:hover {
+      background: #3ae0b5;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 10px #45ffca;
+    }
+    
+    .nav-btn:disabled {
+      background: #444;
+      color: #777;
+      cursor: not-allowed;
+    }
+    
+    .slide-counter {
+      color: #45ffca;
+      font-weight: bold;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .slide-image-container {
+        height: 300px;
+      }
+      
+      .alumni-heading {
+        font-size: 24px;
+      }
+      
+      .slide-title {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="in-stock-container">
-        <div class="stock-header">
-            <h2>IN STOCK</h2>
-            <span class="stock-indicator">Available</span>
-        </div>
-
-        <div class="product-card">
-            <div class="product-badges">
-                <span class="best-seller-badge">BEST SELLER</span>
-                <span class="fast-delivery-badge">FAST DELIVERY</span>
-            </div>
-
-            <h3>Clear Garden Transparent Pipes</h3>
+  <div class="alumni-container">
+    <h2 class="alumni-heading">Pak Pipes Gallery</h2>
+    
+    <div class="slider-container">
+      <div class="slider" id="slider">
+        <!-- Slide 1 -->
+        <div class="slide">
+          <div class="slide-image-container">
+            <img src="https://i.postimg.cc/v8VsQgXf/Whats-App-Image-2025-02-17-at-7-37-09-PM.jpg" class="slide-image" alt="Clear Garden Pipes">
+          </div>
+          <div class="slide-content">
+            <span class="stock-badge">IN STOCK</span>
+            <h3 class="slide-title">Clear Garden Transparent Pipes</h3>
             <div class="rating">★★★★☆</div>
-
-            <p class="product-description">
-                Crystal-clear garden pipes crafted for durability and smooth water flow. Available in 1mm and 2mm thickness – perfect for home gardening and decorative irrigation setups.
+            <p class="slide-description">
+              High-quality transparent pipes perfect for garden irrigation systems. Our UV-resistant material ensures long-lasting durability.
             </p>
-
-            <div class="color-options">
-                <span class="color-dot" style="background-color: #00a8ff;" title="Blue"></span>
-                <span class="color-dot" style="background-color: #e84118;" title="Red"></span>
-                <span class="color-dot" style="background-color: #4cd137;" title="Green"></span>
-            </div>
-
-            <div class="price-section">
-                <span class="original-price">Rs. 1,499</span>
-                <span class="discounted-price">Rs. 1,199</span>
-                <span class="discount-badge">20% OFF</span>
-            </div>
-
-            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
         </div>
-
-        <div class="slider-navigation">
-            <a href="#" class="nav-arrow">← Prev</a>
-            <span>Slide 1 of 20</span>
-            <a href="#" class="nav-arrow">Next →</a>
+        
+        <!-- Slide 2 -->
+        <div class="slide">
+          <div class="slide-image-container">
+            <img src="https://i.postimg.cc/bN0ft77v/Whats-App-Image-2025-02-17-at-7-40-42-PM.jpg" class="slide-image" alt="PonaFlex Pipes">
+          </div>
+          <div class="slide-content">
+            <span class="stock-badge">IN STOCK</span>
+            <h3 class="slide-title">PonaFlex Gas Pipes</h3>
+            <div class="rating">★★★★★</div>
+            <p class="slide-description">
+              Certified safe for gas transportation with our patented leak-proof technology. These pipes meet all international safety standards.
+            </p>
+          </div>
         </div>
+        
+        <!-- Add more slides as needed -->
+      </div>
     </div>
+    
+    <div class="slider-nav">
+      <button class="nav-btn prev" id="prevBtn">← Previous</button>
+      <div class="slide-counter" id="counter">Slide 1 of 2</div>
+      <button class="nav-btn next" id="nextBtn">Next →</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const slider = document.getElementById('slider');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const counter = document.getElementById('counter');
+      const slides = document.querySelectorAll('.slide');
+      
+      let currentSlide = 0;
+      const totalSlides = slides.length;
+      
+      function updateSlider() {
+        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        counter.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
+        
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === totalSlides - 1;
+      }
+      
+      prevBtn.addEventListener('click', () => {
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateSlider();
+        }
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+          updateSlider();
+        }
+      });
+      
+      // Auto-rotate (optional)
+      let slideInterval = setInterval(() => {
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+        } else {
+          currentSlide = 0;
+        }
+        updateSlider();
+      }, 5000);
+      
+      // Pause on hover
+      slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
+      slider.addEventListener('mouseleave', () => {
+        slideInterval = setInterval(() => {
+          if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+          } else {
+            currentSlide = 0;
+          }
+          updateSlider();
+        }, 5000);
+      });
+      
+      updateSlider();
+    });
+  </script>
 </body>
 </html>
-
