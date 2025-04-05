@@ -4,200 +4,219 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pak Pipes Services</title>
+  <title>Pak Pipes Gallery</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
+      background: #f5f5f5;
+      color: #333;
     }
 
-    .heading {
+    .alumni-container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    .alumni-heading {
       text-align: center;
-      font-size: 36px;
-      margin: 20px 0;
-      color: white;
-    }
-
-    .heading span {
-      color: #00ff55;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #222;
     }
 
     .slider-container {
       position: relative;
-      max-width: 800px;
-      margin: 20px auto;
       overflow: hidden;
+      border-radius: 8px;
     }
 
     .slider {
       display: flex;
-      transition: transform 0.5s ease-in-out;
+      transition: transform 0.5s ease;
     }
 
     .slide {
       min-width: 100%;
-      padding: 10px;
+      padding: 15px;
       box-sizing: border-box;
       text-align: center;
     }
 
-    .pipe-card {
-      border: 3px solid #00ff55; /* Thicker border */
-      border-radius: 8px;
-      padding: 5px; /* Reduced padding */
-      background: #1a1a1a;
-      box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-      height: 500px; /* Fixed card height */
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pipe-card img {
+    .slide-image {
       width: 100%;
-      height: 380px; /* Increased image height */
-      object-fit: cover; /* Changed to cover for perfect fit */
-      margin: 0; /* Removed margin */
-      border-radius: 5px;
-      border: 1px solid #333; /* Optional: subtle image border */
+      height: 400px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 15px;
     }
 
-    .pipe-info {
-      padding: 10px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .slide-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #222;
     }
 
-    .pipe-info h2 {
-      font-size: 24px;
-      margin: 5px 0;
-      color: white;
-    }
-
-    .pipe-info h4 {
-      font-size: 20px;
-      margin: 5px 0;
-      color: #00ff55;
-    }
-
-    .pipe-info p {
+    .slide-date {
       font-size: 14px;
-      line-height: 1.4;
-      color: #ccc;
-      margin: 0;
+      color: #666;
+      margin-bottom: 20px;
     }
 
-    .slider-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 30px;
-      background: rgba(0, 0, 0, 0.5);
-      color: #00ff55;
+    .slide-description {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .slider-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .nav-btn {
+      background: #4CAF50;
+      color: white;
       border: none;
-      padding: 10px 15px;
+      padding: 10px 20px;
+      border-radius: 4px;
       cursor: pointer;
-      z-index: 10;
-      border-radius: 50%;
+      font-size: 16px;
+      transition: background 0.3s;
     }
 
-    .prev {
-      left: 10px;
+    .nav-btn:hover {
+      background: #45a049;
     }
 
-    .next {
-      right: 10px;
+    .nav-btn:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+    }
+
+    .slide-counter {
+      font-size: 14px;
+      color: #666;
     }
 
     @media (max-width: 600px) {
-      .heading {
-        font-size: 28px;
-      }
-      
-      .pipe-card {
-        height: 400px;
-      }
-      
-      .pipe-card img {
+      .slide-image {
         height: 300px;
       }
       
-      .pipe-info h2 {
+      .slide-title {
         font-size: 20px;
       }
       
-      .pipe-info h4 {
-        font-size: 18px;
+      .slide-description {
+        font-size: 15px;
       }
-
-      .pipe-info p {
-        font-size: 13px;
+      
+      .alumni-heading {
+        font-size: 24px;
       }
     }
   </style>
 </head>
 <body>
 
-  <section class="services" id="services">
-    <h2 class="heading">Our <span>Services</span></h2>
+  <div class="alumni-container">
+    <h2 class="alumni-heading">Alumni Network</h2>
+    
     <div class="slider-container">
       <div class="slider" id="slider">
-
+        
+        <!-- Slide 1 -->
         <div class="slide">
-          <div class="pipe-card">
-            <h2>Pak Pipes</h2>
-            <img src="https://i.postimg.cc/pXMtyW17/Whats-App-Image-2025-02-17-at-7-40-40-PM.jpg" alt="Zebra Band Pipe">
-            <div class="pipe-info">
-              <h4>Zebra Band Pipe</h4>
-              <p>Used for water supply and agriculture fittings.</p>
-            </div>
+          <img src="https://via.placeholder.com/800x400?text=Pipe+Image+1" class="slide-image" alt="Pipe Image">
+          <h3 class="slide-title">Engr. Dr. Fauzia Idrees Abro Appointed Global Ambassador</h3>
+          <div class="slide-date">5 Mar 2025</div>
+          <div class="slide-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.
           </div>
         </div>
-
+        
+        <!-- Slide 2 -->
         <div class="slide">
-          <div class="pipe-card">
-            <h2>Pak Pipes</h2>
-            <img src="https://i.postimg.cc/v8VsQgXf/Whats-App-Image-2025-02-17-at-7-37-09-PM.jpg" alt="Garden Transparent Pipe">
-            <div class="pipe-info">
-              <h4>Garden Transparent Pipe</h4>
-              <p>Ideal for garden watering and transparent flow view.</p>
-            </div>
+          <img src="https://via.placeholder.com/800x400?text=Pipe+Image+2" class="slide-image" alt="Pipe Image">
+          <h3 class="slide-title">High Quality PVC Pipes Production</h3>
+          <div class="slide-date">15 Feb 2025</div>
+          <div class="slide-description">
+            Our new production line of high-quality PVC pipes for industrial use with enhanced durability features.
           </div>
         </div>
-
+        
+        <!-- Slide 3 -->
         <div class="slide">
-          <div class="pipe-card">
-            <h2>Pak Pipes</h2>
-            <img src="https://i.postimg.cc/bN0ft77v/Whats-App-Image-2025-02-17-at-7-40-42-PM.jpg" alt="Pona Flex Gas Pipe">
-            <div class="pipe-info">
-              <h4>Pona Flex Gas Pipe</h4>
-              <p>Flexible and durable, used for gas connections.</p>
-            </div>
+          <img src="https://via.placeholder.com/800x400?text=Pipe+Image+3" class="slide-image" alt="Pipe Image">
+          <h3 class="slide-title">Agricultural Pipe Solutions</h3>
+          <div class="slide-date">28 Jan 2025</div>
+          <div class="slide-description">
+            Specialized pipes designed for agricultural irrigation systems with improved water flow efficiency.
           </div>
         </div>
-
+        
+        <!-- Slide 4 -->
+        <div class="slide">
+          <img src="https://via.placeholder.com/800x400?text=Pipe+Image+4" class="slide-image" alt="Pipe Image">
+          <h3 class="slide-title">Gas Pipe Safety Standards</h3>
+          <div class="slide-date">10 Dec 2024</div>
+          <div class="slide-description">
+            Our gas pipes meet all international safety standards with advanced leak-proof technology.
+          </div>
+        </div>
+        
       </div>
-
-      <button class="slider-btn prev" onclick="moveSlide(-1)">‹</button>
-      <button class="slider-btn next" onclick="moveSlide(1)">›</button>
     </div>
-  </section>
+    
+    <div class="slider-nav">
+      <button class="nav-btn prev" id="prevBtn">← Previous</button>
+      <div class="slide-counter" id="counter">Slide 1 of 4</div>
+      <button class="nav-btn next" id="nextBtn">Next →</button>
+    </div>
+  </div>
 
   <script>
+    const slider = document.getElementById('slider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const counter = document.getElementById('counter');
+    const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
-    const slides = document.querySelectorAll(".slide");
-    const slider = document.getElementById("slider");
+    const totalSlides = slides.length;
 
-    function moveSlide(direction) {
-      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+    function updateSlider() {
       slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+      counter.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
+      
+      // Disable buttons when at ends
+      prevBtn.disabled = currentSlide === 0;
+      nextBtn.disabled = currentSlide === totalSlides - 1;
     }
 
-    // Auto-slide every 5 seconds
-    setInterval(() => moveSlide(1), 5000);
+    prevBtn.addEventListener('click', () => {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlider();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlider();
+      }
+    });
+
+    // Initialize
+    updateSlider();
   </script>
 
 </body>
