@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -569,4 +570,84 @@
       let slideInterval;
 
       // Create dots
-      function createDots(
+      function createDots() {
+        slides.forEach((_, index) => {
+          const dot = document.createElement('div');
+          dot.classList.add('dot');
+          if (index === 0) dot.classList.add('active');
+          dot.addEventListener('click', () => goToSlide(index));
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      // Go to specific slide
+      function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateSlider();
+      }
+
+      // Update slider state
+      function updateSlider() {
+        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        counter.textContent = `${currentSlide + 1} of ${totalSlides}`;
+
+        // Update dots
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentSlide);
+        });
+
+        // Disable buttons when at ends
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === totalSlides - 1;
+      }
+
+      // Auto-rotate slides
+      function startAutoSlide() {
+        slideInterval = setInterval(() => {
+          if (currentSlide < totalSlides - 1) currentSlide++;
+          else currentSlide = 0;
+          updateSlider();
+        }, 5000);
+      }
+
+      // Event listeners
+      prevBtn.addEventListener('click', () => {
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateSlider();
+          resetAutoSlide();
+        }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) {
+          currentSlide++;
+          updateSlider();
+          resetAutoSlide();
+        }
+      });
+
+      // Reset auto-slide timer
+      function resetAutoSlide() {
+        clearInterval(slideInterval);
+        startAutoSlide();
+      }
+
+      // Pause on hover
+      slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
+      slider.addEventListener('mouseleave', startAutoSlide);
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') prevBtn.click();
+        if (e.key === 'ArrowRight') nextBtn.click();
+      });
+
+      // Initialize
+      createDots();
+      updateSlider();
+      startAutoSlide();
+    });
+  </script>
+</body>
+</html>
