@@ -3,271 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pak Pipes Gallery</title>
+  <title>Pak Pipes - Ultra Rating</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #333;
+    .pipe-rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin: 10px 0;
     }
 
-    .alumni-container {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 20px;
-      background: #111;
-      border: 1px solid transparent;
-      box-shadow: 0 0 5px #45ffca;
-      border-radius: 8px;
+    .pipe-rating-stars {
+      --rating: 4; /* Change this value (0-5) */
+      --star-size: 18px;
+      --glow-color: #45ffca;
+      display: inline-flex;
     }
 
-    .alumni-heading {
-      text-align: center;
-      font-size: 35px;
-      margin-bottom: 20px;
-      color: white;
-    }
-
-    .slider-container {
+    .pipe-rating-stars::before {
+      content: '★★★★★';
+      letter-spacing: 2px;
+      font-size: var(--star-size);
+      background: linear-gradient(90deg, 
+        gold calc(var(--rating) * 20%), 
+        #444 calc(var(--rating) * 20%));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 5px var(--glow-color);
       position: relative;
-      overflow: hidden;
-      border-radius: 8px;
     }
 
-    .slider {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
-
-    .slide {
-      min-width: 100%;
-      padding: 15px;
-      box-sizing: border-box;
-      text-align: center;
-    }
-
-    .slide-image-container {
-      width: 100%;
-      height: 400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 15px;
-      background: #222;
-      border-radius: 6px;
-    }
-
-    .slide-image {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: 6px;
-    }
-
-    .slide-title {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: white;
-    }
-
-    .slide-date {
+    .pipe-rating-stars::after {
+      content: '⚡' attr(data-flow-rate);
       font-size: 14px;
-      color: white;
-      margin-bottom: 20px;
+      margin-left: 8px;
+      color: var(--glow-color);
+      animation: pulse 1.5s infinite alternate;
     }
 
-    .slide-description {
-      font-size: 16px;
-      line-height: 1.6;
-      color: white;
+    @keyframes pulse {
+      0% { opacity: 0.7; text-shadow: 0 0 2px var(--glow-color); }
+      100% { opacity: 1; text-shadow: 0 0 8px var(--glow-color); }
     }
 
-    .slider-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 20px;
+    /* Interactive Version */
+    .interactive-rating:hover .pipe-rating-stars::before {
+      animation: star-glow 0.5s ease-in-out;
     }
 
-    .nav-bttn {
-      background: #45ffca;
-      color: #111;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .nav-bttn:hover {
-      background: #3ae0b5;
-    }
-
-    .nav-bttn:disabled {
-      background: #666;
-      color: #ccc;
-      cursor: not-allowed;
-    }
-
-    .slide-counter {
-      font-size: 16px;
-      color: white;
-    }
-
-    @media (max-width: 600px) {
-      .slide-image-container {
-        height: 300px;
-      }
-
-      .slide-title {
-        font-size: 20px;
-      }
-
-      .slide-description {
-        font-size: 15px;
-      }
-
-      .alumni-heading {
-        font-size: 28px;
-      }
-
-      .nav-bttn {
-        padding: 6px 12px;
-        font-size: 14px;
-      }
+    @keyframes star-glow {
+      0%, 100% { text-shadow: 0 0 5px var(--glow-color); }
+      50% { text-shadow: 0 0 15px var(--glow-color); }
     }
   </style>
 </head>
 <body>
 
-  <div class="alumni-container">
-    <h2 class="alumni-heading">Pak Pipes Gallery</h2>
-
-    <div class="slider-container">
-      <div class="slider" id="slider">
-
-        <!-- Slide 1 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="https://i.postimg.cc/v8VsQgXf/Whats-App-Image-2025-02-17-at-7-37-09-PM.jpg" class="slide-image" alt="Pipe Image">
-          </div>
-          <h3 class="slide-title">Clear Garden Transparent Pipes</h3>
-          <div class="slide-date">5 Mar 2025</div>
-          <div class="slide-description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.
-          </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="https://i.postimg.cc/bN0ft77v/Whats-App-Image-2025-02-17-at-7-40-42-PM.jpg" class="slide-image" alt="Pipe Image">
-          </div>
-          <h3 class="slide-title">PonaFlex Gas Pipes</h3>
-          <div class="slide-date">15 Feb 2025</div>
-          <div class="slide-description">
-            Our new production line of high-quality PVC pipes for industrial use with enhanced durability features.
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="https://i.postimg.cc/j5ZymD2C/4bc90dbf-60be-49f6-9b4f-e55425846e9a.jpg" class="slide-image" alt="Pipe Image">
-          </div>
-          <h3 class="slide-title">Yellow Plastic Polly Pipes</h3>
-          <div class="slide-date">28 Jan 2025</div>
-          <div class="slide-description">
-            Specialized pipes designed for agricultural irrigation systems with improved water flow efficiency.
-          </div>
-        </div>
-
-        <!-- Slide 4 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="https://i.postimg.cc/2yynDCLG/392c5b26-d31f-4132-8d97-abc209dbd00c.jpg" class="slide-image" alt="Pipe Image">
-          </div>
-          <h3 class="slide-title">Black Plastic Poly Pipes</h3>
-          <div class="slide-date">10 Dec 2024</div>
-          <div class="slide-description">
-            Our gas pipes meet all international safety standards with advanced leak-proof technology.
-          </div>
-        </div>
-
-        <!-- Slide 5 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="https://i.postimg.cc/Fz35G81D/41a90c19-e298-4679-81eb-871154018613.jpg" class="slide-image" alt="Pipe Image">
-          </div>
-          <h3 class="slide-title">Garden Pipes</h3>
-          <div class="slide-date">28 Jan 2025</div>
-          <div class="slide-description">
-            Specialized pipes designed for agricultural irrigation systems with improved water flow efficiency.
-          </div>
-        </div>
-
-        <!-- Slide 6 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="https://i.postimg.cc/pXMtyW17/Whats-App-Image-2025-02-17-at-7-40-40-PM.jpg" class="slide-image" alt="Pipe Image">
-          </div>
-          <h3 class="slide-title">Zebra Band Pipes</h3>
-          <div class="slide-date">28 Jan 2025</div>
-          <div class="slide-description">
-            Specialized pipes designed for agricultural irrigation systems with improved water flow efficiency.
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="slider-nav">
-      <button class="nav-bttn prev" id="prevBtn">← Previous</button>
-      <div class="slide-counter" id="counter">Slide 1 of 6</div>
-      <button class="nav-bttn next" id="nextBtn">Next →</button>
-    </div>
+  <!-- Static Version -->
+  <div class="pipe-rating">
+    <div class="pipe-rating-stars" data-flow-rate="50L/min" style="--rating: 4;"></div>
   </div>
 
-  <script>
-    const slider = document.getElementById('slider');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const counter = document.getElementById('counter');
-    const slides = document.querySelectorAll('.slide');
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-
-    function updateSlider() {
-      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-      counter.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
-
-      // Disable buttons when at ends
-      prevBtn.disabled = currentSlide === 0;
-      nextBtn.disabled = currentSlide === totalSlides - 1;
-    }
-
-    prevBtn.addEventListener('click', () => {
-      if (currentSlide > 0) {
-        currentSlide--;
-        updateSlider();
-      }
-    });
-
-    nextBtn.addEventListener('click', () => {
-      if (currentSlide < totalSlides - 1) {
-        currentSlide++;
-        updateSlider();
-      }
-    });
-
-    // Initialize
-    updateSlider();
-  </script>
+  <!-- Interactive Version (Hover to see effect) -->
+  <div class="pipe-rating interactive-rating">
+    <div class="pipe-rating-stars" data-flow-rate="75L/min" style="--rating: 4.5; --glow-color: #ff45e0;"></div>
+  </div>
 
 </body>
 </html>
+
 
