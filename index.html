@@ -1,75 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pak Pipes - Ultra Rating</title>
-  <style>
-    .pipe-rating {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin: 10px 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pak Pipes - Premium Garden Pipes</title>
+    <style>
+        /* Main Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
 
-    .pipe-rating-stars {
-      --rating: 4; /* Change this value (0-5) */
-      --star-size: 18px;
-      --glow-color: #45ffca;
-      display: inline-flex;
-    }
+        /* Stock Container */
+        .in-stock-container {
+            max-width: 380px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
 
-    .pipe-rating-stars::before {
-      content: '★★★★★';
-      letter-spacing: 2px;
-      font-size: var(--star-size);
-      background: linear-gradient(90deg, 
-        gold calc(var(--rating) * 20%), 
-        #444 calc(var(--rating) * 20%));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 5px var(--glow-color);
-      position: relative;
-    }
+        /* Stock Header */
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
 
-    .pipe-rating-stars::after {
-      content: '⚡' attr(data-flow-rate);
-      font-size: 14px;
-      margin-left: 8px;
-      color: var(--glow-color);
-      animation: pulse 1.5s infinite alternate;
-    }
+        .stock-header h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
 
-    @keyframes pulse {
-      0% { opacity: 0.7; text-shadow: 0 0 2px var(--glow-color); }
-      100% { opacity: 1; text-shadow: 0 0 8px var(--glow-color); }
-    }
+        .stock-indicator {
+            background-color: #27ae60;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
 
-    /* Interactive Version */
-    .interactive-rating:hover .pipe-rating-stars::before {
-      animation: star-glow 0.5s ease-in-out;
-    }
+        /* Product Card */
+        .product-card {
+            padding: 20px;
+            position: relative;
+        }
 
-    @keyframes star-glow {
-      0%, 100% { text-shadow: 0 0 5px var(--glow-color); }
-      50% { text-shadow: 0 0 15px var(--glow-color); }
-    }
-  </style>
+        /* Badges */
+        .product-badges {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .best-seller-badge {
+            background-color: #e74c3c;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .fast-delivery-badge {
+            background-color: #3498db;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Product Info */
+        .product-card h3 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: 600;
+            width: 80%;
+        }
+
+        .rating {
+            color: #f39c12;
+            font-size: 16px;
+            margin: 5px 0 10px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #7f8c8d;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        /* Color Options */
+        .color-options {
+            margin: 15px 0;
+            display: flex;
+            gap: 8px;
+        }
+
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Price Section */
+        .price-section {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #95a5a6;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .discounted-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-right: 10px;
+        }
+
+        .discount-badge {
+            background-color: #e74c3c;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Add to Cart Button */
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #2ecc71;
+        }
+
+        /* Slider Navigation */
+        .slider-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            background-color: #f8f9fa;
+        }
+
+        .nav-arrow {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .slider-navigation span {
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+    </style>
 </head>
 <body>
+    <div class="in-stock-container">
+        <div class="stock-header">
+            <h2>IN STOCK</h2>
+            <span class="stock-indicator">Available</span>
+        </div>
 
-  <!-- Static Version -->
-  <div class="pipe-rating">
-    <div class="pipe-rating-stars" data-flow-rate="50L/min" style="--rating: 4;"></div>
-  </div>
+        <div class="product-card">
+            <div class="product-badges">
+                <span class="best-seller-badge">BEST SELLER</span>
+                <span class="fast-delivery-badge">FAST DELIVERY</span>
+            </div>
 
-  <!-- Interactive Version (Hover to see effect) -->
-  <div class="pipe-rating interactive-rating">
-    <div class="pipe-rating-stars" data-flow-rate="75L/min" style="--rating: 4.5; --glow-color: #ff45e0;"></div>
-  </div>
+            <h3>Clear Garden Transparent Pipes</h3>
+            <div class="rating">★★★★☆</div>
 
+            <p class="product-description">
+                Crystal-clear garden pipes crafted for durability and smooth water flow. Available in 1mm and 2mm thickness – perfect for home gardening and decorative irrigation setups.
+            </p>
+
+            <div class="color-options">
+                <span class="color-dot" style="background-color: #00a8ff;" title="Blue"></span>
+                <span class="color-dot" style="background-color: #e84118;" title="Red"></span>
+                <span class="color-dot" style="background-color: #4cd137;" title="Green"></span>
+            </div>
+
+            <div class="price-section">
+                <span class="original-price">Rs. 1,499</span>
+                <span class="discounted-price">Rs. 1,199</span>
+                <span class="discount-badge">20% OFF</span>
+            </div>
+
+            <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="slider-navigation">
+            <a href="#" class="nav-arrow">← Prev</a>
+            <span>Slide 1 of 20</span>
+            <a href="#" class="nav-arrow">Next →</a>
+        </div>
+    </div>
 </body>
 </html>
-
 
