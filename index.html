@@ -6,7 +6,7 @@
     <title>Pak Pipes - Client Reviews</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-      /* Main Review Section */
+     /* Main Review Section */
 .review-section {
     padding: 20px;
     background: #1f242d;
@@ -45,6 +45,26 @@
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     border: 1px solid #45ffca33;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover Effects */
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(69, 255, 202, 0.3);
+    border-color: #45ffca;
+    background: #323946;
+}
+
+.review-card:hover .client-avatar {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(69, 255, 202, 0.5);
+}
+
+.review-card:hover .star {
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
 }
 
 /* Client Information */
@@ -61,6 +81,7 @@
     object-fit: cover;
     border: 2px solid #45ffca;
     margin-right: 15px;
+    transition: all 0.3s ease;
 }
 
 .client-name {
@@ -77,8 +98,9 @@
 }
 
 .star {
-    color: #FFD700; /* Gold color */
+    color: #FFD700;
     font-size: 18px;
+    transition: all 0.3s ease;
 }
 
 /* Review Text */
@@ -86,6 +108,11 @@
     color: rgba(255,255,255,0.9);
     font-size: 15px;
     line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+.review-card:hover .review-text {
+    color: white;
 }
 
 /* Animation */
