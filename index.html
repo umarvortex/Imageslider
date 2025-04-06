@@ -20,638 +20,614 @@
       padding: 10px;
     }
 
-    /* ===== MAIN CONTAINER ===== */
-    .alumni-container {
-      max-width: 100%;
-      margin: 0 auto;
-      background: #1a1a1a;
-      border: 1px solid #45ffca;
-      box-shadow: 0 0 20px rgba(69, 255, 202, 0.3);
-      border-radius: 10px;
-      overflow: hidden;
-    }
+        .alumni-container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: linear-gradient(to bottom, #0f1011, #1e2022);
+            border: 1px solid #45ffca;
+            box-shadow: 0 0 18px rgba(69, 255, 202, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
 
-    /* ===== HEADER ===== */
-    .alumni-heading {
-      text-align: center;
-      font-size: 2.2rem;
-      padding: 20px;
-      color: #45ffca;
-      text-shadow: 0 0 10px rgba(69, 255, 202, 0.7);
-      background: linear-gradient(to right, #111, #1a1a1a, #111);
-    }
+        /* ===== HEADER ===== */
+        .alumni-heading {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 400; 
+            padding: 20px;
+            color: white;
+            background: linear-gradient(to bottom, #0f1011, #1e2022);
+        }
 
-    /* ===== SLIDER CONTAINER ===== */
-    .slider-container {
-      position: relative;
-      overflow: hidden;
-    }
+        /* ===== SLIDER CONTAINER ===== */
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+        }
 
-    .slider {
-      display: flex;
-      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
+        .slider {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-    /* ===== SLIDE STYLES ===== */
-    .slide {
-      min-width: 100%;
-      position: relative;
-    }
+        /* ===== SLIDE STYLES ===== */
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
 
-    .slide-image-container {
-  width: 100%;
-  height: 400px; /* Fixed height for consistency */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000; /* Pure black background */
-  overflow: hidden; /* Prevents any overflow */
-  padding: 0; /* Remove all padding */
-  margin: 0; /* Remove all margins */
-}
+        .slide-image-container {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0f1011;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
 
-.slide-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Changed from 'contain' to 'cover' */
-  object-position: center;
-  display: block;
-}
-    
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.4s ease;
+        }
 
-    .slide:hover .slide-image {
-      transform: scale(1.03);
-    }
+        /* ===== SLIDE CONTENT ===== */
+        .slide-content {
+            text-align: left !important;
+            align-items: flex-start !important;
+            justify-content: flex-start !important;
+            background: transparent;
+            padding: 20px;
+        }
 
-    /* ===== SLIDE CONTENT ===== */
-    .slide-content {
-      padding: 20px;
-      text-align: center;
-      background: linear-gradient(to bottom, #1a1a1a, #111);
-    }
+        .slide-content p {
+            padding-left: 0 !important;
+            margin-left: 0 !important;
+            text-align: left;
+            width: 100%;
+        }
 
-    .stock-badge {
-      display: inline-block;
-      background: rgba(69, 255, 202, 0.2);
-      color: #45ffca;
-      padding: 6px 20px;
-      border-radius: 20px;
-      font-weight: bold;
-      margin-bottom: 15px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+        .stock-badge {
+            display: inline-block;
+            background: rgba(69, 255, 202, 0.2);
+            color: #45ffca;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    .coming-soon {
-      background: rgba(255, 69, 69, 0.2);
-      color: #ff6b6b;
-    }
+        .slide-title {
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
 
-    .slide-title {
-      font-size: 1.5rem;
-      color: #fff;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
+        .rating {
+            color: gold;
+            font-size: 15px;
+            letter-spacing: 3px;
+            margin: 10px 0;
+        }
 
-    .rating {
-      color: gold;
-      font-size: 1.2rem;
-      letter-spacing: 3px;
-      margin: 10px 0;
-    }
+        .slide-description {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 19px;
+            max-width: 800px;
+            margin: 0 auto 15px;
+            padding: 0 15px;      
+        }
 
-    .slide-description {
-      color: #ccc;
-      line-height: 1.6;
-      font-size: 0.95rem;
-      max-width: 800px;
-      margin: 0 auto 15px;
-      padding: 0 15px;
-    }
+        /* ===== NAVIGATION ARROWS ===== */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            border: none;
+            color: white;
+            font-size: 24px;
+        }
 
-    /* ===== NAVIGATION ===== */
-    .slider-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      background: #1a1a1a;
-      border-top: 1px solid #333;
-    }
+        .arrow:hover {
+            background: rgba(69, 255, 202, 0.3);
+            color: #45ffca;
+        }
 
-    .nav-btn {
-      background: #45ffca;
-      color: #111;
-      border: none;
-      padding: 10px 25px;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
+        .arrow.prev {
+            left: 20px;
+        }
 
-    .nav-btn:hover {
-      background: #3ae0b5;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(69, 255, 202, 0.4);
-    }
+        .arrow.next {
+            right: 20px;
+        }
 
-    .nav-btn:disabled {
-      background: #333;
-      color: #666;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
+        .arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
 
-    .slide-counter {
-      color: #999;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
+        /* ===== SLIDE COUNTER ===== */
+        .slide-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #999;
+            font-weight: bold;
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
 
-    /* ===== DOTS INDICATOR ===== */
-    .slider-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      padding: 15px;
-      background: #1a1a1a;
-    }
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .alumni-heading {
+                font-size: 15px;
+            }
 
-    .dot {
-      width: 14px;
-      height: 7px;
-      border-radius: 50%;
-      background: #333;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
+            .slide-image-container {
+                height: 300px;
+            }
 
-    .dot.active {
-      background: #45ffca;
-      transform: scale(1.2);
-    }
+            .slide-title {
+                font-size: 20px;
+            }
+            
+            .arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
 
-    /* ===== RESPONSIVE DESIGN ===== */
-    @media (max-width: 768px) {
-      .alumni-heading {
-        font-size: 1.8rem;
-      }
+        @media (max-width: 480px) {
+            .slide-image-container {
+                height: 250px;
+            }
 
-      .slide-image-container {
-        height: 300px;
-      }
+            .slide-content {
+                padding: 15px;
+            }
 
-      .slide-title {
-        font-size: 1.3rem;
-      }
-    }
+            .stock-badge {
+                font-size: 10px;
+            }
 
-    @media (max-width: 480px) {
-      .slide-image-container {
-        height: 250px;
-      }
+            .slide-title {
+                font-size: 19px;
+            }
 
-      .slide-content {
-        padding: 15px;
-      }
+            .slide-description {
+                font-size: 17px;
+            }
+            
+            .arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+        }
+    </style>
 
-      .stock-badge {
-        font-size: 12px;
-      }
-
-      .slide-title {
-        font-size: 1.2rem;
-      }
-
-      .slide-description {
-        font-size: 0.85rem;
-      }
-
-      .nav-btn {
-        padding: 8px 20px;
-        font-size: 0.9rem;
-      }
-    }
-  </style>
 </head>
 <body>
-  <div class="alumni-container">
-    <h3 class="alumni-heading">Gallery</h3>
 
-    <div class="slider-container">
-      <div class="slider" id="slider">
-        <!-- Slide 1 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="https://i.postimg.cc/v8VsQgXf/Whats-App-Image-2025-02-17-at-7-37-09-PM.jpg" class="slide-image" alt="Clear Garden Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge">IN STOCK</div>
-            <h3 class="slide-title">Clear Garden Transparent Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Crystal-clear garden pipes crafted for durability and smooth water flow. Available in 1mm and 2mm thickness – perfect for home gardening and decorative irrigation setups.
-            </p>
-          </div>
-        </div>
+    <div class="alumni-container">
+        <h5 class="alumni-heading">Explore Our Premium Pipe Collection</h5>
 
-        <!-- Slide 2 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="https://i.postimg.cc/bN0ft77v/Whats-App-Image-2025-02-17-at-7-40-42-PM.jpg" class="slide-image" alt="PonaFlex Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge">IN STOCK</div>
-            <h3 class="slide-title">PonaFlex Gas Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Korean technology-backed gas hose, 270ft long and weighing 6kg. Built with premium materials for safe and efficient gas transmission – a perfect blend of strength and safety.
-            </p>
-          </div>
-        </div>
+        <div class="slider-container">
+            <!-- Navigation Arrows -->
+            <button class="arrow prev" id="prevBtn">❮</button>
+            <button class="arrow next" id="nextBtn">❯</button>
+            
+            <div class="slider" id="slider">
+                <!-- Slide 1 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/v8VsQgXf/Whats-App-Image-2025-02-17-at-7-37-09-PM.jpg" class="slide-image" alt="Clear Garden Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge">IN STOCK</div>
+                        <h3 class="slide-title">Clear Garden Transparent Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Crystal-clear garden pipes crafted for durability and smooth water flow. Available in 1mm and 2mm thickness.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 3 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="https://i.postimg.cc/j5ZymD2C/4bc90dbf-60be-49f6-9b4f-e55425846e9a.jpg" class="slide-image" alt="Yellow Polly Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge">IN STOCK</div>
-            <h3 class="slide-title">Yellow Plastic Polly Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Poly yellow national-grade pipes designed for agricultural irrigation and plumbing needs. Available in sizes: 1/2", 3/4", 1", and 2". Lightweight yet highly efficient.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/bN0ft77v/Whats-App-Image-2025-02-17-at-7-40-42-PM.jpg" class="slide-image" alt="PonaFlex Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge">IN STOCK</div>
+                        <h3 class="slide-title">PonaFlex Gas Pipes</h3>
+                        <div class="rating">★★★★★</div>
+                        <p class="slide-description">
+                            Korean technology-backed gas hose, 270ft long and weighing 6kg. Built with premium materials for safety.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 4 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="https://i.postimg.cc/2yynDCLG/392c5b26-d31f-4132-8d97-abc209dbd00c.jpg" class="slide-image" alt="Black Poly Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge">IN STOCK</div>
-            <h3 class="slide-title">Black Plastic Poly Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Sturdy poly black pipes available in multiple sizes: 1/2", 1", 1.5", 2", 3", 4", and 5". Ideal for both residential and industrial setups with excellent resistance to wear and tear.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/j5ZymD2C/4bc90dbf-60be-49f6-9b4f-e55425846e9a.jpg" class="slide-image" alt="Yellow Polly Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge">IN STOCK</div>
+                        <h3 class="slide-title">Yellow Plastic Polly Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Poly yellow national-grade pipes designed for agricultural irrigation and plumbing needs. Available in sizes: 1/2", 3/4", 1", and 2". Lightweight yet highly efficient.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 5 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="https://i.postimg.cc/Fz35G81D/41a90c19-e298-4679-81eb-871154018613.jpg" class="slide-image" alt="Garden Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge">IN STOCK</div>
-            <h3 class="slide-title">Garden Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Flexible garden pipes in various sizes – perfect for households, nurseries, and farming. UV-resistant and leak-proof material ensures long life even in harsh weather.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 4 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/2yynDCLG/392c5b26-d31f-4132-8d97-abc209dbd00c.jpg" class="slide-image" alt="Black Poly Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge">IN STOCK</div>
+                        <h3 class="slide-title">Black Plastic Poly Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Sturdy poly black pipes available in multiple sizes: 1/2", 1", 1.5", 2", 3", 4", and 5". Ideal for both residential and industrial setups with excellent resistance to wear and tear.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 6 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="https://i.postimg.cc/pXMtyW17/Whats-App-Image-2025-02-17-at-7-40-40-PM.jpg" class="slide-image" alt="Zebra Band Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge">IN STOCK</div>
-            <h3 class="slide-title">Zebra Band Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Eye-catching transparent zebra-band pipes with superior water flow. Available in 2mm, 2.5mm, and 3mm thicknesses – beauty meets performance in your pipeline.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 5 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/Fz35G81D/41a90c19-e298-4679-81eb-871154018613.jpg" class="slide-image" alt="Garden Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge">IN STOCK</div>
+                        <h3 class="slide-title">Garden Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Flexible garden pipes in various sizes – perfect for households, nurseries, and farming. UV-resistant and leak-proof material ensures long life even in harsh weather.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 7 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Super Green Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Super Green Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Vibrant green pipes available in 3mm and 4mm thicknesses. Designed for high visibility and durability, perfect for agricultural and industrial applications where color coding matters.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 6 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/pXMtyW17/Whats-App-Image-2025-02-17-at-7-40-40-PM.jpg" class="slide-image" alt="Zebra Band Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge">IN STOCK</div>
+                        <h3 class="slide-title">Zebra Band Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Eye-catching transparent zebra-band pipes with superior water flow. Available in 2mm, 2.5mm, and 3mm thicknesses – beauty meets performance in your pipeline.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 8 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Red Poly Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Red Poly with White Line Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              High-visibility red pipes with distinctive white stripes, available in 3/4 inch and 1 inch sizes. Ideal for marking special lines and ensuring easy identification in complex piping systems.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 7 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Super Green Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Super Green Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Vibrant green pipes available in 3mm and 4mm thicknesses. Designed for high visibility and durability, perfect for agricultural and industrial applications where color coding matters.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 9 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Bravo Dagha Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Braded Bravo Dagha Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Heavy-duty braided pipes available in 3/4 inch and 1 inch sizes. Reinforced construction provides extra strength for demanding industrial applications and high-pressure environments.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 8 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Red Poly Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Red Poly with White Line Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            High-visibility red pipes with distinctive white stripes, available in 3/4 inch and 1 inch sizes. Ideal for marking special lines and ensuring easy identification in complex piping systems.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 10 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Fire Hose">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Fire Hose</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Professional-grade fire hoses available in sizes from 2 to 6 inches. Built to withstand extreme pressure and heat, meeting safety standards for emergency and industrial fire protection.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 9 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Bravo Dagha Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Braded Bravo Dagha Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Heavy-duty braided pipes available in 3/4 inch and 1 inch sizes. Reinforced construction provides extra strength for demanding industrial applications and high-pressure environments.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 11 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Vinyl Section Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Vinyl Section Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Imported high-quality vinyl pipes available in 1 and 2 inch sizes. Flexible yet durable, perfect for chemical transfer and specialized industrial applications requiring corrosion resistance.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 10 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Fire Hose">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Fire Hose</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Professional-grade fire hoses available in sizes from 2 to 6 inches. Built to withstand extreme pressure and heat, meeting safety standards for emergency and industrial fire protection.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 12 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Parker Gas Hose">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Parker Pressure Gas Hose</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Premium 8mm gas hose with 100mm length and 12kg weight. Engineered for reliable performance in gas transmission with excellent pressure resistance and durability.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 11 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Vinyl Section Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Vinyl Section Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Imported high-quality vinyl pipes available in 1 and 2 inch sizes. Flexible yet durable, perfect for chemical transfer and specialized industrial applications requiring corrosion resistance.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 13 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Commando Gas Hose">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Commando Pressure Gas Hose</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Heavy-duty 8mm gas hose offering 300ft length at 11.5kg weight. Designed for extended reach applications without compromising on safety or performance standards.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 12 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Parker Gas Hose">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Parker Pressure Gas Hose</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Premium 8mm gas hose with 100mm length and 12kg weight. Engineered for reliable performance in gas transmission with excellent pressure resistance and durability.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 14 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Bridgestone Hose">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Bridgestone High Pressure Gas Hose</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Professional-grade 8mm gas hose with 300ft length and 12kg weight. Built to handle extreme pressure conditions while maintaining flexibility and leak-proof performance.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 13 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Commando Gas Hose">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Commando Pressure Gas Hose</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Heavy-duty 8mm gas hose offering 300ft length at 11.5kg weight. Designed for extended reach applications without compromising on safety or performance standards.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 15 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Caterpillars Hose">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Caterpillars Gas Hose</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Industrial-strength gas hose available in 300ft length. Designed for continuous operation in demanding environments with reinforced construction for maximum safety.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 14 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Bridgestone Hose">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Bridgestone High Pressure Gas Hose</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Professional-grade 8mm gas hose with 300ft length and 12kg weight. Built to handle extreme pressure conditions while maintaining flexibility and leak-proof performance.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 16 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Pure Garden Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Pure Garden Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Premium garden pipes available in multiple sizes (1", 1.25", 1.5", 2") and thicknesses (2.5mm, 3mm). UV-resistant and kink-free design ensures long-lasting performance in all weather conditions.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 15 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Caterpillars Hose">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Caterpillars Gas Hose</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Industrial-strength gas hose available in 300ft length. Designed for continuous operation in demanding environments with reinforced construction for maximum safety.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 17 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="PE 100 Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">PE 100 National Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              High-density polyethylene pipes ranging from 1 inch to 8 inches (PN6 to PN16). Designed for water supply and irrigation systems with excellent pressure ratings and durability.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 16 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Pure Garden Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Pure Garden Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Premium garden pipes available in multiple sizes (1", 1.25", 1.5", 2") and thicknesses (2.5mm, 3mm). UV-resistant and kink-free design ensures long-lasting performance in all weather conditions.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 18 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Steel Wire Hose">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Suction Steel Wire Hose</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Reinforced suction hoses available in 3/4", 1", 1.25", 1.5", 2", 3", and 4" sizes. Steel wire construction prevents collapse under vacuum, ideal for industrial pumping applications.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 17 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="PE 100 Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">PE 100 National Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            High-density polyethylene pipes ranging from 1 inch to 8 inches (PN6 to PN16). Designed for water supply and irrigation systems with excellent pressure ratings and durability.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 19 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Clear Garden Hose Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Clear Garden Transparent Hose Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Ultra-clear flexible hose pipes available in 1mm and 2mm thicknesses. Perfect for visible water flow monitoring in gardens, aquariums, and decorative water features. UV-resistant and kink-proof design.
-            </p>
-          </div>
-        </div>
+                <!-- Slide 18 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Steel Wire Hose">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Suction Steel Wire Hose</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Reinforced suction hoses available in 3/4", 1", 1.25", 1.5", 2", 3", and 4" sizes. Steel wire construction prevents collapse under vacuum, ideal for industrial pumping applications.
+                        </p>
+                    </div>
+                </div>
 
-        <!-- Slide 20 -->
-        <div class="slide">
-          <div class="slide-image-container">
-            <img src="IMAGE_URL_HERE" class="slide-image" alt="Super Transparent Pipes">
-          </div>
-          <div class="slide-content">
-            <div class="stock-badge coming-soon">COMING SOON</div>
-            <h3 class="slide-title">Super Transparent Garden Pipes</h3>
-            <div class="rating">★★★★☆</div>
-            <p class="slide-description">
-              Crystal-clear premium garden pipes available in 1 inch (4mm/3mm) and 3/4 inch (3mm/4mm) variants. Extra-thick walls for durability while maintaining perfect visibility of water flow.
-            </p>
-          </div>
+                <!-- Slide 19 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Clear Garden Hose Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Clear Garden Transparent Hose Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Ultra-clear flexible hose pipes available in 1mm and 2mm thicknesses. Perfect for visible water flow monitoring in gardens, aquariums, and decorative water features. UV-resistant and kink-proof design.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Slide 20 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Super Transparent Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Super Transparent Garden Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Crystal-clear premium garden pipes available in 1 inch (4mm/3mm) and 3/4 inch (3mm/4mm) variants. Extra-thick walls for durability while maintaining perfect visibility of water flow.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide Counter -->
+            <div class="slide-counter" id="counter">1 of 20</div>
         </div>
-      </div>
     </div>
 
-    <!-- Navigation Controls -->
-    <div class="slider-nav">
-      <button class="nav-btn prev" id="prevBtn">← Prev</button>
-      <div class="slide-counter" id="counter">1 of 20</div>
-      <button class="nav-btn next" id="nextBtn">Next →</button>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('slider');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const counter = document.getElementById('counter');
+            const slides = document.querySelectorAll('.slide');
 
-    <!-- Dots Indicator -->
-    <div class="slider-dots" id="dots"></div>
-  </div>
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+            let slideInterval;
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const slider = document.getElementById('slider');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      const counter = document.getElementById('counter');
-      const dotsContainer = document.getElementById('dots');
-      const slides = document.querySelectorAll('.slide');
-      
-      let currentSlide = 0;
-      const totalSlides = slides.length;
-      let slideInterval;
+            // Update slider state
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                counter.textContent = `${currentSlide + 1} of ${totalSlides}`;
 
-      // Create dots
-      function createDots() {
-        slides.forEach((_, index) => {
-          const dot = document.createElement('div');
-          dot.classList.add('dot');
-          if (index === 0) dot.classList.add('active');
-          dot.addEventListener('click', () => goToSlide(index));
-          dotsContainer.appendChild(dot);
+                // Disable buttons when at ends
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+            }
+
+            // Auto-rotate slides
+            function startAutoSlide() {
+                slideInterval = setInterval(() => {
+                    if (currentSlide < totalSlides - 1) currentSlide++;
+                    else currentSlide = 0;
+                    updateSlider();
+                }, 5000);
+            }
+
+            // Event listeners
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlider();
+                    resetAutoSlide();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlider();
+                    resetAutoSlide();
+                }
+            });
+
+            // Reset auto-slide timer
+            function resetAutoSlide() {
+                clearInterval(slideInterval);
+                startAutoSlide();
+            }
+
+            // Pause on hover
+            slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
+            slider.addEventListener('mouseleave', startAutoSlide);
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') prevBtn.click();
+                if (e.key === 'ArrowRight') nextBtn.click();
+            });
+
+            // Initialize
+            updateSlider();
+            startAutoSlide();
         });
-      }
+    </script>
 
-      // Go to specific slide
-      function goToSlide(slideIndex) {
-        currentSlide = slideIndex;
-        updateSlider();
-      }
 
-      // Update slider state
-      function updateSlider() {
-        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-        counter.textContent = `${currentSlide + 1} of ${totalSlides}`;
 
-        // Update dots
-        document.querySelectorAll('.dot').forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentSlide);
-        });
 
-        // Disable buttons when at ends
-        prevBtn.disabled = currentSlide === 0;
-        nextBtn.disabled = currentSlide === totalSlides - 1;
-      }
 
-      // Auto-rotate slides
-      function startAutoSlide() {
-        slideInterval = setInterval(() => {
-          if (currentSlide < totalSlides - 1) currentSlide++;
-          else currentSlide = 0;
-          updateSlider();
-        }, 5000);
-      }
 
-      // Event listeners
-      prevBtn.addEventListener('click', () => {
-        if (currentSlide > 0) {
-          currentSlide--;
-          updateSlider();
-          resetAutoSlide();
-        }
-      });
-
-      nextBtn.addEventListener('click', () => {
-        if (currentSlide < totalSlides - 1) {
-          currentSlide++;
-          updateSlider();
-          resetAutoSlide();
-        }
-      });
-
-      // Reset auto-slide timer
-      function resetAutoSlide() {
-        clearInterval(slideInterval);
-        startAutoSlide();
-      }
-
-      // Pause on hover
-      slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
-      slider.addEventListener('mouseleave', startAutoSlide);
-
-      // Keyboard navigation
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') prevBtn.click();
-        if (e.key === 'ArrowRight') nextBtn.click();
-      });
-
-      // Initialize
-      createDots();
-      updateSlider();
-      startAutoSlide();
-    });
-  </script>
 </body>
 </html>
+
+
+ 
