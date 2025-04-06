@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,689 +7,698 @@
     <title>Pak Pipes - Client Reviews</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-  
+        /* Main Container */
+        .reviews-master-container {
+            width: 100%;
+            padding: 20px 0;
+        }
 
+        /* Review Cards Container */
+        .reviews-container {
+            width: 100%;
+            overflow: hidden;
+            margin: 30px 0;
+        }
 
+        .reviews-track {
+            display: flex;
+            gap: 30px;
+            padding: 15px 0;
+            animation: scroll 30s linear infinite;
+        }
 
-/* Review Cards Container */
-.reviews-container {
-    width: 100%;
-    overflow: hidden;
-}
+        /* Individual Review Card */
+        .review-card {
+            min-width: 300px;
+            background: #2a313a;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 1px solid #45ffca33;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin: 0 5px;
+        }
 
-.reviews-track {
-    display: flex;
-    gap: 15px;
-    animation: scroll 30s linear infinite;
-}
+        /* Hover Effects */
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(69, 255, 202, 0.3);
+            border-color: #45ffca;
+            background: #323946;
+        }
 
-/* Individual Review Card */
-.review-card {
-    min-width: 300px;
-    background: #2a313a;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    border: 1px solid #45ffca33;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
+        .review-card:hover .client-avatar {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(69, 255, 202, 0.5);
+        }
 
-/* Hover Effects */
-.review-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(69, 255, 202, 0.3);
-    border-color: #45ffca;
-    background: #323946;
-}
+        .review-card:hover .star {
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
 
-.review-card:hover .client-avatar {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(69, 255, 202, 0.5);
-}
+        /* Client Information */
+        .client-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
 
-.review-card:hover .star {
-    transform: scale(1.1);
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-}
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #45ffca;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
 
-/* Client Information */
-.client-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
+        .client-name {
+            font-size: 18px;
+            color: #45ffca;
+            font-weight: 600;
+        }
 
-.client-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #45ffca;
-    margin-right: 15px;
-    transition: all 0.3s ease;
-}
+        /* Star Rating */
+        .rating {
+            display: flex;
+            gap: 3px;
+            margin: 10px 0;
+        }
 
-.client-name {
-    font-size: 18px;
-    color: #45ffca;
-    font-weight: 600;
-}
+        .star {
+            color: #FFD700;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
 
-/* Star Rating */
-.rating {
-    display: flex;
-    gap: 3px;
-    margin: 10px 0;
-}
+        /* Review Text */
+        .review-text {
+            color: rgba(255,255,255,0.9);
+            font-size: 15px;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+        }
 
-.star {
-    color: #FFD700;
-    font-size: 18px;
-    transition: all 0.3s ease;
-}
+        .review-card:hover .review-text {
+            color: white;
+        }
 
-/* Review Text */
-.review-text {
-    color: rgba(255,255,255,0.9);
-    font-size: 15px;
-    line-height: 1.5;
-    transition: all 0.3s ease;
-}
+        /* Animation */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-315px * 10)); }
+        }
 
-.review-card:hover .review-text {
-    color: white;
-}
+        /* Pause animation on hover */
+        .reviews-master-container:hover .reviews-track {
+            animation-play-state: paused;
+        }
 
-/* Animation */
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-315px * 5)); }
-}
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .review-card {
+                min-width: 260px;
+                padding: 20px;
+            }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .review-card {
-        min-width: 260px;
-        padding: 15px;
-    }
-    
-    .client-avatar {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .client-name {
-        font-size: 16px;
-    }
-    
-    .star {
-        font-size: 16px;
-    }
-    
-    .review-text {
-        font-size: 14px;
-    }
-    
-    @keyframes scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-275px * 5)); }
-    }
-}
+            .client-avatar {
+                width: 45px;
+                height: 45px;
+            }
 
-@media (max-width: 480px) {
-    .review-section {
-        padding: 20px 15px;
-    }
-    
-    .review-card {
-        min-width: 240px;
-    }
-    
-    @keyframes scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-255px * 5)); }
-    }
-}
+            .client-name {
+                font-size: 16px;
+            }
+
+            .star {
+                font-size: 16px;
+            }
+
+            .review-text {
+                font-size: 14px;
+            }
+
+            @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(calc(-275px * 10)); }
+            }
+        }
+
+        @media (max-width: 480px) {
+            .reviews-container {
+                margin: 20px 0;
+            }
+
+            .review-card {
+                min-width: 240px;
+                padding: 18px;
+            }
+
+            .reviews-track {
+                gap: 20px;
+            }
+
+            @keyframes scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(calc(-255px * 10)); }
+            }
+        }
     </style>
 </head>
 <body>
 
+    <div class="reviews-master-container">
+        <!-- First Reviews Track -->
+        <div class="reviews-container">
+            <div class="reviews-track">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Hamza Tarique" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Hamza Tarique</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Best quality pipes in Karachi with fast delivery. Perfect for our construction projects.</p>
+                </div>
 
-    
-    <div class="reviews-container">
-        <div class="reviews-track">
-            <!-- Review 1 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Hamza Tarique" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Hamza Tarique</h3>
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Huzaifa Junaid" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Huzaifa Junaid</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Excellent service and durable pipes. Highly recommended for plumbing work.</p>
                 </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
+
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Ali Raza" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Ali Raza</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star-half star'></i>
+                    </div>
+                    <p class="review-text">Good quality materials with professional customer support. Satisfied overall.</p>
                 </div>
-                <p class="review-text">Best quality pipes in Karachi with fast delivery. Perfect for our construction projects.</p>
+
+                <!-- Review 4 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Bilal Ahmed" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Bilal Ahmed</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Reliable supplier with consistent quality. Always delivers on time.</p>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Usman Khan" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Usman Khan</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bx-star star'></i>
+                    </div>
+                    <p class="review-text">Competitive prices and good service. The pipes work well for our needs.</p>
+                </div>
+
+                <!-- Review 6 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Zain Malik" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Zain Malik</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Perfect for commercial projects. Durable and meets all requirements.</p>
+                </div>
+
+                <!-- Review 7 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Faisal Iqbal" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Faisal Iqbal</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star-half star'></i>
+                    </div>
+                    <p class="review-text">Quality materials with good after-sales support. Recommended supplier.</p>
+                </div>
+
+                <!-- Review 8 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Kamran Ali" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Kamran Ali</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Top quality plumbing supplies. Reduced our maintenance costs significantly.</p>
+                </div>
+
+                <!-- Review 9 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Noman Sheikh" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Noman Sheikh</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bx-star star'></i>
+                    </div>
+                    <p class="review-text">Good experience overall. The pipes are durable and reasonably priced.</p>
+                </div>
+
+                <!-- Review 10 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Saad Abdullah" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Saad Abdullah</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Will order again. The products are long-lasting and worth the investment.</p>
+                </div>
             </div>
-            
-            <!-- Review 2 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Huzaifa Junaid" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Huzaifa Junaid</h3>
+        </div>
+
+        <!-- Second Reviews Track (duplicate with different speed) -->
+        <div class="reviews-container">
+            <div class="reviews-track" style="animation-duration: 35s;">
+                <!-- Same reviews as above -->
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Hamza Tarique" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Hamza Tarique</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Best quality pipes in Karachi with fast delivery. Perfect for our construction projects.</p>
                 </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
+
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Huzaifa Junaid" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Huzaifa Junaid</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Excellent service and durable pipes. Highly recommended for plumbing work.</p>
                 </div>
-                <p class="review-text">Excellent service and durable pipes. Highly recommended for plumbing work.</p>
+
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Ali Raza" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Ali Raza</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star-half star'></i>
+                    </div>
+                    <p class="review-text">Good quality materials with professional customer support. Satisfied overall.</p>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Bilal Ahmed" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Bilal Ahmed</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Reliable supplier with consistent quality. Always delivers on time.</p>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Usman Khan" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Usman Khan</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bx-star star'></i>
+                    </div>
+                    <p class="review-text">Competitive prices and good service. The pipes work well for our needs.</p>
+                </div>
+
+                <!-- Review 6 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Zain Malik" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Zain Malik</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Perfect for commercial projects. Durable and meets all requirements.</p>
+                </div>
+
+                <!-- Review 7 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Faisal Iqbal" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Faisal Iqbal</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star-half star'></i>
+                    </div>
+                    <p class="review-text">Quality materials with good after-sales support. Recommended supplier.</p>
+                </div>
+
+                <!-- Review 8 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Kamran Ali" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Kamran Ali</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Top quality plumbing supplies. Reduced our maintenance costs significantly.</p>
+                </div>
+
+                <!-- Review 9 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Noman Sheikh" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Noman Sheikh</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bx-star star'></i>
+                    </div>
+                    <p class="review-text">Good experience overall. The pipes are durable and reasonably priced.</p>
+                </div>
+
+                <!-- Review 10 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Saad Abdullah" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Saad Abdullah</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Will order again. The products are long-lasting and worth the investment.</p>
+                </div>
             </div>
-            
-            <!-- Review 3 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Ali Raza" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Ali Raza</h3>
+        </div>
+
+        <!-- Third Reviews Track (duplicate with different speed) -->
+        <div class="reviews-container">
+            <div class="reviews-track" style="animation-duration: 40s;">
+                <!-- Same reviews as above -->
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Hamza Tarique" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Hamza Tarique</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Best quality pipes in Karachi with fast delivery. Perfect for our construction projects.</p>
                 </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star-half star'></i>
+
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Huzaifa Junaid" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Huzaifa Junaid</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Excellent service and durable pipes. Highly recommended for plumbing work.</p>
                 </div>
-                <p class="review-text">Good quality materials <br> with professional customer support. Satisfied overall.</p>
-            </div>
-            
-            <!-- Review 4 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Bilal Ahmed" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Bilal Ahmed</h3>
+
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Ali Raza" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Ali Raza</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star-half star'></i>
+                    </div>
+                    <p class="review-text">Good quality materials with professional customer support. Satisfied overall.</p>
                 </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
+
+                <!-- Review 4 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Bilal Ahmed" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Bilal Ahmed</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Reliable supplier with consistent quality. Always delivers on time.</p>
                 </div>
-                <p class="review-text">Reliable supplier with consistent quality. Always delivers on time.</p>
-            </div>
-            
-            <!-- Review 5 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Usman Khan" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Usman Khan</h3>
+
+                <!-- Review 5 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Usman Khan" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Usman Khan</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bx-star star'></i>
+                    </div>
+                    <p class="review-text">Competitive prices and good service. The pipes work well for our needs.</p>
                 </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bx-star star'></i>
+
+                <!-- Review 6 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Zain Malik" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Zain Malik</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Perfect for commercial projects. Durable and meets all requirements.</p>
                 </div>
-                <p class="review-text">Competitive prices and good service. The pipes work well for our needs.</p>
-            </div>
-            
-            <!-- Review 6 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Zain Malik" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Zain Malik</h3>
+
+                <!-- Review 7 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Faisal Iqbal" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Faisal Iqbal</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star-half star'></i>
+                    </div>
+                    <p class="review-text">Quality materials with good after-sales support. Recommended supplier.</p>
                 </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
+
+                <!-- Review 8 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Kamran Ali" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Kamran Ali</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Top quality plumbing supplies. Reduced our maintenance costs significantly.</p>
                 </div>
-                <p class="review-text">Perfect for commercial projects. Durable and meets all requirements.</p>
-            </div>
-            
-            <!-- Review 7 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Faisal Iqbal" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Faisal Iqbal</h3>
+
+                <!-- Review 9 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Noman Sheikh" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Noman Sheikh</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bx-star star'></i>
+                    </div>
+                    <p class="review-text">Good experience overall. The pipes are durable and reasonably priced.</p>
                 </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star-half star'></i>
+
+                <!-- Review 10 -->
+                <div class="review-card">
+                    <div class="client-info">
+                        <img src="" alt="Saad Abdullah" class="client-avatar" loading="lazy">
+                        <h3 class="client-name">Saad Abdullah</h3>
+                    </div>
+                    <div class="rating">
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                        <i class='bx bxs-star star'></i>
+                    </div>
+                    <p class="review-text">Will order again. The products are long-lasting and worth the investment.</p>
                 </div>
-                <p class="review-text">Quality materials with good after-sales support. Recommended supplier.</p>
-            </div>
-            
-            <!-- Review 8 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Kamran Ali" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Kamran Ali</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Top quality plumbing supplies. Reduced our maintenance costs significantly.</p>
-            </div>
-            
-            <!-- Review 9 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Noman Sheikh" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Noman Sheikh</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bx-star star'></i>
-                </div>
-                <p class="review-text">Good experience overall. The pipes are durable and reasonably priced.</p>
-            </div>
-            
-            <!-- Review 10 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Saad Abdullah" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Saad Abdullah</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Will order again. The products are long-lasting and worth the investment.</p>
             </div>
         </div>
     </div>
 
+    <script>
+        // Duplicate reviews for seamless infinite loop
+        document.addEventListener('DOMContentLoaded', function() {
+            const tracks = document.querySelectorAll('.reviews-track');
+            
+            // Duplicate reviews for each track
+            tracks.forEach(track => {
+                track.innerHTML += track.innerHTML;
+            });
 
+            // Adjust animation for all tracks
+            function adjustAnimation() {
+                const cardWidth = document.querySelector('.review-card').offsetWidth;
+                const style = document.createElement('style');
+                style.innerHTML = `
+                    @keyframes scroll {
+                        0% { transform: translateX(0); }
+                        100% { transform: translateX(calc(-${cardWidth}px * 10)); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
 
-    <div class="reviews-container">
-        <div class="reviews-track">
-            <!-- Review 1 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Hamza Tarique" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Hamza Tarique</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Best quality pipes in Karachi with fast delivery. Perfect for our construction projects.</p>
-            </div>
+            // Initial adjustment
+            adjustAnimation();
 
-            <!-- Review 2 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Huzaifa Junaid" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Huzaifa Junaid</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Excellent service and durable pipes. Highly recommended for plumbing work.</p>
-            </div>
-
-            <!-- Review 3 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Ali Raza" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Ali Raza</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star-half star'></i>
-                </div>
-                <p class="review-text">Good quality materials <br> with professional customer support. Satisfied overall.</p>
-            </div>
-
-            <!-- Review 4 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Bilal Ahmed" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Bilal Ahmed</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Reliable supplier with consistent quality. Always delivers on time.</p>
-            </div>
-
-            <!-- Review 5 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Usman Khan" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Usman Khan</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bx-star star'></i>
-                </div>
-                <p class="review-text">Competitive prices and good service. The pipes work well for our needs.</p>
-            </div>
-
-            <!-- Review 6 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Zain Malik" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Zain Malik</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Perfect for commercial projects. Durable and meets all requirements.</p>
-            </div>
-
-            <!-- Review 7 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Faisal Iqbal" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Faisal Iqbal</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star-half star'></i>
-                </div>
-                <p class="review-text">Quality materials with good after-sales support. Recommended supplier.</p>
-            </div>
-
-            <!-- Review 8 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Kamran Ali" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Kamran Ali</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Top quality plumbing supplies. Reduced our maintenance costs significantly.</p>
-            </div>
-
-            <!-- Review 9 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Noman Sheikh" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Noman Sheikh</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bx-star star'></i>
-                </div>
-                <p class="review-text">Good experience overall. The pipes are durable and reasonably priced.</p>
-            </div>
-
-            <!-- Review 10 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Saad Abdullah" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Saad Abdullah</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Will order again. The products are long-lasting and worth the investment.</p>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="reviews-container">
-        <div class="reviews-track">
-            <!-- Review 1 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Hamza Tarique" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Hamza Tarique</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Best quality pipes in Karachi with fast delivery. Perfect for our construction projects.</p>
-            </div>
-
-            <!-- Review 2 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Huzaifa Junaid" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Huzaifa Junaid</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Excellent service and durable pipes. Highly recommended for plumbing work.</p>
-            </div>
-
-            <!-- Review 3 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Ali Raza" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Ali Raza</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star-half star'></i>
-                </div>
-                <p class="review-text">Good quality materials <br> with professional customer support. Satisfied overall.</p>
-            </div>
-
-            <!-- Review 4 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Bilal Ahmed" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Bilal Ahmed</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Reliable supplier with consistent quality. Always delivers on time.</p>
-            </div>
-
-            <!-- Review 5 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Usman Khan" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Usman Khan</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bx-star star'></i>
-                </div>
-                <p class="review-text">Competitive prices and good service. The pipes work well for our needs.</p>
-            </div>
-
-            <!-- Review 6 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Zain Malik" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Zain Malik</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Perfect for commercial projects. Durable and meets all requirements.</p>
-            </div>
-
-            <!-- Review 7 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Faisal Iqbal" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Faisal Iqbal</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star-half star'></i>
-                </div>
-                <p class="review-text">Quality materials with good after-sales support. Recommended supplier.</p>
-            </div>
-
-            <!-- Review 8 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Kamran Ali" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Kamran Ali</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Top quality plumbing supplies. Reduced our maintenance costs significantly.</p>
-            </div>
-
-            <!-- Review 9 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Noman Sheikh" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Noman Sheikh</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bx-star star'></i>
-                </div>
-                <p class="review-text">Good experience overall. The pipes are durable and reasonably priced.</p>
-            </div>
-
-            <!-- Review 10 -->
-            <div class="review-card">
-                <div class="client-info">
-                    <img src="" alt="Saad Abdullah" class="client-avatar" loading="lazy">
-                    <h3 class="client-name">Saad Abdullah</h3>
-                </div>
-                <div class="rating">
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                    <i class='bx bxs-star star'></i>
-                </div>
-                <p class="review-text">Will order again. The products are long-lasting and worth the investment.</p>
-            </div>
-        </div>
-    </div>
-
-
-
-
-<script>
-    // Duplicate reviews for seamless infinite loop
-    document.addEventListener('DOMContentLoaded', function() {
-        const track = document.querySelector('.reviews-track');
-        track.innerHTML += track.innerHTML;
-        
-        // Pause animation on hover
-        track.addEventListener('mouseenter', () => {
-            track.style.animationPlayState = 'paused';
+            // Adjust on window resize
+            window.addEventListener('resize', adjustAnimation);
         });
-        
-        track.addEventListener('mouseleave', () => {
-            track.style.animationPlayState = 'running';
-        });
-        
-        // Adjust animation speed based on screen size
-        function adjustAnimation() {
-            const cardWidth = document.querySelector('.review-card').offsetWidth;
-            const style = document.createElement('style');
-            style.innerHTML = `
-                @keyframes scroll {
-                    0% { transform: translateX(0); }
-                    100% { transform: translateX(calc(-${cardWidth}px * 10)); }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Initial adjustment
-        adjustAnimation();
-        
-        // Adjust on window resize
-        window.addEventListener('resize', adjustAnimation);
-    });
-</script>
+    </script>
 
 </body>
 </html>
