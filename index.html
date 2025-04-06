@@ -5,302 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pak Pipes - Reviews</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        /* CSS Styles */
-        .review {
-            padding: 50px 0;
-            background: #f9f9f9;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        .review-box {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .review-box .heading {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-        
-        .review-box .heading span {
-            color: #ff6b6b;
-        }
-        
-        .wrapper {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .review-slider {
-            display: flex;
-            width: max-content;
-            animation: slide 30s linear infinite;
-        }
-        
-        .review-item {
-            background: #fff;
-            padding: 30px;
-            margin: 0 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            min-width: 300px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .review-item:hover {
-            transform: translateY(-10px);
-        }
-        
-        .review-item img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 3px solid #ff6b6b;
-        }
-        
-        .review-item h2 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .review-item .rating {
-            color: #ffc107;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-        
-        .review-item p {
-            color: #666;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-        
-        @keyframes slide {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .review-item {
-                min-width: 250px;
-                padding: 20px;
-            }
-            
-            .review-box .heading {
-                font-size: 2rem;
-            }
-            
-            @keyframes slide {
-                0% {
-                    transform: translateX(0);
-                }
-                100% {
-                    transform: translateX(-100%);
-                }
-            }
-        }
-    </style>
+
+
+ <style>
+
+
+
+</style>
+
 </head>
 <body>
-    <!-- HTML Structure -->
-    <section class="review" id="review">
-        <div class="review-box">
-            <h2 class="heading">Client <span>Reviews</span></h2>
-            <div class="wrapper">
-                <div class="review-slider">
-                    <!-- Review Item 1 -->
-                    <div class="review-item">
-                        <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Hamza Tarique">
-                        <h2>Hamza Tarique</h2>
-                        <div class="rating">
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>                        
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>     
-                        </div>
-                        <p>Best quality pipes in Karachi fast and secure delivery</p>
+
+<section class="review" id="review">
+    <div class="review-box">
+        <h2 class="heading">Client <span>Reviews</span></h2>
+        <div class="wrapper">
+            <div class="review-slider">
+                <div class="review-item">
+                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="">
+                    <h2>Hamza Tarique</h2>
+                    <div class="rating">
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>                        
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>     
                     </div>
-                    
-                    <!-- Review Item 2 -->
-                    <div class="review-item">
-                        <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Huzaifa Junaid">
-                        <h2>Huzaifa Junaid</h2>
-                        <div class="rating">
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                        </div>
-                        <p>Great service and fast delivery Highly Recommended</p>
+                    <p>Best quality pipes in Karachi fast and secure delivery</p>
+                </div>
+                <div class="review-item">
+                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="">
+                    <h2>Huzaifa Junaid</h2>
+                    <div class="rating">
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
                     </div>
-                    
-                    <!-- Review Item 3 -->
-                    <div class="review-item">
-                        <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Ali Khan">
-                        <h2>Ali Khan</h2>
-                        <div class="rating">
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>                        
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>     
-                        </div>
-                        <p>Excellent products and customer service. Will order again!</p>
+                    <p>Great service and fast delivery Highly Recomended</p>
+                </div>
+                <div class="review-item">
+                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="">
+                    <h2>Ali Raza</h2>
+                    <div class="rating">
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star-half" id="Star"></i>
                     </div>
-                    
-                    <!-- Review Item 4 -->
-                    <div class="review-item">
-                        <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Sarah Ahmed">
-                        <h2>Sarah Ahmed</h2>
-                        <div class="rating">
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                        </div>
-                        <p>Very reliable supplier with top-notch quality pipes</p>
+                    <p>Excellent customer support and product quality</p>
+                </div>
+                <div class="review-item">
+                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="">
+                    <h2>Bilal Ahmed</h2>
+                    <div class="rating">
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
                     </div>
-                    
-                    <!-- Review Item 5 -->
-                    <div class="review-item">
-                        <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Usman Malik">
-                        <h2>Usman Malik</h2>
-                        <div class="rating">
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>                        
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>     
-                        </div>
-                        <p>Fast delivery and excellent packaging. Very satisfied!</p>
+                    <p>Reliable supplier with consistent quality</p>
+                </div>
+                <div class="review-item">
+                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="">
+                    <h2>Usman Khan</h2>
+                    <div class="rating">
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bx-star" id="Star"></i>
                     </div>
-                    
-                    <!-- Review Item 6 -->
-                    <div class="review-item">
-                        <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Fatima Riaz">
-                        <h2>Fatima Riaz</h2>
-                        <div class="rating">
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                        </div>
-                        <p>Best prices in town with quality that exceeds expectations</p>
+                    <p>Good prices and timely delivery</p>
+                </div>
+                <div class="review-item">
+                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="">
+                    <h2>Zain Malik</h2>
+                    <div class="rating">
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
                     </div>
-                    
-                    <!-- Duplicates for seamless looping -->
-                    <!-- Review Item 1 (Duplicate) -->
-                    <div class="review-item">
-                        <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Hamza Tarique">
-                        <h2>Hamza Tarique</h2>
-                        <div class="rating">
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>                        
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>     
-                        </div>
-                        <p>Best quality pipes in Karachi fast and secure delivery</p>
+                    <p>Perfect for our construction needs</p>
+                </div>
+                <div class="review-item">
+                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="">
+                    <h2>Faisal Iqbal</h2>
+                    <div class="rating">
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star-half" id="Star"></i>
                     </div>
-                    
-                    <!-- Review Item 2 (Duplicate) -->
-                    <div class="review-item">
-                        <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Huzaifa Junaid">
-                        <h2>Huzaifa Junaid</h2>
-                        <div class="rating">
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                            <i class="bx bxs-star"></i>
-                        </div>
-                        <p>Great service and fast delivery Highly Recommended</p>
+                    <p>Trustworthy supplier with quality materials</p>
+                </div>
+                <div class="review-item">
+                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="">
+                    <h2>Kamran Ali</h2>
+                    <div class="rating">
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
                     </div>
+                    <p>Best plumbing supplies in town</p>
+                </div>
+                <div class="review-item">
+                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="">
+                    <h2>Noman Sheikh</h2>
+                    <div class="rating">
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bx-star" id="Star"></i>
+                    </div>
+                    <p>Good experience overall</p>
+                </div>
+                <div class="review-item">
+                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="">
+                    <h2>Saad Abdullah</h2>
+                    <div class="rating">
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                        <i class="bx bxs-star" id="Star"></i>
+                    </div>
+                    <p>Will definitely order again</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const slider = document.querySelector('.review-slider');
-            const items = document.querySelectorAll('.review-item');
-            
-            // Pause animation on hover
-            slider.addEventListener('mouseenter', () => {
-                slider.style.animationPlayState = 'paused';
-            });
-            
-            slider.addEventListener('mouseleave', () => {
-                slider.style.animationPlayState = 'running';
-            });
-            
-            // Touch support for mobile devices
-            let isDragging = false;
-            let startPos = 0;
-            let currentTranslate = 0;
-            let prevTranslate = 0;
-            
-            slider.addEventListener('touchstart', touchStart);
-            slider.addEventListener('touchend', touchEnd);
-            slider.addEventListener('touchmove', touchMove);
-            
-            function touchStart(e) {
-                isDragging = true;
-                startPos = e.touches[0].clientX;
-                slider.style.animation = 'none';
-                prevTranslate = currentTranslate;
-            }
-            
-            function touchMove(e) {
-                if (isDragging) {
-                    const currentPosition = e.touches[0].clientX;
-                    currentTranslate = prevTranslate + currentPosition - startPos;
-                    slider.style.transform = `translateX(${currentTranslate}px)`;
-                }
-            }
-            
-            function touchEnd() {
-                isDragging = false;
-                const movedBy = currentTranslate - prevTranslate;
-                
-                // If user didn't swipe much, resume animation
-                if (Math.abs(movedBy) < 50) {
-                    slider.style.animation = 'slide 30s linear infinite';
-                    slider.style.transform = `translateX(${prevTranslate}px)`;
-                }
-            }
-            
-            // Adjust animation for mobile
-            function handleResize() {
-                if (window.innerWidth <= 768) {
-                    slider.style.animationDuration = '60s';
-                } else {
-                    slider.style.animationDuration = '30s';
-                }
-            }
-            
-            window.addEventListener('resize', handleResize);
-            handleResize();
-        });
-    </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.review-slider');
+    const items = document.querySelectorAll('.review-item');
+    const itemWidth = items[0].offsetWidth + parseInt(window.getComputedStyle(items[0]).marginRight);
+    const totalWidth = itemWidth * items.length;
+    
+    // Duplicate items for seamless infinite loop
+    slider.innerHTML += slider.innerHTML;
+    
+    let position = 0;
+    const speed = 1; // Adjust speed here (lower = faster)
+    
+    function animate() {
+        position -= speed;
+        
+        // Reset position when half way through
+        if (position <= -totalWidth) {
+            position = 0;
+        }
+        
+        slider.style.transform = `translateX(${position}px)`;
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+});
+</script>
+ 
+
 </body>
 </html>
