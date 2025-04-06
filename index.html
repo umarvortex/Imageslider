@@ -131,6 +131,35 @@
             padding: 0 15px;      
         }
 
+
+.whatsapp-order-btn {
+    display: inline-block; /* Makes the button a block element for better control */
+    padding: 10px 20px; /* Adds some padding for a better shape */
+    background-color: #25D366; /* WhatsApp's official green color for brand consistency */
+    color: #ffffff; /* White text for contrast */
+    text-decoration: none; /* Removes the default underline from the link */
+    border-radius: 25px; /* Rounded corners for a modern look */
+    font-size: 16px; /* Slightly larger text for readability */
+    font-weight: 600; /* Makes the text bold */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+/* Hover effect to make the button interactive */
+.whatsapp-order-btn:hover {
+    background-color: #20b858; /* Slightly darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+}
+
+
+
+
+
+
+
+
+
         /* ===== NAVIGATION ARROWS ===== */
         .arrow {
             position: absolute;
@@ -157,11 +186,11 @@
         }
 
         .arrow.prev {
-            left: 16px;
+            left: 15px;
         }
 
         .arrow.next {
-            right: 16px;
+            right: 15px;
         }
 
         .arrow:disabled {
@@ -172,13 +201,13 @@
         /* ===== SLIDE COUNTER ===== */
         .slide-counter {
             position: absolute;
-            bottom: 20px;
+            bottom: 17px;
             left: 50%;
             transform: translateX(-50%);
             color: #999;
             font-weight: bold;
-            font-size: 1.2rem;
-            background: rgba(0, 0, 0, 0.5);
+            font-size: 0.8rem;
+            background: transparent;
             padding: 5px 15px;
             border-radius: 20px;
         }
