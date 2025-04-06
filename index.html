@@ -5,97 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pak Pipes - Reviews</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-
- <style>
-
-.review .heading {
-    text-align: center;
-    font-size:  5.5rem;
-}
-
-
-
-.review {
-    background: var(--bg-color);
-}
-
-
-.review-bx {
-    background-size: cover;
-    display: flex;
-    flex-direction: repeat(auto-fit, minmax(200px, 2fr));
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.review .heading {
-    margin-bottom: 5rem;
-}
-
-
-.review-box img {
-   width: 15rem;
-   border-radius: 50%;
-   border: 3px solid var(--main-color);
-}
-
-.wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-
-}
-
-.review-item {
-    min-height: 80px;
-    min-width: 30px;
-    background: var(--snd-bg-color);
-    border: 3px solid rgba(238, 238, 238, 0.3);
-    border-radius: 20px;
-    margin: 0 2rem;
-    padding: 30px 40px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    color: #fff;
-    transition: 0.5s ease-in-out;
-}
-
-
-.review-item:hover {
-    border: 3px solid var(--main-color);
-    transform: translateY(-5px) scale(1.03);
-}
-
-.review-item h2 {
-    font-size: 2.9rem;
-}
-
-
-
-.review-item p {
-    font-size: 1.5rem;
-    line-height: 1.3;
-}
-
-
-#Star {
-    color: gold;
-    font-size: 2rem;
-}
-
-
-/*Contact Section Code*/
-
-</style>
-
+    <style>
+        :root {
+            --bg-color: #1f242d;
+            --snd-bg-color: #323946;
+            --main-color: #0ef;
+        }
+        
+        .review {
+            background: var(--bg-color);
+            padding: 10rem 9% 5rem;
+            overflow: hidden;
+        }
+        
+        .review .heading {
+            text-align: center;
+            font-size: 4.5rem;
+            margin-bottom: 5rem;
+        }
+        
+        .review .heading span {
+            color: var(--main-color);
+        }
+        
+        .review-box {
+            position: relative;
+            width: 100%;
+        }
+        
+        .wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .review-slider {
+            display: flex;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+        
+        .review-item {
+            min-width: 300px;
+            background: var(--snd-bg-color);
+            border: 3px solid rgba(238, 238, 238, 0.3);
+            border-radius: 20px;
+            margin: 0 2rem;
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            color: #fff;
+            transition: 0.5s ease;
+        }
+        
+        .review-item:hover {
+            border: 3px solid var(--main-color);
+            transform: translateY(-5px) scale(1.03);
+        }
+        
+        .review-box img {
+            width: 15rem;
+            height: 15rem;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--main-color);
+        }
+        
+        .review-item h2 {
+            font-size: 2.2rem;
+            margin-top: 1rem;
+        }
+        
+        .review-item p {
+            font-size: 1.5rem;
+            line-height: 1.3;
+            text-align: center;
+        }
+        
+        .rating {
+            display: flex;
+            gap: 0.2rem;
+        }
+        
+        #Star {
+            color: gold;
+            font-size: 2rem;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-300px * 10));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .review {
+                padding: 8rem 5% 3rem;
+            }
+            
+            .review .heading {
+                font-size: 3.5rem;
+            }
+            
+            .review-item {
+                min-width: 250px;
+                padding: 20px 30px;
+            }
+            
+            .review-box img {
+                width: 10rem;
+                height: 10rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -105,7 +132,7 @@
         <div class="wrapper">
             <div class="review-slider">
                 <div class="review-item">
-                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="">
+                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Client">
                     <h2>Hamza Tarique</h2>
                     <div class="rating">
                         <i class="bx bxs-star" id="Star"></i>
@@ -117,7 +144,7 @@
                     <p>Best quality pipes in Karachi fast and secure delivery</p>
                 </div>
                 <div class="review-item">
-                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="">
+                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Client">
                     <h2>Huzaifa Junaid</h2>
                     <div class="rating">
                         <i class="bx bxs-star" id="Star"></i>
@@ -129,7 +156,7 @@
                     <p>Great service and fast delivery Highly Recomended</p>
                 </div>
                 <div class="review-item">
-                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="">
+                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Client">
                     <h2>Ali Raza</h2>
                     <div class="rating">
                         <i class="bx bxs-star" id="Star"></i>
@@ -141,7 +168,7 @@
                     <p>Excellent customer support and product quality</p>
                 </div>
                 <div class="review-item">
-                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="">
+                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Client">
                     <h2>Bilal Ahmed</h2>
                     <div class="rating">
                         <i class="bx bxs-star" id="Star"></i>
@@ -153,7 +180,7 @@
                     <p>Reliable supplier with consistent quality</p>
                 </div>
                 <div class="review-item">
-                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="">
+                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Client">
                     <h2>Usman Khan</h2>
                     <div class="rating">
                         <i class="bx bxs-star" id="Star"></i>
@@ -165,7 +192,7 @@
                     <p>Good prices and timely delivery</p>
                 </div>
                 <div class="review-item">
-                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="">
+                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Client">
                     <h2>Zain Malik</h2>
                     <div class="rating">
                         <i class="bx bxs-star" id="Star"></i>
@@ -177,7 +204,7 @@
                     <p>Perfect for our construction needs</p>
                 </div>
                 <div class="review-item">
-                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="">
+                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Client">
                     <h2>Faisal Iqbal</h2>
                     <div class="rating">
                         <i class="bx bxs-star" id="Star"></i>
@@ -189,7 +216,7 @@
                     <p>Trustworthy supplier with quality materials</p>
                 </div>
                 <div class="review-item">
-                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="">
+                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Client">
                     <h2>Kamran Ali</h2>
                     <div class="rating">
                         <i class="bx bxs-star" id="Star"></i>
@@ -201,7 +228,7 @@
                     <p>Best plumbing supplies in town</p>
                 </div>
                 <div class="review-item">
-                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="">
+                    <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Client">
                     <h2>Noman Sheikh</h2>
                     <div class="rating">
                         <i class="bx bxs-star" id="Star"></i>
@@ -213,7 +240,7 @@
                     <p>Good experience overall</p>
                 </div>
                 <div class="review-item">
-                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="">
+                    <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Client">
                     <h2>Saad Abdullah</h2>
                     <div class="rating">
                         <i class="bx bxs-star" id="Star"></i>
@@ -230,34 +257,13 @@
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const slider = document.querySelector('.review-slider');
-    const items = document.querySelectorAll('.review-item');
-    const itemWidth = items[0].offsetWidth + parseInt(window.getComputedStyle(items[0]).marginRight);
-    const totalWidth = itemWidth * items.length;
-    
-    // Duplicate items for seamless infinite loop
-    slider.innerHTML += slider.innerHTML;
-    
-    let position = 0;
-    const speed = 1; // Adjust speed here (lower = faster)
-    
-    function animate() {
-        position -= speed;
-        
-        // Reset position when half way through
-        if (position <= -totalWidth) {
-            position = 0;
-        }
-        
-        slider.style.transform = `translateX(${position}px)`;
-        requestAnimationFrame(animate);
-    }
-    
-    animate();
-});
+    // This is now handled by CSS animation, but keeping it here in case you want JS control
+    document.addEventListener('DOMContentLoaded', function() {
+        // You can adjust animation speed here if needed
+        const slider = document.querySelector('.review-slider');
+        slider.style.animationDuration = '30s'; // Adjust speed (lower = faster)
+    });
 </script>
- 
 
 </body>
 </html>
