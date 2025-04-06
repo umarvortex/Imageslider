@@ -1,684 +1,306 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pak Pipes - Complete Collection</title>
-  <style>
-    /* ===== GLOBAL RESET ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Arial, sans-serif;
-    }
-
-    body {
-      background: #111;
-      color: #eee;
-      padding: 10px;
-    }
-
-        .alumni-container {
-            max-width: 100%;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pak Pipes - Reviews</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* CSS Styles */
+        .review {
+            padding: 50px 0;
+            background: #f9f9f9;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .review-box {
+            max-width: 1200px;
             margin: 0 auto;
-            background: linear-gradient(to bottom, #0f1011, #1e2022);
-            border: 1px solid #45ffca;
-            box-shadow: 0 0 18px rgba(69, 255, 202, 0.3);
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
+            padding: 0 20px;
         }
-
-        /* ===== HEADER ===== */
-        .alumni-heading {
+        
+        .review-box .heading {
             text-align: center;
-            font-size: 1.5rem;
-            font-weight: 400; 
-            padding: 20px;
-            color: white;
-            background: linear-gradient(to bottom, #0f1011, #1e2022);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
         }
-
-        /* ===== SLIDER CONTAINER ===== */
-        .slider-container {
-            position: relative;
+        
+        .review-box .heading span {
+            color: #ff6b6b;
+        }
+        
+        .wrapper {
+            width: 100%;
             overflow: hidden;
-        }
-
-        .slider {
-            display: flex;
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        /* ===== SLIDE STYLES ===== */
-        .slide {
-            min-width: 100%;
             position: relative;
         }
-
-        .slide-image-container {
-            width: 100%;
-            height: 400px;
+        
+        .review-slider {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #0f1011;
-            overflow: hidden;
-            padding: 0;
-            margin: 0;
+            width: max-content;
+            animation: slide 30s linear infinite;
         }
-
-        .slide-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-            transition: transform 0.4s ease;
+        
+        .review-item {
+            background: #fff;
+            padding: 30px;
+            margin: 0 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            min-width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease;
         }
-
-        /* ===== SLIDE CONTENT ===== */
-        .slide-content {
-            text-align: left !important;
-            align-items: flex-start !important;
-            justify-content: flex-start !important;
-            background: transparent;
-            padding: 20px;
+        
+        .review-item:hover {
+            transform: translateY(-10px);
         }
-
-        .slide-content p {
-            padding-left: 0 !important;
-            margin-left: 0 !important;
-            text-align: left;
-            width: 100%;
-        }
-
-        .stock-badge {
-            display: inline-block;
-            background: rgba(69, 255, 202, 0.3);
-            color: #45ffca;
-            padding: 6px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            font-size: 18px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .slide-title {
-            font-size: 20px;
-            color: #fff;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .rating {
-            color: gold;
-            font-size: 15px;
-            letter-spacing: 3px;
-            margin: 10px 0;
-        }
-
-        .slide-description {
-            color: #ccc;
-            line-height: 1.6;
-            font-size: 19px;
-            max-width: 800px;
-            margin: 0 auto 15px;
-            padding: 0 15px;      
-        }
-
-
-.whatsapp-order-btn {
-    display: inline-block; /* Makes the button a block element for better control */
-    padding: 10px 20px; /* Adds some padding for a better shape */
-     background: rgba(69, 255, 202, 0.3); /* WhatsApp's official green color for brand consistency */
-    color: #ffffff; /* White text for contrast */
-    text-decoration: none; /* Removes the default underline from the link */
-    border-radius: 25px; /* Rounded corners for a modern look */
-    font-size: 16px; /* Slightly larger text for readability */
-    font-weight: 600; /* Makes the text bold */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
-}
-
-/* Hover effect to make the button interactive */
-.whatsapp-order-btn:hover {
-    background: rgba(69, 255, 202, 0.7);
-    transform: translateY(-3px); 
-    
-}
-
-
-
-
-
-
-
-
-
-        /* ===== NAVIGATION ARROWS ===== */
-        .arrow {
-            position: absolute;
-            top: 18.8%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.4);
+        
+        .review-item img {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 100;
-            transition: all 0.3s ease;
-            border: none;
-            color: white;
-            font-size: 25px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid #ff6b6b;
         }
-
-        .arrow:hover {
-            background: rgba(69, 255, 202, 0.6);
-            color: #45ffca;
+        
+        .review-item h2 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
         }
-
-        .arrow.prev {
-            left: 15px;
+        
+        .review-item .rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
         }
-
-        .arrow.next {
-            right: 15px;
+        
+        .review-item p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
-
-        .arrow:disabled {
-            opacity: 0.2;
-            cursor: not-allowed;
+        
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
-
-        /* ===== SLIDE COUNTER ===== */
-        .slide-counter {
-            position: absolute;
-            bottom: 17px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #999;
-            font-weight: bold;
-            font-size: 0.8rem;
-            background: transparent;
-            padding: 5px 15px;
-            border-radius: 20px;
-        }
-
-        /* ===== RESPONSIVE DESIGN ===== */
+        
         @media (max-width: 768px) {
-            .alumni-heading {
-                font-size: 15px;
-            }
-
-            .slide-image-container {
-                height: 300px;
-            }
-
-            .slide-title {
-                font-size: 20px;
+            .review-item {
+                min-width: 250px;
+                padding: 20px;
             }
             
-            .arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .slide-image-container {
-                height: 250px;
-            }
-
-            .slide-content {
-                padding: 15px;
-            }
-
-            .stock-badge {
-                font-size: 10px;
-            }
-
-            .slide-title {
-                font-size: 19px;
-            }
-
-            .slide-description {
-                font-size: 17px;
+            .review-box .heading {
+                font-size: 2rem;
             }
             
-            .arrow {
-                width: 35px;
-                height: 35px;
-                font-size: 18px;
+            @keyframes slide {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-100%);
+                }
             }
         }
     </style>
-
 </head>
 <body>
-
- 
-
-    <div class="alumni-container">
-        <h5 class="alumni-heading">Explore Our Premium Pipe Collection</h5>
-
-        <div class="slider-container">
-            <button class="arrow prev" id="prevBtn">❮</button>
-            <button class="arrow next" id="nextBtn">❯</button>
-            
-            <div class="slider" id="slider">
-                <!-- Slide 1 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="https://i.postimg.cc/v8VsQgXf/Whats-App-Image-2025-02-17-at-7-37-09-PM.jpg" class="slide-image" alt="Clear Garden Pipes">
+    <!-- HTML Structure -->
+    <section class="review" id="review">
+        <div class="review-box">
+            <h2 class="heading">Client <span>Reviews</span></h2>
+            <div class="wrapper">
+                <div class="review-slider">
+                    <!-- Review Item 1 -->
+                    <div class="review-item">
+                        <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Hamza Tarique">
+                        <h2>Hamza Tarique</h2>
+                        <div class="rating">
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>                        
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>     
+                        </div>
+                        <p>Best quality pipes in Karachi fast and secure delivery</p>
                     </div>
-                    <div class="slide-content">
-                        <div class="stock-badge">IN STOCK</div>
-                        <h3 class="slide-title">Clear Garden Transparent Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Crystal-clear garden pipes crafted for durability and smooth water flow. Available in 1mm and 2mm thickness.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Clear%20Garden%20Transparent%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
+                    
+                    <!-- Review Item 2 -->
+                    <div class="review-item">
+                        <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Huzaifa Junaid">
+                        <h2>Huzaifa Junaid</h2>
+                        <div class="rating">
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                        </div>
+                        <p>Great service and fast delivery Highly Recommended</p>
                     </div>
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="https://i.postimg.cc/bN0ft77v/Whats-App-Image-2025-02-17-at-7-40-42-PM.jpg" class="slide-image" alt="Pona Flex Pipes">
+                    
+                    <!-- Review Item 3 -->
+                    <div class="review-item">
+                        <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Ali Khan">
+                        <h2>Ali Khan</h2>
+                        <div class="rating">
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>                        
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>     
+                        </div>
+                        <p>Excellent products and customer service. Will order again!</p>
                     </div>
-                    <div class="slide-content">
-                        <div class="stock-badge">IN STOCK</div>
-                        <h3 class="slide-title">PonaFlex Gas Pipes</h3>
-                        <div class="rating">★★★★★</div>
-                        <p class="slide-description">
-                            Korean technology-backed gas hose, 270ft long and weighing 6kg. Built with premium materials for safety.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20PonaFlex%20Gas%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
+                    
+                    <!-- Review Item 4 -->
+                    <div class="review-item">
+                        <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Sarah Ahmed">
+                        <h2>Sarah Ahmed</h2>
+                        <div class="rating">
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                        </div>
+                        <p>Very reliable supplier with top-notch quality pipes</p>
                     </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="https://i.postimg.cc/j5ZymD2C/4bc90dbf-60be-49f6-9b4f-e55425846e9a.jpg" class="slide-image" alt="Yellow Polly Pipes">
+                    
+                    <!-- Review Item 5 -->
+                    <div class="review-item">
+                        <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Usman Malik">
+                        <h2>Usman Malik</h2>
+                        <div class="rating">
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>                        
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>     
+                        </div>
+                        <p>Fast delivery and excellent packaging. Very satisfied!</p>
                     </div>
-                    <div class="slide-content">
-                        <div class="stock-badge">IN STOCK</div>
-                        <h3 class="slide-title">Yellow Plastic Polly Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Poly yellow national-grade pipes designed for agricultural irrigation and plumbing needs. Available in sizes: 1/2", 3/4", 1", and 2". Lightweight yet highly efficient.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Yellow%20Plastic%20Polly%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
+                    
+                    <!-- Review Item 6 -->
+                    <div class="review-item">
+                        <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Fatima Riaz">
+                        <h2>Fatima Riaz</h2>
+                        <div class="rating">
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                        </div>
+                        <p>Best prices in town with quality that exceeds expectations</p>
                     </div>
-                </div>
-
-                <!-- Slide 4 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="https://i.postimg.cc/2yynDCLG/392c5b26-d31f-4132-8d97-abc209dbd00c.jpg" class="slide-image" alt="Black Poly Pipes">
+                    
+                    <!-- Duplicates for seamless looping -->
+                    <!-- Review Item 1 (Duplicate) -->
+                    <div class="review-item">
+                        <img src="https://i.postimg.cc/xddX8CD2/2222222.jpg" loading="lazy" alt="Hamza Tarique">
+                        <h2>Hamza Tarique</h2>
+                        <div class="rating">
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>                        
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>     
+                        </div>
+                        <p>Best quality pipes in Karachi fast and secure delivery</p>
                     </div>
-                    <div class="slide-content">
-                        <div class="stock-badge">IN STOCK</div>
-                        <h3 class="slide-title">Black Plastic Poly Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Sturdy poly black pipes available in multiple sizes: 1/2", 1", 1.5", 2", 3", 4", and 5". Ideal for both residential and industrial setups with excellent resistance to wear and tear.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Black%20Plastic%20Poly%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 5 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="https://i.postimg.cc/Fz35G81D/41a90c19-e298-4679-81eb-871154018613.jpg" class="slide-image" alt="Garden Pipes">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge">IN STOCK</div>
-                        <h3 class="slide-title">Garden Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Flexible garden pipes in various sizes – perfect for households, nurseries, and farming. UV-resistant and leak-proof material ensures long life even in harsh weather.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Garden%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 6 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="https://i.postimg.cc/pXMtyW17/Whats-App-Image-2025-02-17-at-7-40-40-PM.jpg" class="slide-image" alt="Zebra Band Pipes">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge">IN STOCK</div>
-                        <h3 class="slide-title">Zebra Band Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Eye-catching transparent zebra-band pipes with superior water flow. Available in 2mm, 2.5mm, and 3mm thicknesses – beauty meets performance in your pipeline.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Zebra%20Band%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 7 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Super Green Pipes">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Super Green Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Vibrant green pipes available in 3mm and 4mm thicknesses. Designed for high visibility and durability, perfect for agricultural and industrial applications where color coding matters.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Super%20Green%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
+                    
+                    <!-- Review Item 2 (Duplicate) -->
+                    <div class="review-item">
+                        <img src="https://i.postimg.cc/8PhJn9Bq/1111111.jpg" loading="lazy" alt="Huzaifa Junaid">
+                        <h2>Huzaifa Junaid</h2>
+                        <div class="rating">
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                            <i class="bx bxs-star"></i>
+                        </div>
+                        <p>Great service and fast delivery Highly Recommended</p>
                     </div>
                 </div>
-
-                <!-- Slide 8 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Red Poly Pipes">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Red Poly with White Line Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            High-visibility red pipes with distinctive white stripes, available in 3/4 inch and 1 inch sizes. Ideal for marking special lines and ensuring easy identification in complex piping systems.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Red%20Poly%20with%20White%20Line%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 9 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Bravo Dagha Pipes">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Braded Bravo Dagha Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Heavy-duty braided pipes available in 3/4 inch and 1 inch sizes. Reinforced construction provides extra strength for demanding industrial applications and high-pressure environments.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Braded%20Bravo%20Dagha%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 10 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Fire Hose">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Fire Hose Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Professional-grade fire hoses available in sizes from 2 to 6 inches. Built to withstand extreme pressure and heat, meeting safety standards for emergency and industrial fire protection.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Fire%20Hose" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 11 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Vinyl Section Pipes">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Vinyl Section Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Imported high-quality vinyl pipes available in 1 and 2 inch sizes. Flexible yet durable, perfect for chemical transfer and specialized industrial applications requiring corrosion resistance.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Vinyl%20Section%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 12 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Parker Gas Hose Pipes">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Parker Pressure Gas Hose</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Premium 8mm gas hose with 100mm length and 12kg weight. Engineered for reliable performance in gas transmission with excellent pressure resistance and durability.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Parker%20Pressure%20Gas%20Hose" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 13 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Commando Gas Hose Pipes">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Commando Pressure Gas Hose</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Heavy-duty 8mm gas hose offering 300ft length at 11.5kg weight. Designed for extended reach applications without compromising on safety or performance standards.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Commando%20Pressure%20Gas%20Hose" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 14 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Bridgestone Hose">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Bridgestone High Pressure Gas Hose Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Professional-grade 8mm gas hose with 300ft length and 12kg weight. Built to handle extreme pressure conditions while maintaining flexibility and leak-proof performance.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Bridgestone%20High%20Pressure%20Gas%20Hose" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 15 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Caterpillars Hose">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Caterpillars Gas Hose</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Industrial-strength gas hose available in 300ft length. Designed for continuous operation in demanding environments with reinforced construction for maximum safety.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Caterpillars%20Gas%20Hose" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 16 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Pure Garden Pipes">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Pure Garden Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Premium garden pipes available in multiple sizes (1", 1.25", 1.5", 2") and thicknesses (2.5mm, 3mm). UV-resistant and kink-free design ensures long-lasting performance in all weather conditions.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Pure%20Garden%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 17 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="PE 100 Pipes">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">PE 100 National Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            High-density polyethylene pipes ranging from 1 inch to 8 inches (PN6 to PN16). Designed for water supply and irrigation systems with excellent pressure ratings and durability.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20PE%20100%20National%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 18 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Steel Wire Hose">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Suction Steel Wire Hose Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Reinforced suction hoses available in 3/4", 1", 1.25", 1.5", 2", 3", and 4" sizes. Steel wire construction prevents collapse under vacuum, ideal for industrial pumping applications.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Suction%20Steel%20Wire%20Hose" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-
-                <!-- Slide 19 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Clear Garden Hose Pipes">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Clear Garden Transparent Hose Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Ultra-clear flexible hose pipes available in 1mm and 2mm thicknesses. Perfect for visible water flow monitoring in gardens, and decorative water features. UV-resistant and kink-proof design.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Clear%20Garden%20Transparent%20Hose%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-              
-                <!-- Slide 20 -->
-                <div class="slide">
-                    <div class="slide-image-container">
-                        <img src="IMAGE_URL_HERE" class="slide-image" alt="Super Transparent Pipes">
-                    </div>
-                    <div class="slide-content">
-                        <div class="stock-badge coming-soon">IN STOCK</div>
-                        <h3 class="slide-title">Super Transparent Garden Pipes</h3>
-                        <div class="rating">★★★★☆</div>
-                        <p class="slide-description">
-                            Crystal-clear premium garden pipes available in 1 inch (4mm/3mm) and 3/4 inch (3mm/4mm) variants. Extra-thick walls for durability while maintaining perfect visibility of water flow.
-                        </p>
-                        <a href="https://wa.me/91YOURWHATSAPPNUMBER?text=I%20want%20to%20order%20Super%20Transparent%20Garden%20Pipes" class="whatsapp-order-btn">Order on WhatsApp</a>
-                    </div>
-                </div>
-            </div>                     
-
-            
-            <!-- Slide Counter -->
-            <div class="slide-counter" id="counter">1 of 20</div>
+            </div>
         </div>
-    </div>
+    </section>
 
+    <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const slider = document.getElementById('slider');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const counter = document.getElementById('counter');
-            const slides = document.querySelectorAll('.slide');
-
-            let currentSlide = 0;
-            const totalSlides = slides.length;
-            let slideInterval;
-
-            // Update slider state
-            function updateSlider() {
-                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-                counter.textContent = `${currentSlide + 1} of ${totalSlides}`;
-
-                // Disable buttons when at ends
-                prevBtn.disabled = currentSlide === 0;
-                nextBtn.disabled = currentSlide === totalSlides - 1;
+            const slider = document.querySelector('.review-slider');
+            const items = document.querySelectorAll('.review-item');
+            
+            // Pause animation on hover
+            slider.addEventListener('mouseenter', () => {
+                slider.style.animationPlayState = 'paused';
+            });
+            
+            slider.addEventListener('mouseleave', () => {
+                slider.style.animationPlayState = 'running';
+            });
+            
+            // Touch support for mobile devices
+            let isDragging = false;
+            let startPos = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            
+            slider.addEventListener('touchstart', touchStart);
+            slider.addEventListener('touchend', touchEnd);
+            slider.addEventListener('touchmove', touchMove);
+            
+            function touchStart(e) {
+                isDragging = true;
+                startPos = e.touches[0].clientX;
+                slider.style.animation = 'none';
+                prevTranslate = currentTranslate;
             }
-
-            // Auto-rotate slides
-            function startAutoSlide() {
-                slideInterval = setInterval(() => {
-                    if (currentSlide < totalSlides - 1) currentSlide++;
-                    else currentSlide = 0;
-                    updateSlider();
-                }, 5000);
-            }
-
-            // Event listeners
-            prevBtn.addEventListener('click', () => {
-                if (currentSlide > 0) {
-                    currentSlide--;
-                    updateSlider();
-                    resetAutoSlide();
+            
+            function touchMove(e) {
+                if (isDragging) {
+                    const currentPosition = e.touches[0].clientX;
+                    currentTranslate = prevTranslate + currentPosition - startPos;
+                    slider.style.transform = `translateX(${currentTranslate}px)`;
                 }
-            });
-
-            nextBtn.addEventListener('click', () => {
-                if (currentSlide < totalSlides - 1) {
-                    currentSlide++;
-                    updateSlider();
-                    resetAutoSlide();
-                }
-            });
-
-            // Reset auto-slide timer
-            function resetAutoSlide() {
-                clearInterval(slideInterval);
-                startAutoSlide();
             }
-
-            // Pause on hover
-            slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
-            slider.addEventListener('mouseleave', startAutoSlide);
-
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') prevBtn.click();
-                if (e.key === 'ArrowRight') nextBtn.click();
-            });
-
-            // Initialize
-            updateSlider();
-            startAutoSlide();
+            
+            function touchEnd() {
+                isDragging = false;
+                const movedBy = currentTranslate - prevTranslate;
+                
+                // If user didn't swipe much, resume animation
+                if (Math.abs(movedBy) < 50) {
+                    slider.style.animation = 'slide 30s linear infinite';
+                    slider.style.transform = `translateX(${prevTranslate}px)`;
+                }
+            }
+            
+            // Adjust animation for mobile
+            function handleResize() {
+                if (window.innerWidth <= 768) {
+                    slider.style.animationDuration = '60s';
+                } else {
+                    slider.style.animationDuration = '30s';
+                }
+            }
+            
+            window.addEventListener('resize', handleResize);
+            handleResize();
         });
     </script>
-
-
-
-
-
-
 </body>
 </html>
-
-
- 
