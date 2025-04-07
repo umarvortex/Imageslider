@@ -1,24 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap');
 
 .box h3 {
-    font-size: 3.6rem !important;
-    font-family: 'Orbitron', sans-serif !important;
-    color: #0ff !important;
-    text-transform: uppercase !important;
-    text-shadow: 0 0 8px #0ff, 0 0 16px #00f7ff;
+    font-size: 3.2rem !important;
+    font-family: 'Josefin Sans', sans-serif !important;
+    color: #2e8b57 !important;
+    font-weight: 600 !important;
+    background: linear-gradient(120deg, #d4fc79, #96e6a1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: capitalize !important;
     display: inline-block;
-    padding: 8px 12px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 6px;
 }
 
 .box h3 span {
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: 4rem !important;
-    background: linear-gradient(to right, #0ff, #ff00ff) !important;
+    font-family: 'Josefin Sans', sans-serif !important;
+    font-size: 3.8rem !important;
+    font-weight: 800 !important;
+    background: linear-gradient(to right, #00c853, #b2ff59) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
-    text-shadow: 0 0 12px #ff00ff;
 }
 
 
