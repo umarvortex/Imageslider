@@ -4,58 +4,263 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pak Pipes - Our Team</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modern Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .team-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .team-heading {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .team-heading h1 {
+            font-size: 2.5rem;
+            color: #1e40af;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .team-heading p {
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .partners-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .partner {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .partner:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+            border-color: #93c5fd;
+        }
+
+        .partner-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .partner-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 2rem;
+        }
+
+        .partner-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .partner-contact {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .partner-number {
+            font-size: 1.2rem;
+            color: #334155;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .partner-actions {
+            display: flex;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .partner-action {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .partner-action:first-child {
+            border-right: 1px solid #f1f5f9;
+        }
+
+        .partner-action:hover {
+            background-color: #f8fafc;
+            color: #1d4ed8;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .partners-container {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .team-heading h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .partner {
+                border-radius: 10px;
+            }
+            
+            .partner-header {
+                padding: 20px;
+            }
+            
+            .partner-avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+            
+            .partner-name {
+                font-size: 1.3rem;
+            }
+            
+            .partner-number {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="team-section">
-        <h1 class="team-heading">Our Team</h1>
-        <div class="team-container">
-            <!-- Card 1 -->
-            <div class="team-card">
-                <div class="card-header">
-                    <i class="fas fa-user-tie"></i>
-                    <h2>Tahir</h2>
+    <section class="team-section">
+        <div class="team-heading">
+            <h1>Our Team</h1>
+            <p>Meet our dedicated business partners</p>
+        </div>
+        
+        <div class="partners-container">
+            <!-- Partner 1 -->
+            <div class="partner">
+                <div class="partner-header">
+                    <div class="partner-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h2 class="partner-name">Tahir</h2>
                 </div>
-                <div class="card-body">
-                    <p><i class="fas fa-phone"></i> 0319 - 2017909</p>
-                </div>
-                <div class="card-footer">
-                    <a href="tel:03192017909"><i class="fas fa-phone-alt"></i> Call</a>
-                    <a href="sms:03192017909"><i class="fas fa-comment"></i> SMS</a>
+                <div class="partner-contact">
+                    <div class="partner-number">
+                        <i class="fas fa-phone"></i>
+                        <span>0319 - 2017909</span>
+                    </div>
+                    <div class="partner-actions">
+                        <a href="tel:03192017909" class="partner-action">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Call</span>
+                        </a>
+                        <a href="sms:03192017909" class="partner-action">
+                            <i class="fas fa-comment"></i>
+                            <span>SMS</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <!-- Card 2 -->
-            <div class="team-card">
-                <div class="card-header">
-                    <i class="fas fa-user-tie"></i>
-                    <h2>Abdul Rehman</h2>
+            
+            <!-- Partner 2 -->
+            <div class="partner">
+                <div class="partner-header">
+                    <div class="partner-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h2 class="partner-name">Abdul Rehman</h2>
                 </div>
-                <div class="card-body">
-                    <p><i class="fas fa-phone"></i> 0333 - 7504732</p>
-                </div>
-                <div class="card-footer">
-                    <a href="tel:03337504732"><i class="fas fa-phone-alt"></i> Call</a>
-                    <a href="sms:03337504732"><i class="fas fa-comment"></i> SMS</a>
+                <div class="partner-contact">
+                    <div class="partner-number">
+                        <i class="fas fa-phone"></i>
+                        <span>0333 - 7504732</span>
+                    </div>
+                    <div class="partner-actions">
+                        <a href="tel:03337504732" class="partner-action">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Call</span>
+                        </a>
+                        <a href="sms:03337504732" class="partner-action">
+                            <i class="fas fa-comment"></i>
+                            <span>SMS</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <!-- Card 3 -->
-            <div class="team-card">
-                <div class="card-header">
-                    <i class="fas fa-user-tie"></i>
-                    <h2>Umair Ashfaq</h2>
+            
+            <!-- Partner 3 -->
+            <div class="partner">
+                <div class="partner-header">
+                    <div class="partner-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h2 class="partner-name">Umair Ashfaq</h2>
                 </div>
-                <div class="card-body">
-                    <p><i class="fas fa-phone"></i> 0311 - 9285582</p>
-                </div>
-                <div class="card-footer">
-                    <a href="tel:03119285582"><i class="fas fa-phone-alt"></i> Call</a>
-                    <a href="sms:03119285582"><i class="fas fa-comment"></i> SMS</a>
+                <div class="partner-contact">
+                    <div class="partner-number">
+                        <i class="fas fa-phone"></i>
+                        <span>0311 - 9285582</span>
+                    </div>
+                    <div class="partner-actions">
+                        <a href="tel:03119285582" class="partner-action">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Call</span>
+                        </a>
+                        <a href="sms:03119285582" class="partner-action">
+                            <i class="fas fa-comment"></i>
+                            <span>SMS</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </body>
 </html>
