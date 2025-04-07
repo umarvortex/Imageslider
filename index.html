@@ -1,420 +1,619 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+ <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pak Pipes International</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Main Website Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f9fc;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        section {
-            padding: 50px 0;
-        }
-        
-        h1, h2, h3 {
-            color: #1a2a3a;
-            margin-bottom: 15px;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-        
-        h2 {
-            font-size: 2rem;
-            border-bottom: 2px solid #45ffca;
-            display: inline-block;
-            padding-bottom: 5px;
-            margin-bottom: 25px;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: #2a5c8d;
-            color: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
-        
-        .hero h1 {
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-        }
-        
-        /* Team Section */
-        .team-section {
-            background-color: white;
-            text-align: center;
-        }
-        
-        .team-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .team-member {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            border: 1px solid #e1e5eb;
-        }
-        
-        .team-member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .member-header {
-            background-color: #2a5c8d;
-            color: white;
-            padding: 25px;
-        }
-        
-        .member-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .member-contact {
-            padding: 20px;
-        }
-        
-        .member-number {
-            font-size: 1.2rem;
-            color: #333;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .member-actions {
-            display: flex;
-            border-top: 1px solid #f1f5f9;
-        }
-        
-        .member-action {
-            flex: 1;
-            padding: 15px;
-            text-align: center;
-            color: #2a5c8d;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-        
-        .member-action:hover {
-            background-color: #f1f5f9;
-        }
-        
-        /* Services Section */
-        .services-section {
-            background-color: #f1f5f9;
-            text-align: center;
-        }
-        
-        .services-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .service-icon {
-            font-size: 2.5rem;
-            color: #2a5c8d;
-            margin-bottom: 20px;
-        }
-        
-        /* Testimonials */
-        .testimonial-section {
-            background-color: white;
-        }
-        
-        .testimonial {
-            background: #f1f5f9;
-            border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .testimonial:before {
-            content: '"';
-            font-size: 5rem;
-            color: #45ffca;
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            line-height: 1;
-            opacity: 0.2;
-        }
-        
-        .testimonial-author {
-            font-weight: 600;
-            margin-top: 20px;
-            color: #2a5c8d;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #1a2a3a;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .team-container, .services-container {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero {
-                padding: 80px 20px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            section {
-                padding: 40px 0;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.7rem;
-            }
-            
-            .team-container, .services-container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Meta Tags -->
+<title>Pak Pipes International Karachi - High Quality Pipes Supplier in Karachi</title>
+<meta name="description" content="Pak Pipes International Karachi - Leading supplier of high-quality Poly, Zebra Band, Garden Transparent, and Pona Flex Gas Pipes in Karachi, Pakistan. Contact for wholesale and retail orders.">
+<meta name="keywords" content="Pak Pipes, Pak Pipes Karachi, Pak Pipe Center Karachi, Pak Pipe Center International Karachi, PVC Pipes Karachi, UPVC Pipes Karachi, Pak pipes International Karachi, High Quality Pipes, PVC Pipes Karachi, Water Pipes, Zebra Band Pipes, Gas Pipes, Plastic Poly Pipes, Ponaflex Gas Pipes, Pakistan Pipes, Pipes in Karachi Pipes Karachi, Pakistan Pipes International, Pak Pipes International, Pipes Supplier Karachi, International Pipes, Memon One Traders, Karachi Pipes, High Quality Plastic Pipes">
+<meta name="author" content="Pak Pipes International Karachi">
+<meta property="og:image" content="https://i.postimg.cc/pXp6PdzQ/IMG-20250306-034151.png">
+<meta name="geo.region" content="PK-SD">
+<meta name="geo.placename" content="Karachi">
+<meta name="geo.position" content="24.8607;67.0011">
+<meta name="ICBM" content="24.8607, 67.0011">
+<meta name="googlebot" content="index, follow">
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="1 day">
+<meta name="google-site-verification" content="qp8udjbM_SqZHEJNLQq9CLu_xQU7NkBY4OIw-j91yiU"/>
+<!-- Open Graph Tags for Social Media Sharing -->
+<meta property="og:title" content="Pak Pipes International Karachi - Pipes Supplier">
+<meta property="og:description" content="Order high-quality Poly, Zebra Band, Garden Transparent, and Pona Flex Gas Pipes in Karachi from Pak Pipes International Karachi. Best quality guaranteed!">
+<meta property="og:url" content="https://umarvortex.github.io/Pak-Pipes-International-Karachi/"> <!-- Your Website URL -->
+<meta property="og:type" content="website">
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C8Q7CXEYCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C8Q7CXEYCV');
+</script>
+     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="style.css">
+     <title>Pak Pipes</title>
+</head>   
 <body>
-    <header>
-        <div class="container header-content">
-            <div class="logo">PAK PIPES INTERNATIONAL</div>
-            <div class="contact">Email: info@pakpipes.com</div>
+     <header>
+
+        <a href="#home" class="logo">Pak <span>Pipes</span></a>
+
+        <div class='bx bx-menu' id='menu-icon'></div>
+
+
+        <ul class="navbar">
+             <li><a href="#home">Home</a></li>
+             <li><a href="#services">Services</a></li>
+             <li><a href="#about">About</a></li>
+             <li><a href="#promise">Promise</a></li>
+             <li><a href="#review">Review</a></li>
+             <li><a href="#contact form">Feedback</a></li>
+         </ul>
+
+        <div class="top-btn">
+            <a href="mailto:asliyatkidunya@gmail.com" class="nav-btn">
+                <i class="bx bxs-envelope"></i> Email Us
+            </a>
+         <style>
+          .nav-btn i {
+            font-size: 18px;
+            margin-right: 8px;
+            vertical-align: middle;
+          }
+         </style>
+
         </div>
+
     </header>
-    
-    <section class="hero">
-        <div class="container">
-            <h1>Quality Piping Solutions</h1>
-            <p>We offer exceptional durability and performance. You can also purchase in bulk and resell – making it a great opportunity for retailers and contractors.</p>
-            <p>For top-notch piping solutions, think <strong>Pak Pipes International</strong> – where <strong>quality meets trust</strong>.</p>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h3>Order Our</h3>
+            <h1>Cost-Effective Pipes</h1>
+            <h3><span class="multiple-text"> </span></h3>
+         <p><strong>Pak Pipes International</strong> – Karachi's Trusted Name in <strong>Quality Piping Solutions</strong><br><br>
+
+We are a leading supplier of premium-grade pipes including <strong>PVC</strong>, <strong>HDPE</strong>, <strong>Imported</strong>, <strong>Chinese</strong>, and <strong>Korean pipes</strong>, suitable for both residential and industrial applications.<br><br>
+
+With a portfolio of <strong>20+ high-quality products</strong>, we offer exceptional durability and performance. You can also purchase in bulk and resell – making it a great opportunity for retailers and contractors.<br><br>
+
+For top-notch piping solutions, think <strong>Pak Pipes International</strong> – where <strong>quality meets trust</strong>.</p>
+
+
+        <a href="https://wa.me/+923192017909" class="btn">
+   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+   alt="WhatsApp Logo" class="whatsapp-icon"> ORDER </a>
+
+<style>
+  .whatsapp-icon {
+     font-size: 17.6px;
+     display: inline-flex; 
+     align-items: center; 
+     justify-content: center;
+     width: 22px;
+     height: 22px;
+     vertical-align: middle;
+  }
+</style>
+         <a href="tel:+923192017909" class="btn">
+          <i class="fa fa-phone phone"></i> ORDER </a>
+
+<style>
+  .phone {
+     font-size: 17.6px;
+     display: inline-flex; 
+     align-items: center; 
+     justify-content: center; 
+     width: 22px;
+     height: 22px;
+     vertical-align: middle;
+  }
+</style>
+</div>
+
+
+
+
+<div class="home-img">
+    <div class="sloder-container">
+        <div class="slod active-slod">
+            <img src="https://i.postimg.cc/d1qrChRp/Screenshot-20250406-184233-3.jpg" alt="Pak Pipes">
         </div>
+        <div class="slod">
+            <img src="https://i.postimg.cc/3RC0JYP1/Screenshot-20250406-191101.jpg" alt="Pak Pipes">
+        </div>
+    </div>
+</div>
+
+<style>
+/* Fixed Styling */
+.home-img {
+    width: 100%;
+    max-width: 100%;
+    height: 60vh; /* Reduced height */
+    margin: 0 auto;
+    padding: 0 !important;
+    overflow: hidden;
+    position: relative;
+}
+
+.sloder-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slod {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 7s ease;
+}
+
+.slod img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Changed to contain */
+    object-position: center;
+}
+
+.active-slod {
+    opacity: 1;
+}
+</style>
+
+<script>
+// Auto transition code (same as before)
+let currentSlod = 0;
+const allSlods = document.querySelectorAll('.slod');
+
+setInterval(() => {
+    allSlods[currentSlod].classList.remove('active-slod');
+    currentSlod = (currentSlod + 1) % allSlods.length;
+    allSlods[currentSlod].classList.add('active-slod');
+}, 5000);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- chat bot codes only -->      
+<style>      
+ .chat-icon {
+  position: fixed;
+  bottom: 27px;
+  right: 23px;
+  background: linear-gradient(135deg, #d200ff, #45ffca);
+  color: white;
+  border-radius: 16px 16px 2px 16px;
+  width: 57px;
+  height: 57px;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+.dots {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+  animation: blink 1.5s infinite alternate;
+}
+.dot:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.dot:nth-child(3) {
+  animation-delay: 0.6s;
+}
+@keyframes blink {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+ </style>
+
+    <div class="chat-icon" onclick="openChatbot()">
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>  
+        </div>
+    </div>
+<!-- Hidden Chatbot Container -->
+<div id="chatbot-container">
+  <div id="close-btn" onclick="closeChatbot()"><i class="fa-solid fa-xmark"></i></div>
+  <iframe 
+    src="https://umarvortex.github.io/Chatbot/"
+    id="chatbot-iframe"
+    style="border:none;">
+  </iframe>
+</div>
+
+<!-- chat bot codes only -->
     </section>
-    
-    <section class="team-section">
-        <div class="container">
-            <h2>Our Team</h2>
-            <p>Meet our dedicated business partners</p>
-            
-            <div class="team-container">
-                <div class="team-member">
-                    <div class="member-header">
-                        <h3 class="member-name">Tahir</h3>
+
+
+
+
+
+
+<section class="services" id="services">
+        <h2 class="heading"> Our <span>Services</span></h2>
+
+
+
+  <style>
+
+
+.alumni-container {
+    max-width: 100%;
+    margin: 0 auto;
+    background: linear-gradient(to bottom, #0f1011, #1e2022);
+    border: 1px solid #45ffca;
+    box-shadow: 0 0 18px rgba(69, 255, 202, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.alumni-heading {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 20px;
+    color: white;
+    background: linear-gradient(to bottom, #0f1011, #1e2022);
+}
+
+.slider-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.slide-image-container {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0f1011;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.slide-content {
+    text-align: left;
+    background: transparent;
+    padding: 20px;
+    padding-bottom: 50px; /* Added space for counter */
+    position: relative;
+    min-height: 200px; /* Ensure consistent height */
+}
+
+.stock-badge {
+    display: inline-block;
+    background: rgba(69, 255, 202, 0.3);
+    color: #45ffca;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-bottom: 14px;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.slide-title {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 9px;
+    font-weight: 600;
+}
+
+.rating {
+    color: gold;
+    font-size: 14px;
+    letter-spacing: 3px;
+    margin: 9px 0;
+}
+
+.slide-description {
+    color: #ccc;
+    line-height: 1.6;
+    font-size: 16.5px;
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+
+.button-container {
+    margin: 20px 0;
+}
+
+.whatsapp-order-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(69, 255, 202, 0.3);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-order-btn:hover {
+    background: rgba(69, 255, 202, 0.7);
+    border: 1px solid #45ffca;
+    transform: translateY(-3px);
+}
+
+.arroow {
+    position: absolute;
+    top: 22%;
+    transform: translateY(-50%);
+    width: 43px;
+    height: 43px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+    border: none;
+    color: white;
+    font-size: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.arroow:hover {
+    background: rgba(69, 255, 202, 0.6);
+    color: #45ffca;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.arroow.prev {
+    left: 20px;
+}
+
+.arroow.next {
+    right: 20px;
+}
+
+.arroow:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+    transform: translateY(-50%);
+}
+
+.slide-counter {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #999;
+    font-weight: 400;
+    font-size: 1.4rem;
+    background: transparent;
+    padding: 4px 13px;
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+    .alumni-heading {
+        font-size: 14px;
+    }
+    .slide-image-container {
+        height: 300px;
+    }
+    .slide-title {
+        font-size: 17px;
+    }
+    .arroow {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    .slide-content {
+        min-height: 220px;
+        padding-bottom: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide-image-container {
+        height: 250px;
+    }
+    .slide-content {
+        padding: 15px;
+        padding-bottom: 40px;
+    }
+    .stock-badge {
+        font-size: 9px;
+    }
+    .slide-title {
+        font-size: 17px;
+    }
+    .slide-description {
+        font-size: 14px;
+    }
+    .arroow {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    .whatsapp-order-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+
+
+
+
+  </style>
+
+
+
+
+
+    <div class="alumni-container">
+        <h5 class="alumni-heading">Explore Our Pipe Collection</h5>
+
+        <div class="slider-container">
+            <button class="arroow prev" id="prevBtn">❮</button>
+            <button class="arroow next" id="nextBtn">❯</button>
+
+            <div class="slider" id="slider">
+                <!-- Slide 1 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/v8VsQgXf/Whats-App-Image-2025-02-17-at-7-37-09-PM.jpg" class="slide-image" alt="Clear Garden Pipes">
                     </div>
-                    <div class="member-contact">
-                        <div class="member-number">
-                            <i class="fas fa-phone"></i>
-                            <span>0319 - 2017909</span>
-                        </div>
-                        <div class="member-actions">
-                            <a href="tel:03192017909" class="member-action">
-                                <i class="fas fa-phone-alt"></i> Call
-                            </a>
-                            <a href="sms:03192017909" class="member-action">
-                                <i class="fas fa-comment"></i> SMS
-                            </a>
-                        </div>
+                    <div class="slide-content">
+                        <div class="stock-badge">IN STOCK</div>
+                        <h3 class="slide-title">Clear Garden Transparent Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Crystal-clear garden pipes crafted for durability and smooth water flow. Available in 1mm and 2mm thickness.
+                        </p>
+                      <a href="https://wa.me/923192017909?text=Salam!%20I%20want%20to%20buy%20Clear%20Garden%20Transparent%20Pipes%20(1mm/2mm).%20Please%20share%20prices%20and%20availability." class="whatsapp-order-btn">Order on WhatsApp</a>
                     </div>
                 </div>
-                
-                <div class="team-member">
-                    <div class="member-header">
-                        <h3 class="member-name">Abdul Rehman</h3>
+
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/bN0ft77v/Whats-App-Image-2025-02-17-at-7-40-42-PM.jpg" class="slide-image" alt="Pona Flex Pipes">
                     </div>
-                    <div class="member-contact">
-                        <div class="member-number">
-                            <i class="fas fa-phone"></i>
-                            <span>0333 - 7504732</span>
-                        </div>
-                        <div class="member-actions">
-                            <a href="tel:03337504732" class="member-action">
-                                <i class="fas fa-phone-alt"></i> Call
-                            </a>
-                            <a href="sms:03337504732" class="member-action">
-                                <i class="fas fa-comment"></i> SMS
-                            </a>
-                        </div>
+                    <div class="slide-content">
+                        <div class="stock-badge">IN STOCK</div>
+                        <h3 class="slide-title">PonaFlex Gas Pipes</h3>
+                        <div class="rating">★★★★★</div>
+                        <p class="slide-description">
+                            Korean technology-backed gas hose, 270ft long and weighing 6kg. Built with premium materials for safety.
+                        </p>
+                       <a href="https://wa.me/923192017909?text=Salam!%20I'm%20interested%20in%20PonaFlex%20Gas%20Pipes%20(270ft).%20Need%20details%20about%20pressure%20rating%20and%20delivery." class="whatsapp-order-btn">Order on WhatsApp</a>
                     </div>
                 </div>
-                
-                <div class="team-member">
-                    <div class="member-header">
-                        <h3 class="member-name">Umair Ashfaq</h3>
+
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/j5ZymD2C/4bc90dbf-60be-49f6-9b4f-e55425846e9a.jpg" class="slide-image" alt="Yellow Polly Pipes">
                     </div>
-                    <div class="member-contact">
-                        <div class="member-number">
-                            <i class="fas fa-phone"></i>
-                            <span>0311 - 9285582</span>
-                        </div>
-                        <div class="member-actions">
-                            <a href="tel:03119285582" class="member-action">
-                                <i class="fas fa-phone-alt"></i> Call
-                            </a>
-                            <a href="sms:03119285582" class="member-action">
-                                <i class="fas fa-comment"></i> SMS
-                            </a>
-                        </div>
+                    <div class="slide-content">
+                        <div class="stock-badge">IN STOCK</div>
+                        <h3 class="slide-title">Yellow Plastic Polly Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Poly yellow national-grade pipes designed for agricultural irrigation and plumbing needs. Available in sizes: 1/2", 3/4", 1", and 2". Lightweight yet highly efficient.
+                        </p>
+                        <a href="https://wa.me/923192017909?text=Salam!%20Please%20share%20prices%20for%20Yellow%20Polly%20Pipes%20(1/2%22,%203/4%22,%201%22,%202%22).%20Need%20for%20agriculture." class="whatsapp-order-btn">Order on WhatsApp</a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="services-section">
-        <div class="container">
-            <h2>Our Services</h2>
-            <p>Explore our pipe collection and services</p>
-            
-            <div class="services-container">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
+
+                <!-- Slide 4 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/2yynDCLG/392c5b26-d31f-4132-8d97-abc209dbd00c.jpg" class="slide-image" alt="Black Poly Pipes">
                     </div>
-                    <h3>Quality Materials</h3>
-                    <p>Durable piping solutions designed for long-term performance</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-users"></i>
+                    <div class="slide-content">
+                        <div class="stock-badge">IN STOCK</div>
+                        <h3 class="slide-title">Black Plastic Poly Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Sturdy poly black pipes available in multiple sizes: 1/2", 1", 1.5", 2", 3", 4", and 5". Ideal for both residential and industrial setups with excellent resistance to wear and tear.
+                        </p>
+                       <a href="https://wa.me/923192017909?text=Salam!%20Need%20Black%20Poly%20Pipes%20(1%22%20to%205%22).%20Please%20share%20price%20list%20and%20bulk%20discounts." class="whatsapp-order-btn">Order on WhatsApp</a>
                     </div>
-                    <h3>Professional Support</h3>
-                    <p>Expert customer service to help with all your needs</p>
                 </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-boxes"></i>
+
+                <!-- Slide 5 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/Fz35G81D/41a90c19-e298-4679-81eb-871154018613.jpg" class="slide-image" alt="Garden Pipes">
                     </div>
-                    <h3>Bulk Orders</h3>
-                    <p>Special pricing for retailers and contractors</p>
+                    <div class="slide-content">
+                        <div class="stock-badge">IN STOCK</div>
+                        <h3 class="slide-title">Garden Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Flexible garden pipes in various sizes – perfect for households, nurseries, and farming. UV-resistant and leak-proof material ensures long life even in harsh weather.
+                        </p>
+                       <a href="https://wa.me/923192017909?text=Salam!%20Interested%20in%20your%20UV-resistant%20Garden%20Pipes.%20What%20sizes%20are%20available?" class="whatsapp-order-btn">Order on WhatsApp</a>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="testimonial-section">
-        <div class="container">
-            <h2>What Our Customers Say</h2>
-            
-            <div class="testimonial">
-                <p>Good quality materials with professional customer support. Satisfied overall.</p>
-                <div class="testimonial-author">- Ali Raza</div>
-            </div>
-            
-            <div class="testimonial">
-                <p>Durable products intended for long-term use. Highly recommended.</p>
-                <div class="testimonial-author">- Junaid</div>
-            </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <h3>PAK PIPES INTERNATIONAL</h3>
-            <p>Quality piping solutions since 2005</p>
-            <p>Contact us: info@pakpipes.com | 042-1234567</p>
-        </div>
-    </footer>
-</body>
-</html>
+
+                <!-- Slide 6 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/pXMtyW17/Whats-App-Image-2025-02-17-at-7-40-40-PM.jpg" class="slide-image" alt="Zebra Band Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge">IN STOCK</div>
+                        <h3 class="slide-title">Zebra Band Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Eye-catching transparent zebra-band pipes with superior water flow. Available in 2mm, 2.5mm, and 3mm thicknesses – beauty meets performance in your pipeline.
+                        </p>
+                       <a href="https://wa.me/923192017909?text=Salam!%20Want%20to%20order%20Zebra%20Band%20Pipes%20(2mm-3mm).%20Please%20share%20colors%20available." class="whatsapp-order-btn">Order on WhatsApp</a>
+                    </div>
+                </div>
+
+                <!-- Slide 7 -->
+                <div class="slide">
+                    <div class="slide-image-container">
+                        <img src="https://i.postimg.cc/v8KsVQPP/Screenshot-20250406-161906.jpg" class="slide-image" alt="Super Green Pipes">
+                    </div>
+                    <div class="slide-content">
+                        <div class="stock-badge coming-soon">IN STOCK</div>
+                        <h3 class="slide-title">Super Green Pipes</h3>
+                        <div class="rating">★★★★☆</div>
+                        <p class="slide-description">
+                            Vibrant green pipes available in 3mm and 4mm thickne
