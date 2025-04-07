@@ -3,335 +3,418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pak Pipes - Our Team</title>
+    <title>Pak Pipes International</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Modern Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: #f8fafc;
-    color: #1e293b;
-    line-height: 1.6;
-    padding: 20px;
-}
-
-.team-section {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 60px 0;
-}
-
-.team-heading {
-    text-align: center;
-    margin-bottom: 60px;
-    position: relative;
-}
-
-.team-heading h1 {
-    font-size: 2.8rem;
-    color: #0f172a;
-    margin-bottom: 15px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-}
-
-.team-heading p {
-    color: #64748b;
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-}
-
-.partners-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 35px;
-    padding: 0 30px;
-}
-
-.partner {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid #e2e8f0;
-}
-
-.partner:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    border-color: rgba(69, 255, 202, 0.4);
-}
-
-.partner-header {
-    background: linear-gradient(135deg, rgba(69, 255, 202, 0.9) 0%, rgba(69, 255, 202, 0.7) 100%);
-    color: #0f172a;
-    padding: 30px;
-    text-align: center;
-    position: relative;
-}
-
-.partner-avatar {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 2.2rem;
-    color: #0f172a;
-}
-
-.partner-name {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.partner-contact {
-    padding: 30px;
-    text-align: center;
-}
-
-.partner-number {
-    font-size: 1.3rem;
-    color: #334155;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-weight: 500;
-}
-
-.partner-actions {
-    display: flex;
-    border-top: 1px solid #f1f5f9;
-}
-
-.partner-action {
-    flex: 1;
-    padding: 18px;
-    text-align: center;
-    color: #0f172a;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: rgba(69, 255, 202, 0.1);
-}
-
-.partner-action:first-child {
-    border-right: 1px solid #f1f5f9;
-}
-
-.partner-action:hover {
-    background-color: rgba(69, 255, 202, 0.2);
-    color: #0f172a;
-}
-
-.partner-action i {
-    font-size: 1.1rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-    .partners-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-    }
-    
-    .partner-header {
-        padding: 25px;
-    }
-    
-    .partner-avatar {
-        width: 80px;
-        height: 80px;
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 900px) {
-    .team-section {
-        padding: 50px 0;
-    }
-    
-    .team-heading h1 {
-        font-size: 2.4rem;
-    }
-    
-    .partners-container {
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 25px;
-        padding: 0 20px;
-    }
-    
-    .partner-contact {
-        padding: 25px;
-    }
-    
-    .partner-number {
-        font-size: 1.2rem;
-    }
-    
-    .partner-action {
-        padding: 15px;
-    }
-}
-
-@media (max-width: 768px) {
-    .partners-container {
-        grid-template-columns: 1fr;
-        max-width: 450px;
-    }
-    
-    .team-heading h1 {
-        font-size: 2.2rem;
-    }
-    
-    .partner {
-        border-radius: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .team-section {
-        padding: 40px 0;
-    }
-    
-    .team-heading h1 {
-        font-size: 2rem;
-    }
-    
-    .team-heading p {
-        font-size: 1rem;
-    }
-    
-    .partner-header {
-        padding: 20px;
-    }
-    
-    .partner-avatar {
-        width: 70px;
-        height: 70px;
-        font-size: 1.8rem;
-    }
-    
-    .partner-name {
-        font-size: 1.4rem;
-    }
-    
-    .partner-number {
-        font-size: 1.1rem;
-        margin-bottom: 20px;
-    }
-    
-    .partner-action {
-        padding: 12px;
-        font-size: 0.95rem;
-    }
-}
+        /* Main Website Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 50px 0;
+        }
+        
+        h1, h2, h3 {
+            color: #1a2a3a;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid #45ffca;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 25px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #2a5c8d;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Team Section */
+        .team-section {
+            background-color: white;
+            text-align: center;
+        }
+        
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid #e1e5eb;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .member-header {
+            background-color: #2a5c8d;
+            color: white;
+            padding: 25px;
+        }
+        
+        .member-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .member-contact {
+            padding: 20px;
+        }
+        
+        .member-number {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .member-actions {
+            display: flex;
+            border-top: 1px solid #f1f5f9;
+        }
+        
+        .member-action {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            color: #2a5c8d;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .member-action:hover {
+            background-color: #f1f5f9;
+        }
+        
+        /* Services Section */
+        .services-section {
+            background-color: #f1f5f9;
+            text-align: center;
+        }
+        
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: #2a5c8d;
+            margin-bottom: 20px;
+        }
+        
+        /* Testimonials */
+        .testimonial-section {
+            background-color: white;
+        }
+        
+        .testimonial {
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .testimonial:before {
+            content: '"';
+            font-size: 5rem;
+            color: #45ffca;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+            opacity: 0.2;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            margin-top: 20px;
+            color: #2a5c8d;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a2a3a;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .team-container, .services-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                padding: 40px 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            .team-container, .services-container {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <section class="team-section">
-        <div class="team-heading">
-            <h1>Our Team</h1>
-            <p>Meet our dedicated business partners</p>
+    <header>
+        <div class="container header-content">
+            <div class="logo">PAK PIPES INTERNATIONAL</div>
+            <div class="contact">Email: info@pakpipes.com</div>
         </div>
-        
-        <div class="partners-container">
-            <!-- Partner 1 -->
-            <div class="partner">
-                <div class="partner-header">
-                    <div class="partner-avatar">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h2 class="partner-name">Tahir</h2>
-                </div>
-                <div class="partner-contact">
-                    <div class="partner-number">
-                        <i class="fas fa-phone"></i>
-                        <span>0319 - 2017909</span>
-                    </div>
-                    <div class="partner-actions">
-                        <a href="tel:03192017909" class="partner-action">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>Call</span>
-                        </a>
-                        <a href="sms:03192017909" class="partner-action">
-                            <i class="fas fa-comment"></i>
-                            <span>SMS</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Quality Piping Solutions</h1>
+            <p>We offer exceptional durability and performance. You can also purchase in bulk and resell – making it a great opportunity for retailers and contractors.</p>
+            <p>For top-notch piping solutions, think <strong>Pak Pipes International</strong> – where <strong>quality meets trust</strong>.</p>
+        </div>
+    </section>
+    
+    <section class="team-section">
+        <div class="container">
+            <h2>Our Team</h2>
+            <p>Meet our dedicated business partners</p>
             
-            <!-- Partner 2 -->
-            <div class="partner">
-                <div class="partner-header">
-                    <div class="partner-avatar">
-                        <i class="fas fa-user-tie"></i>
+            <div class="team-container">
+                <div class="team-member">
+                    <div class="member-header">
+                        <h3 class="member-name">Tahir</h3>
                     </div>
-                    <h2 class="partner-name">Abdul Rehman</h2>
-                </div>
-                <div class="partner-contact">
-                    <div class="partner-number">
-                        <i class="fas fa-phone"></i>
-                        <span>0333 - 7504732</span>
-                    </div>
-                    <div class="partner-actions">
-                        <a href="tel:03337504732" class="partner-action">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>Call</span>
-                        </a>
-                        <a href="sms:03337504732" class="partner-action">
-                            <i class="fas fa-comment"></i>
-                            <span>SMS</span>
-                        </a>
+                    <div class="member-contact">
+                        <div class="member-number">
+                            <i class="fas fa-phone"></i>
+                            <span>0319 - 2017909</span>
+                        </div>
+                        <div class="member-actions">
+                            <a href="tel:03192017909" class="member-action">
+                                <i class="fas fa-phone-alt"></i> Call
+                            </a>
+                            <a href="sms:03192017909" class="member-action">
+                                <i class="fas fa-comment"></i> SMS
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Partner 3 -->
-            <div class="partner">
-                <div class="partner-header">
-                    <div class="partner-avatar">
-                        <i class="fas fa-user-tie"></i>
+                
+                <div class="team-member">
+                    <div class="member-header">
+                        <h3 class="member-name">Abdul Rehman</h3>
                     </div>
-                    <h2 class="partner-name">Umair Ashfaq</h2>
+                    <div class="member-contact">
+                        <div class="member-number">
+                            <i class="fas fa-phone"></i>
+                            <span>0333 - 7504732</span>
+                        </div>
+                        <div class="member-actions">
+                            <a href="tel:03337504732" class="member-action">
+                                <i class="fas fa-phone-alt"></i> Call
+                            </a>
+                            <a href="sms:03337504732" class="member-action">
+                                <i class="fas fa-comment"></i> SMS
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="partner-contact">
-                    <div class="partner-number">
-                        <i class="fas fa-phone"></i>
-                        <span>0311 - 9285582</span>
+                
+                <div class="team-member">
+                    <div class="member-header">
+                        <h3 class="member-name">Umair Ashfaq</h3>
                     </div>
-                    <div class="partner-actions">
-                        <a href="tel:03119285582" class="partner-action">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>Call</span>
-                        </a>
-                        <a href="sms:03119285582" class="partner-action">
-                            <i class="fas fa-comment"></i>
-                            <span>SMS</span>
-                        </a>
+                    <div class="member-contact">
+                        <div class="member-number">
+                            <i class="fas fa-phone"></i>
+                            <span>0311 - 9285582</span>
+                        </div>
+                        <div class="member-actions">
+                            <a href="tel:03119285582" class="member-action">
+                                <i class="fas fa-phone-alt"></i> Call
+                            </a>
+                            <a href="sms:03119285582" class="member-action">
+                                <i class="fas fa-comment"></i> SMS
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    
+    <section class="services-section">
+        <div class="container">
+            <h2>Our Services</h2>
+            <p>Explore our pipe collection and services</p>
+            
+            <div class="services-container">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Quality Materials</h3>
+                    <p>Durable piping solutions designed for long-term performance</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Professional Support</h3>
+                    <p>Expert customer service to help with all your needs</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <h3>Bulk Orders</h3>
+                    <p>Special pricing for retailers and contractors</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonial-section">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            
+            <div class="testimonial">
+                <p>Good quality materials with professional customer support. Satisfied overall.</p>
+                <div class="testimonial-author">- Ali Raza</div>
+            </div>
+            
+            <div class="testimonial">
+                <p>Durable products intended for long-term use. Highly recommended.</p>
+                <div class="testimonial-author">- Junaid</div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <h3>PAK PIPES INTERNATIONAL</h3>
+            <p>Quality piping solutions since 2005</p>
+            <p>Contact us: info@pakpipes.com | 042-1234567</p>
+        </div>
+    </footer>
 </body>
 </html>
