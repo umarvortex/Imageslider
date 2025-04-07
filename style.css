@@ -77,33 +77,28 @@
 }
 
 
+
 .box h3 {
-    font-size: 3.6rem !important;
-    margin-bottom: 2.2rem !important;
-    color: #ffffff !important;
+    font-size: 3.4rem !important;
+    font-family: 'Quicksand', sans-serif !important;
     font-weight: 700 !important;
-    letter-spacing: 1px !important;
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
     text-transform: uppercase !important;
-    font-family: 'DM Sans', sans-serif !important;
-    position: relative !important;
-    display: inline-block !important;
-    border-left: 3px solid transparent !important;
-    padding-left: 16px !important;
-    background: linear-gradient(to right, #3a0ca3, #7209b7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    display: inline-block;
 }
 
-/* New Unique First Letter with Stylish Bebas Neue Font */
 .box h3 span {
-    font-family: 'Bebas Neue', sans-serif !important;
-    font-size: 4.2rem !important;
-    font-weight: 800 !important;
-    background: linear-gradient(to right, #f72585, #b5179e) !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 3.6rem !important;
+    font-weight: 900 !important;
+    background: linear-gradient(to right, #ffffff, #c0c0c0) !important;
     -webkit-background-clip: text !important;
-    background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     margin-right: 0 !important;
     padding-right: 0 !important;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
 }
