@@ -1,99 +1,151 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap');
-
-.box h3 {
-    font-size: 3.2rem !important;
-    font-family: 'Josefin Sans', sans-serif !important;
-    color: #2e8b57 !important;
-    font-weight: 600 !important;
-    background: linear-gradient(120deg, #d4fc79, #96e6a1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: capitalize !important;
-    display: inline-block;
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
-.box h3 span {
-    font-family: 'Josefin Sans', sans-serif !important;
-    font-size: 3.8rem !important;
-    font-weight: 800 !important;
-    background: linear-gradient(to right, #00c853, #b2ff59) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
+.team-section {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-
-
-/* Promise section code*/
-
-
-.promise {
-  background: var(--snd-bg-color);
+.team-heading {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    position: relative;
 }
 
-.promise-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
-  align-items: center;
-  gap: 3.3rem;
-  margin-top: 4.2rem;
+.team-heading::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #3498db;
+    margin: 15px auto;
+    border-radius: 2px;
 }
 
-.box {
-    padding: 30px 30px 50px 30px;
-    height: 40rem;
-    background: var(--bg-color);
-    border-radius: 20px;
-    border: 1px solid transparent;
-    box-shadow: 0 0 10px var(--main-color);
-    transition: all 0.5s ease;
-    cursor: pointer;
+.team-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
 }
 
-.box h3 {
-    font-size: 30px;
+/* Team Card Styles */
+.team-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background: #3498db;
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
+
+.card-header i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.card-body {
+    padding: 25px;
+    text-align: center;
+}
+
+.card-body p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.card-body i {
+    margin-right: 10px;
+    color: #3498db;
+}
+
+.card-footer {
+    display: flex;
+    border-top: 1px solid #eee;
+}
+
+.card-footer a {
+    flex: 1;
+    text-align: center;
+    padding: 15px;
+    color: #3498db;
+    text-decoration: none;
     font-weight: 600;
-    margin-bottom: 10px;
+    transition: background 0.3s ease;
 }
 
-.box h2 {
-    font-size: 30px;
-    font-weight: 700;
-    margin-bottom: 20px;
+.card-footer a:first-child {
+    border-right: 1px solid #eee;
 }
 
-.box ul li {
-    list-style: disc;
-    font-size: 2.0rem;
-    padding-bottom: 1.2rem;
+.card-footer a:hover {
+    background: #f8f9fa;
 }
 
-.box a {
-    display: inline-block;
-    font-size: 20px;
-    line-height: 1rem;
-    font-weight: 700;
-    padding: 7px ;
-    color: var(--text-color);
-    border-bottom:  2px solid #5d6c83;
-    transition: all 0.5s ease;
+.card-footer i {
+    margin-right: 8px;
 }
 
-.box i {
-    vertical-align: middle;
-    font-size: 20px;
-    color: var(--main-color);
-    margin-left: 5px;
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .team-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .team-card {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .team-heading {
+        font-size: 2rem;
+    }
 }
 
-.box a:hover {
-    border-bottom: 2px solid var(--main-color);
+@media (max-width: 480px) {
+    .team-heading {
+        font-size: 1.8rem;
+    }
+    
+    .card-header {
+        padding: 20px;
+    }
+    
+    .card-body {
+        padding: 20px;
+    }
+    
+    .card-footer a {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
 }
-
-
-.box:hover {
-    border: 1px solid var(--main-color);
-    transform: translateY(-5px) scale(1.03);
-}
-
-
-
