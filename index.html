@@ -18,6 +18,505 @@
  
 
 
+
+
+
+
+
+<!-- ==== CONTACT FORM SECTION ==== -->
+<section class="contact-section" id="contact">
+  <div class="max-width-contact">
+    <div class="theme-toggle" style="text-align: right; margin-bottom: 10px;">
+      <button id="themeBtn" style="background: none; border: none; color: #45ffca; cursor: pointer;">
+        <i class="fas fa-moon"></i> Dark Mode
+      </button>
+    </div>
+    
+    <h2 class="title-contact">Contact Me</h2>
+    <div class="contact-content">
+      <div class="column-left">
+        <div class="text-top">Let's talk</div>
+        <p>If you have any work or queries, you can send me a message from here. It's my pleasure to help you.</p>
+        
+        <div id="workingHoursStatus" style="margin-top: 15px; color: #45ffca;">
+          <i class="far fa-clock"></i> Checking availability...
+        </div>
+        
+        <div class="icons-contact">
+          <div class="row-contact">
+            <i class="fas fa-user"></i>
+            <div class="info-contact">
+              <div class="head-contact">Name</div>
+              <div class="sub-title-contact">Umar Vortex</div>
+            </div>
+          </div>
+          <div class="row-contact">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="info-contact">
+              <div class="head-contact">Address</div>
+              <div class="sub-title-contact">Digri, Sindh, Pakistan</div>
+            </div>
+          </div>
+          <div class="row-contact">
+            <i class="fas fa-envelope"></i>
+            <div class="info-contact">
+              <div class="head-contact">Email</div>
+              <div class="sub-title-contact">asliyatkidunya@gmail.com</div>
+            </div>
+          </div>
+          <div class="row-contact">
+            <i class="fab fa-whatsapp"></i>
+            <div class="info-contact">
+              <div class="head-contact">WhatsApp</div>
+              <div class="sub-title-contact">+92 300 1234567</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="map" style="margin-top: 20px; border-radius: 8px; overflow: hidden;">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345!2d67.12345!3d25.12345" 
+                  width="100%" 
+                  height="200" 
+                  style="border:0;" 
+                  allowfullscreen="" 
+                  loading="lazy">
+          </iframe>
+        </div>
+        
+        <div class="social-links" style="margin-top: 20px; text-align: center; font-size: 1.5rem;">
+          <a href="https://facebook.com/yourprofile" target="_blank" style="color: #45ffca; margin: 0 10px;"><i class="fab fa-facebook"></i></a>
+          <a href="https://instagram.com/yourprofile" target="_blank" style="color: #45ffca; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" style="color: #45ffca; margin: 0 10px;"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      
+      <div class="column-right">
+        <div class="text-bottom">Message Me</div>
+        <form id="contactForm" action="https://formsubmit.co/asliyatkidunya@gmail.com" method="POST" enctype="multipart/form-data">
+          <!-- FormSubmit Configuration -->
+          <input type="hidden" name="_next" value="https://umarvortex.github.io/Imageslider/">
+          <input type="hidden" name="_template" value="box">
+          <input type="hidden" name="_subject" value="New Message from Website">
+          <input type="hidden" name="_autoresponse" value="Thank you for contacting me! I'll get back to you soon.">
+          <input type="text" name="_honey" style="display:none">
+          <input type="hidden" name="_captcha" value="false">
+          
+          <div class="fields-contact">
+            <div class="field-contact name-contact">
+              <input type="text" placeholder="Your Name" name="name" required />
+            </div>
+            <div class="field-contact email-contact">
+              <input type="email" placeholder="Your Email" name="email" required />
+            </div>
+          </div>
+          <div class="field-contact">
+            <input type="text" placeholder="Subject" name="subject" required />
+          </div>
+          <div class="field-contact textarea-contact">
+            <textarea cols="30" rows="8" placeholder="Type your message here..." name="message" required></textarea>
+          </div>
+          <div class="field-contact">
+            <label style="color: #ccc; display: block; margin-bottom: 5px;">Attach File (PDF/Image, max 20MB)</label>
+            <input type="file" name="attachment" accept=".pdf,.jpg,.jpeg,.png" style="color: #fff;">
+          </div>
+          
+          <div class="button-area-contact">
+            <button type="submit" class="btn-contact">Send Message <span class="send-icon">→</span></button>
+          </div>
+          
+          <div class="sms-fallback" style="margin-top: 10px; font-size: 0.9em; color: #ccc; text-align: center;">
+            Can't email? <a href="sms:+923001234567?body=Hi%20Umar" style="color: #45ffca;">Send SMS</a>
+          </div>
+          
+          <div id="loading" style="display: none; text-align: center; color: #45ffca; margin-top: 10px;">
+            <i class="fas fa-spinner fa-spin"></i> Sending your message...
+          </div>
+          <div id="successMessage" style="display: none; text-align: center; color: #45ffca; margin-top: 15px; font-size: 18px;">
+            ✅ Thank you! Your message has been sent successfully.
+          </div>
+          <div id="errorMessage" style="display: none; text-align: center; color: red; margin-top: 15px; font-size: 18px;">
+            ❌ Oops! Something went wrong. Please try again or WhatsApp me.
+          </div>
+        </form>
+        
+        <div class="whatsapp-btn" style="margin-top: 20px; text-align: center;">
+          <a href="https://wa.me/923001234567?text=Hi%20Umar,%20I%20visited%20your%20website..." 
+             target="_blank" 
+             style="background: #25D366; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none; display: inline-block;">
+            <i class="fab fa-whatsapp"></i> Message on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==== STYLE SECTION ==== -->
+<style>
+  .contact-section {
+    padding: 60px 0;
+    background-color: #232323;
+    transition: all 0.3s ease;
+  }
+
+  .light-mode .contact-section {
+    background-color: #f5f5f5;
+  }
+
+  .title-contact {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #45ffca;
+  }
+
+  .light-mode .title-contact {
+    color: #2a7a64;
+  }
+
+  .contact-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .column-left, .column-right {
+    flex: 1;
+    padding: 25px;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .light-mode .column-left,
+  .light-mode .column-right {
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-top, .text-bottom {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+
+  .light-mode .text-top,
+  .light-mode .text-bottom {
+    color: #333;
+  }
+
+  .contact-section p {
+    color: #ccc;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .light-mode .contact-section p {
+    color: #666;
+  }
+
+  .icons-contact {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row-contact {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .row-contact i {
+    color: #45ffca;
+    font-size: 1.5rem;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .light-mode .row-contact i {
+    color: #2a7a64;
+  }
+
+  .info-contact {
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+
+  .light-mode .info-contact {
+    color: #333;
+  }
+
+  .head-contact {
+    font-weight: bold;
+  }
+
+  .sub-title-contact {
+    color: #ccc;
+    transition: all 0.3s ease;
+  }
+
+  .light-mode .sub-title-contact {
+    color: #666;
+  }
+
+  #contactForm input,
+  #contactForm textarea,
+  #contactForm select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #444;
+    border-radius: 6px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .light-mode #contactForm input,
+  .light-mode #contactForm textarea,
+  .light-mode #contactForm select {
+    background-color: #f9f9f9;
+    border-color: #ddd;
+    color: #333;
+  }
+
+  #contactForm input:focus,
+  #contactForm textarea:focus {
+    border-color: #45ffca;
+    box-shadow: 0 0 10px rgba(69, 255, 202, 0.5);
+    outline: none;
+  }
+
+  .light-mode #contactForm input:focus,
+  .light-mode #contactForm textarea:focus {
+    border-color: #2a7a64;
+    box-shadow: 0 0 10px rgba(42, 122, 100, 0.3);
+  }
+
+  #contactForm textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .btn-contact {
+    background-color: #45ffca;
+    color: #000;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .light-mode .btn-contact {
+    background-color: #2a7a64;
+    color: white;
+  }
+
+  .btn-contact:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(69, 255, 202, 0.4);
+  }
+
+  .light-mode .btn-contact:hover {
+    box-shadow: 0 5px 15px rgba(42, 122, 100, 0.3);
+  }
+
+  .send-icon {
+    opacity: 0;
+    position: absolute;
+    right: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-contact:hover .send-icon {
+    opacity: 1;
+    right: 25px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .contact-content {
+      flex-direction: column;
+    }
+
+    .column-left, .column-right {
+      margin-bottom: 25px;
+    }
+    
+    .btn-contact {
+      padding: 12px 20px;
+    }
+  }
+</style>
+
+<!-- ==== SCRIPT SECTION ==== -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Theme Toggle
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click', function() {
+      document.body.classList.toggle('light-mode');
+      localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+      updateThemeButton();
+    });
+
+    function updateThemeButton() {
+      themeBtn.innerHTML = document.body.classList.contains('light-mode') 
+        ? '<i class="fas fa-sun"></i> Light Mode' 
+        : '<i class="fas fa-moon"></i> Dark Mode';
+    }
+
+    // Check saved theme
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light-mode');
+    }
+    updateThemeButton();
+
+    // Working Hours Indicator
+    function updateWorkingHours() {
+      const now = new Date();
+      const hours = now.getHours();
+      const isWorking = hours >= 9 && hours < 17; // 9AM-5PM
+      const statusElement = document.getElementById('workingHoursStatus');
+      
+      statusElement.innerHTML = `<i class="far fa-clock"></i> ${isWorking 
+        ? '<span style="color: #45ffca">Available now (9AM-5PM)</span>' 
+        : '<span style="color: red">Offline now (Available 9AM-5PM)</span>'}`;
+    }
+    updateWorkingHours();
+    setInterval(updateWorkingHours, 60000); // Update every minute
+
+    // Animated Placeholder
+    const messageBox = document.querySelector('textarea');
+    const placeholders = [
+      "Need help with a project...",
+      "Want to discuss pricing...",
+      "Your message in Urdu/English...",
+      "How can I help you today?"
+    ];
+    let current = 0;
+
+    function cyclePlaceholders() {
+      messageBox.placeholder = placeholders[current];
+      current = (current + 1) % placeholders.length;
+      setTimeout(cyclePlaceholders, 2500);
+    }
+    cyclePlaceholders();
+
+    // Form Submission
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = contactForm.querySelector('.btn-contact');
+      const loading = document.getElementById('loading');
+      const successMsg = document.getElementById('successMessage');
+      const errorMsg = document.getElementById('errorMessage');
+      
+      // Show loading state
+      submitBtn.disabled = true;
+      loading.style.display = 'block';
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+      
+      // Submit form data
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          successMsg.style.display = 'block';
+          contactForm.reset();
+          // Scroll to success message
+          setTimeout(() => {
+            successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 100);
+        } else {
+          throw new Error('Form submission failed');
+        }
+      })
+      .catch(error => {
+        errorMsg.style.display = 'block';
+        // Scroll to error message
+        setTimeout(() => {
+          errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      })
+      .finally(() => {
+        loading.style.display = 'none';
+        submitBtn.disabled = false;
+      });
+    });
+
+    // Input Validation
+    const emailField = document.querySelector("input[name='email']");
+    const nameField = document.querySelector("input[name='name']");
+
+    emailField.addEventListener("input", function() {
+      const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value);
+      emailField.style.borderColor = isValid ? "#45ffca" : "red";
+    });
+
+    nameField.addEventListener("input", function() {
+      nameField.style.borderColor = nameField.value.trim() ? "#45ffca" : "red";
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- ==== CONTACT FORM SECTION ==== -->
 <section class="contact-section" id="contact">
   <div class="max-width-contact">
