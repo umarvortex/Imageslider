@@ -143,6 +143,168 @@
             </div>
         </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+<!-- ==== CONTACT FORM SECTION ==== -->
+<section class="contact" id="contact">
+  <div class="max-width">
+    <h2 class="title">Contact me</h2>
+    <div class="contact-content">
+      <div class="column left">
+        <div class="text">Let's talk</div>
+        <p>If you have any work from me or any types of queries, you can send me a message from here. It's my pleasure to help you.</p>
+        <div class="icons">
+          <div class="row">
+            <i class="fas fa-user"></i>
+            <div class="info">
+              <div class="head">Name</div>
+              <div class="sub-title">Umar Vortex</div>
+            </div>
+          </div>
+          <div class="row">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="info">
+              <div class="head">Address</div>
+              <div class="sub-title">Digri, Sindh, Pakistan</div>
+            </div>
+          </div>
+          <div class="row">
+            <i class="fas fa-envelope"></i>
+            <div class="info">
+              <div class="head">Email</div>
+              <div class="sub-title">umarvortex@gmail.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column right">
+        <div class="text">Message me</div>
+        <form id="contactForm" onsubmit="return showLoading()">
+          <div class="fields">
+            <div class="field name">
+              <input type="text" placeholder="Name" name="name" required />
+            </div>
+            <div class="field email">
+              <input type="email" placeholder="Email" name="email" required />
+            </div>
+          </div>
+          <div class="field">
+            <input type="text" placeholder="Subject" name="subject" required />
+          </div>
+          <div class="field textarea">
+            <textarea cols="30" rows="10" placeholder="Message.." name="message" required></textarea>
+          </div>
+          <div class="button-area">
+            <button type="submit" class="btn">Send Message</button>
+          </div>
+          <div id="loading" style="display: none; text-align: center; color: #45ffca; margin-top: 10px;">Sending...</div>
+          <div id="successMessage" style="display: none; text-align: center; color: #45ffca; margin-top: 15px; font-size: 18px;">
+            ✅ Thank you! Your message has been sent successfully.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==== STYLE SECTION ==== -->
+<style>
+  .contact-form {
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  #contactForm input,
+  #contactForm textarea {
+    border: 2px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+
+  #contactForm input:focus,
+  #contactForm textarea:focus {
+    border-color: #45ffca;
+    box-shadow: 0 0 10px rgba(69, 255, 202, 0.5);
+    outline: none;
+  }
+
+  .btn {
+    background-color: #45ffca;
+    color: #000;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #3cd1ad;
+  }
+</style>
+
+<!-- ==== SCRIPT SECTION ==== -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const emailField = document.querySelector("input[name='email']");
+    const nameField = document.querySelector("input[name='name']");
+    
+    emailField.addEventListener("input", () => {
+      const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value);
+      emailField.style.borderColor = isValid ? "#45ffca" : "red";
+    });
+
+    nameField.addEventListener("input", () => {
+      nameField.style.borderColor = nameField.value.trim() ? "#45ffca" : "red";
+    });
+  });
+
+  function showLoading() {
+    const btn = document.querySelector('.btn');
+    btn.disabled = true;
+    btn.innerText = "Sending...";
+    
+    document.getElementById("loading").style.display = "block";
+
+    setTimeout(() => {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("successMessage").style.display = "block";
+      document.getElementById("successMessage").scrollIntoView({ behavior: "smooth" });
+
+      btn.disabled = false;
+      btn.innerText = "Send Message";
+    }, 3000);
+
+    setTimeout(() => {
+      document.getElementById("successMessage").style.display = "none";
+      document.getElementById("contactForm").reset();
+    }, 6000);
+
+    return false; // prevent actual submission (demo)
+  }
+</script>
+
+
+
+
+
+
+
     
     <footer>
         <div class="container">
