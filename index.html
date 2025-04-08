@@ -304,6 +304,184 @@
 
 
 
+<section>  
+  <div class="contact-form" id="contact form">  
+    <h1>Share Reviews and Feedback.</h1>  
+    <p>We Highly Appreciate your Valuable Efforts.</p>  
+    <form id="contactForm" action="https://formsubmit.co/743fb6a07b1e5697f82e2feeb8beacb3" method="POST" onsubmit="return showLoading()">  
+      <input type="hidden" name="_subject" value="New Message from Website">  
+      <input type="hidden" name="_autoresponse" value="Thank you for contacting Pak Pipes International Karachi! We will get back to you soon.">  
+      <input type="hidden" name="_captcha" value="false">  
+      <input type="hidden" name="_next" value="https://umarvortex.github.io/Pak-Pipes-International-Karachi/">  
+      
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address" />
+      <textarea name="message" placeholder="Your Message" required></textarea>  
+      
+      <button type="submit" class="btn">Send Message</button>
+    </form>  
+  </div>  
+
+  <div id="loading" style="display:none; text-align:center; margin-top:20px;">
+    <img src="https://i.gifer.com/YCZH.gif" alt="Loading..." style="width: 50px; height: 50px;" />
+    Sending Message...⏳
+  </div>  
+
+  <div id="successMessage" style="display:none; text-align:center; margin-top:20px; color:white;">Thank you! Your message has been sent successfully. ✅</div>  
+
+  <div id="errorMessage" style="display:none; text-align:center; margin-top:20px; color:red;">
+    Oops! Something went wrong. Please try again. ❌
+  </div>
+
+  <button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" style="position:fixed; bottom: 20px; right: 20px; padding: 10px 15px; background-color: #45ffca; color: white; border: none; border-radius: 50%;">↑</button>
+  
+  <script>  
+    function showLoading() {  
+      document.getElementById("loading").style.display = "block";  
+      setTimeout(() => {  
+        document.getElementById("loading").style.display = "none";  
+        document.getElementById("successMessage").style.display = "block";  
+      }, 3000);  
+      setTimeout(() => {  
+        document.getElementById("successMessage").style.display = "none";  
+        document.getElementById("contactForm").reset();  
+      }, 6000);  
+      setTimeout(() => {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("errorMessage").style.display = "block";
+      }, 5000);
+      return true;  
+    }  
+
+    window.onscroll = function() {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        document.getElementById("backToTop").style.display = "block";
+      } else {
+        document.getElementById("backToTop").style.display = "none";
+      }
+    };
+  </script>
+
+  <style>
+    /* General Contact Form Styling */
+    .contact-form {
+      width: 100%;
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+      background: #17242a; 
+      border: 1px solid #45ffca66; 
+      border-radius: 8px;
+      box-shadow: 18px var(--main-color);
+      text-align: center;
+    }
+
+    .contact-form h1 {
+      color: #fff;
+      margin-bottom: 15px;
+      margin-top: 15px;
+      font-size: 1.8rem;
+      text-align: left;
+      letter-spacing: 0.8px;
+    }
+
+    .contact-form p {
+      color: #fff;
+      margin-bottom: 15px;
+      margin-top: 15px;
+      font-size: 1.6rem;
+      text-align: left;
+      letter-spacing: 0.8px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid var(--main-color);
+      border-radius: 8px;
+      background: transparent;
+      color: #fff;
+      outline: none;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: var(--text-color);
+    }
+
+    .contact-form textarea {
+      height: 150px;
+      resize: none;
+    }
+
+    .contact-form .btn {
+      display: flex;
+      justify-content: flex-start;
+      padding: 12px 20px;
+      border: none;
+      background: rgba(69, 255, 202, 0.3);
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.4s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-form .btn:hover {
+      border: 1px solid var(--main-color);
+      background: rgba(69, 255, 202, 0.7);
+      transform: translateY(-2px);
+    }
+
+    /* Focus Effects */
+    #contactForm input:focus,
+    #contactForm textarea:focus {
+      border-color: #45ffca;
+      box-shadow: 0 0 8px rgba(69, 255, 202, 0.5);
+    }
+
+    #contactForm input:focus::placeholder,
+    #contactForm textarea:focus::placeholder {
+      color: #45ffca;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .contact-form {
+        width: 90%;
+      }
+      .contact-form h1 {
+        font-size: 1.5rem;
+      }
+      .contact-form p {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* Back to Top Button */
+    #backToTop {
+      display: none;
+      cursor: pointer;
+    }
+
+    #backToTop:hover {
+      background-color: #34d1b8;
+    }
+
+  </style>
+</section>
+
+
+
+
+
+
+
+
+
 
     
     <footer>
