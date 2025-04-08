@@ -149,62 +149,57 @@
 
 
 
-
 <!-- ==== CONTACT FORM SECTION ==== -->
-<section class="contact" id="contact">
-  <div class="max-width">
-    <h2 class="title">Contact Me</h2>
+<section class="contact-section" id="contact">
+  <div class="max-width-contact">
+    <h2 class="title-contact">Contact Me</h2>
     <div class="contact-content">
-      <div class="column left">
-        <div class="text">Let's Talk</div>
+      <div class="column-left">
+        <div class="text-top">Let's talk</div>
         <p>If you have any work or queries, you can send me a message from here. It’s my pleasure to help you.</p>
-        <div class="icons">
-          <div class="row">
+        <div class="icons-contact">
+          <div class="row-contact">
             <i class="fas fa-user"></i>
-            <div class="info">
-              <div class="head">Name</div>
-              <div class="sub-title">Umar Vortex</div>
+            <div class="info-contact">
+              <div class="head-contact">Name</div>
+              <div class="sub-title-contact">Umar Vortex</div>
             </div>
           </div>
-          <div class="row">
+          <div class="row-contact">
             <i class="fas fa-map-marker-alt"></i>
-            <div class="info">
-              <div class="head">Address</div>
-              <div class="sub-title">Digri, Sindh, Pakistan</div>
+            <div class="info-contact">
+              <div class="head-contact">Address</div>
+              <div class="sub-title-contact">Digri, Sindh, Pakistan</div>
             </div>
           </div>
-          <div class="row">
+          <div class="row-contact">
             <i class="fas fa-envelope"></i>
-            <div class="info">
-              <div class="head">Email</div>
-              <div class="sub-title">umarvortex@gmail.com</div>
+            <div class="info-contact">
+              <div class="head-contact">Email</div>
+              <div class="sub-title-contact">asliyatkidunya@gmail.com</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="column right">
-        <div class="text">Message Me</div>
-        <form id="contactForm" action="https://formsubmit.co/umarvortex@gmail.com" method="POST" onsubmit="return showLoading()">
-          <input type="hidden" name="_subject" value="New Message from Contact Form" />
-          <input type="hidden" name="_autoresponse" value="Thank you for your message! I will get back to you soon." />
-          <input type="hidden" name="_next" value="http://your-website.com/thank-you-page" />
-
-          <div class="fields">
-            <div class="field name">
+      <div class="column-right">
+        <div class="text-bottom">Message Me</div>
+        <form id="contactForm" onsubmit="return showLoading()" method="POST" action="https://formsubmit.co/asliyatkidunya@gmail.com">
+          <div class="fields-contact">
+            <div class="field-contact name-contact">
               <input type="text" placeholder="Name" name="name" required />
             </div>
-            <div class="field email">
+            <div class="field-contact email-contact">
               <input type="email" placeholder="Email" name="email" required />
             </div>
           </div>
-          <div class="field">
+          <div class="field-contact">
             <input type="text" placeholder="Subject" name="subject" required />
           </div>
-          <div class="field textarea">
+          <div class="field-contact textarea-contact">
             <textarea cols="30" rows="10" placeholder="Message.." name="message" required></textarea>
           </div>
-          <div class="button-area">
-            <button type="submit" class="btn">Send Message</button>
+          <div class="button-area-contact">
+            <button type="submit" class="btn-contact">Send Message</button>
           </div>
           <div id="loading" style="display: none; text-align: center; color: #45ffca; margin-top: 10px;">Sending...</div>
           <div id="successMessage" style="display: none; text-align: center; color: #45ffca; margin-top: 15px; font-size: 18px;">
@@ -227,12 +222,12 @@
     font-family: 'Arial', sans-serif;
   }
 
-  .contact {
+  .contact-section {
     padding: 60px 0;
     background-color: #232323;
   }
 
-  .title {
+  .title-contact {
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 30px;
@@ -245,7 +240,7 @@
     gap: 30px;
   }
 
-  .column {
+  .column-left, .column-right {
     flex: 1;
     padding: 20px;
     background-color: #2c2c2c;
@@ -253,7 +248,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
 
-  .text {
+  .text-top, .text-bottom {
     font-size: 1.8rem;
     color: #fff;
     margin-bottom: 15px;
@@ -265,32 +260,32 @@
     margin-bottom: 20px;
   }
 
-  .icons {
+  .icons-contact {
     display: flex;
     flex-direction: column;
   }
 
-  .row {
+  .row-contact {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
   }
 
-  .row i {
+  .row-contact i {
     color: #45ffca;
     font-size: 1.5rem;
     margin-right: 10px;
   }
 
-  .info {
+  .info-contact {
     color: #fff;
   }
 
-  .head {
+  .head-contact {
     font-weight: bold;
   }
 
-  .sub-title {
+  .sub-title-contact {
     color: #ccc;
   }
 
@@ -313,7 +308,7 @@
     outline: none;
   }
 
-  .btn {
+  .btn-contact {
     background-color: #45ffca;
     color: #000;
     padding: 10px 25px;
@@ -324,7 +319,7 @@
     transition: background-color 0.3s ease;
   }
 
-  .btn:hover {
+  .btn-contact:hover {
     background-color: #3cd1ad;
   }
 
@@ -334,7 +329,7 @@
       flex-direction: column;
     }
 
-    .column {
+    .column-left, .column-right {
       margin-bottom: 20px;
     }
   }
@@ -357,10 +352,10 @@
   });
 
   function showLoading() {
-    const btn = document.querySelector('.btn');
+    const btn = document.querySelector('.btn-contact');
     btn.disabled = true;
     btn.innerText = "Sending...";
-
+    
     document.getElementById("loading").style.display = "block";
 
     setTimeout(() => {
@@ -384,8 +379,6 @@
     return false; // Prevent actual submission (demo)
   }
 </script>
-
-
 
 
 
