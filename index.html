@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const day = now.getDay(); // 0 = Sunday, 6 = Saturday
     const statusElement = document.getElementById('ppiWorkingHours');
     
-    // Business hours: Mon-Fri 9AM-5PM
+    // Business hours: Mon-Fri 11AM-5PM
     const isWorkingHours = (day >= 1 && day <= 5) && (hours >= 9 && hours < 17);
     
     if (isWorkingHours) {
