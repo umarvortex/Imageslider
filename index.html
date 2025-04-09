@@ -7,11 +7,11 @@
     <style>
         /* Base Styles */
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-            --text-color: #333;
+            --primary-color: #2c3e50; /* Dark blue */
+            --secondary-color: #e74c3c; /* Red */
+            --accent-color: #3498db; /* Blue */
+            --text-color: #333333;
+            --light-bg: #f8f9fa;
         }
         
         * {
@@ -22,9 +22,7 @@
         }
         
         body {
-            background-color: #f9f9f9;
-            color: var(--text-color);
-            line-height: 1.6;
+            background-color: var(--light-bg);
         }
         
         /* Team Section */
@@ -32,26 +30,6 @@
             padding: 60px 20px;
             max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--dark-color);
-            font-size: 2.5rem;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--secondary-color);
         }
         
         .team-container {
@@ -63,159 +41,168 @@
         
         .team-card {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            width: 350px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 280px;
+            transition: all 0.3s ease;
             text-align: center;
+            padding-bottom: 20px;
         }
         
         .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
         
-        .card-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 20px;
-        }
-        
-        .card-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-        
-        .card-header p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-        
-        .card-body {
-            padding: 25px 20px;
-        }
-        
-        .contact-info {
-            margin: 15px 0;
-        }
-        
-        .contact-info a {
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 30px auto 20px;
+            border: 4px solid var(--primary-color);
             display: block;
+            background-color: #eee;
+            overflow: hidden;
+        }
+        
+        .member-photo svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--primary-color);
+        }
+        
+        .member-name {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .member-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            color: var(--text-color);
+        }
+        
+        .member-contact a {
             color: var(--secondary-color);
             text-decoration: none;
             font-weight: 600;
-            margin: 10px 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
             transition: color 0.3s;
         }
         
-        .contact-info a:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
+        .member-contact a:hover {
+            color: var(--accent-color);
         }
         
-        .card-footer {
-            background-color: var(--light-color);
-            padding: 15px;
-            font-size: 0.9rem;
+        .member-contact svg {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            fill: currentColor;
         }
         
         /* Responsive Design */
-        @media (max-width: 1200px) {
-            .team-container {
-                gap: 25px;
-            }
-            
+        @media (max-width: 1024px) {
             .team-card {
-                width: 300px;
+                width: 240px;
             }
         }
         
-        @media (max-width: 992px) {
+        @media (max-width: 768px) {
             .team-container {
                 gap: 20px;
             }
             
             .team-card {
                 width: calc(50% - 20px);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .team-card {
-                width: 100%;
-                max-width: 400px;
+                max-width: 280px;
             }
         }
         
         @media (max-width: 480px) {
-            .section-title {
-                font-size: 1.8rem;
+            .team-section {
+                padding: 40px 15px;
             }
             
-            .card-header h3 {
-                font-size: 1.3rem;
+            .team-card {
+                width: 100%;
+                max-width: 280px;
             }
             
-            .card-body {
-                padding: 20px 15px;
+            .member-photo {
+                width: 100px;
+                height: 100px;
+                margin: 20px auto 15px;
+            }
+            
+            .member-name {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
     <section class="team-section">
-        <h2 class="section-title">Our Dedicated Team</h2>
         <div class="team-container">
             <!-- Team Member 1 -->
             <div class="team-card">
-                <div class="card-header">
-                    <h3>Tahir</h3>
-                    <p>Sales Representative</p>
+                <div class="member-photo">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
                 </div>
-                <div class="card-body">
-                    <div class="contact-info">
-                        <a href="tel:03192017909">0319 - 2017909</a>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    All Gardens Pipes Varieties Available Here
+                <h3 class="member-name">Tahir</h3>
+                <div class="member-contact">
+                    <a href="tel:03192017909">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                        </svg>
+                        0319 - 2017909
+                    </a>
                 </div>
             </div>
             
             <!-- Team Member 2 -->
             <div class="team-card">
-                <div class="card-header">
-                    <h3>Abdul Rehman</h3>
-                    <p>Customer Support</p>
+                <div class="member-photo">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
                 </div>
-                <div class="card-body">
-                    <div class="contact-info">
-                        <a href="tel:03337504732">0333 - 7504732</a>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    Professional support for all your needs
+                <h3 class="member-name">Abdul Rehman</h3>
+                <div class="member-contact">
+                    <a href="tel:03337504732">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                        </svg>
+                        0333 - 7504732
+                    </a>
                 </div>
             </div>
             
             <!-- Team Member 3 -->
             <div class="team-card">
-                <div class="card-header">
-                    <h3>Umair Ashfaq</h3>
-                    <p>Bulk Orders Specialist</p>
+                <div class="member-photo">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
                 </div>
-                <div class="card-body">
-                    <div class="contact-info">
-                        <a href="tel:03119285582">0311 - 9285582</a>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    Special pricing for retailers and contractors
+                <h3 class="member-name">Umair Ashfaq</h3>
+                <div class="member-contact">
+                    <a href="tel:03119285582">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                        </svg>
+                        0311 - 9285582
+                    </a>
                 </div>
             </div>
         </div>
