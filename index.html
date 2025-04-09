@@ -1,217 +1,224 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pak Pipes International</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-     <link rel="stylesheet" href="style.css">
-    
-</head>
-<body>
- 
-
-<!-- ==== CONTACT FORM SECTION ==== -->
-<section class="contact-section" id="contact">
-  <div class="max-width-contact">
-    <div class="theme-toggle">
-      <button id="themeBtn">
-        <i class="fas fa-moon"></i> Dark Mode
-      </button>
-    </div>
-    
-    <h2 class="title-contact">Contact Me</h2>
-    
-    <div class="contact-content">
-      <!-- Left Column -->
-      <div class="column-left">
-        <div class="text-top">Let's Connect</div>
+    <title>PAK-PIPES INTERNATIONAL - Our Team</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+        }
         
-        <p>For business inquiries or questions, feel free to reach out through this form or my contact details below.</p>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         
-        <div id="workingHoursStatus">
-          <i class="far fa-clock"></i> Checking availability...
-        </div>
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
         
-        <div class="icons-contact">
-          <div class="row-contact">
-            <i class="fas fa-user"></i>
-            <div class="info-contact">
-              <div class="head-contact">Name</div>
-              <div class="sub-title-contact">Umar Vortex</div>
-            </div>
-          </div>
-          
-          <div class="row-contact">
-            <i class="fas fa-map-marker-alt"></i>
-            <div class="info-contact">
-              <div class="head-contact">Address</div>
-              <div class="sub-title-contact">Digri, Sindh, Pakistan</div>
-            </div>
-          </div>
-          
-          <div class="row-contact">
-            <i class="fas fa-envelope"></i>
-            <div class="info-contact">
-              <div class="head-contact">Email</div>
-              <div class="sub-title-contact">asliyatkidunya@gmail.com</div>
-            </div>
-          </div>
-        </div>
+        /* Team Section */
+        .team-section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
         
-        <div class="map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.178509771317!2d67.0007!3d25.1234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDA3JzI0LjMiTiA2N8KwMDAnMDIuNSJF!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" 
-                  width="100%" 
-                  height="250" 
-                  allowfullscreen="" 
-                  loading="lazy">
-          </iframe>
-        </div>
-      </div>
-      
-      <!-- Right Column (Form) -->
-      <div class="column-right">
-        <div class="text-bottom">Send a Message</div>
-        
-        <form id="contactForm" action="https://formsubmit.co/asliyatkidunya@gmail.com" method="POST" enctype="multipart/form-data">
-          <!-- FormSubmit Configuration -->
-          <input type="hidden" name="_next" value="https://umarvortex.github.io/Imageslider/">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_subject" value="New Message from Contact Form">
-          <input type="hidden" name="_autoresponse" value="Thank you for your message! I'll get back to you soon.">
-          <input type="text" name="_honey" style="display:none">
-          <input type="hidden" name="_captcha" value="false">
-          
-          <div class="form-row">
-            <div class="form-group">
-              <input type="text" placeholder="Your Name" name="name" required>
-            </div>
-            <div class="form-group">
-              <input type="email" placeholder="Your Email" name="email" required>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <input type="text" placeholder="Subject" name="subject" required>
-          </div>
-          
-          <div class="form-group">
-            <textarea placeholder="Type your message here..." name="message" required></textarea>
-          </div>
-          
-          <div class="form-group">
-            <label>Attach File (PDF/Image, max 20MB)</label>
-            <input type="file" name="attachment" accept=".pdf,.jpg,.jpeg,.png">
-          </div>
-          
-          <div class="button-area-contact">
-            <button type="submit" class="btn-contact">
-              Send Message
-              <span class="send-icon">→</span>
-            </button>
-          </div>
-          
-          <div id="loading" class="status-message">
-            <i class="fas fa-spinner fa-spin"></i> Sending your message...
-          </div>
-          
-          <div id="successMessage" class="status-message success">
-            ✅ Thank you! Your message has been sent successfully.
-          </div>
-          
-          <div id="errorMessage" class="status-message error">
-            ❌ Oops! Something went wrong. Please try again.
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- JavaScript Link -->
-<script src="contact-form.js"></script>
-
-
-<style>
-        
-        h1 {
-            color: #0066cc;
+        .section-title {
             text-align: center;
+            margin-bottom: 40px;
+            color: var(--dark-color);
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .team-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 350px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+        }
+        
+        .card-header h3 {
+            font-size: 1.5rem;
             margin-bottom: 5px;
         }
         
-        .tagline {
-            text-align: center;
-            font-style: italic;
-            margin-bottom: 30px;
-            color: #666;
+        .card-header p {
+            font-size: 1rem;
+            opacity: 0.9;
         }
         
-        .social-section {
-            text-align: center;
-            margin: 30px 0;
+        .card-body {
+            padding: 25px 20px;
         }
         
-        .social-link {
-            display: inline-block;
-            margin: 0 15px;
-            font-size: 18px;
+        .contact-info {
+            margin: 15px 0;
+        }
+        
+        .contact-info a {
+            display: block;
+            color: var(--secondary-color);
             text-decoration: none;
-            color: #0066cc;
-            font-weight: bold;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: color 0.3s;
         }
         
-        .urdu-version {
-            text-align: center;
-            direction: rtl;
-            font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', sans-serif;
-            margin: 40px 0;
-            padding: 20px;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
+        .contact-info a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
         }
         
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            color: #666;
-            font-size: 14px;
+        .card-footer {
+            background-color: var(--light-color);
+            padding: 15px;
+            font-size: 0.9rem;
         }
         
-        .developer {
-            color: #ff6600;
-            font-weight: bold;
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .team-container {
+                gap: 25px;
+            }
+            
+            .team-card {
+                width: 300px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .team-container {
+                gap: 20px;
+            }
+            
+            .team-card {
+                width: calc(50% - 20px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .team-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .card-header h3 {
+                font-size: 1.3rem;
+            }
+            
+            .card-body {
+                padding: 20px 15px;
+            }
         }
     </style>
-
-    <h1>PAK PIPES INTERNATIONAL</h1>
-    <p class="tagline">Quality Pipes for a Stronger Tomorrow</p>
-    
-    <div class="social-section">
-        <a href="#" class="social-link">📘 Facebook</a>
-        <a href="#" class="social-link">📸 Instagram</a>
-    </div>
-    
-    <div class="urdu-version">
-        <h2>اردو ورژن</h2>
-        <p>پاک پائپس انٹرنیشنل – "مستقبل کی مضبوطی کے لیے معیاری پائپس"</p>
-    </div>
-    
-    <footer>
-        <p>&copy; <span id="year"></span> Pak Pipes International</p>
-        <p>Developed by <span class="developer">Umar Vortex</span> 🟧</p>
-    </footer>
-
-    <script>
-        // Auto-updating year for copyright
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-
-
-
-
-
+</head>
+<body>
+    <section class="team-section">
+        <h2 class="section-title">Our Dedicated Team</h2>
+        <div class="team-container">
+            <!-- Team Member 1 -->
+            <div class="team-card">
+                <div class="card-header">
+                    <h3>Tahir</h3>
+                    <p>Sales Representative</p>
+                </div>
+                <div class="card-body">
+                    <div class="contact-info">
+                        <a href="tel:03192017909">0319 - 2017909</a>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    All Gardens Pipes Varieties Available Here
+                </div>
+            </div>
+            
+            <!-- Team Member 2 -->
+            <div class="team-card">
+                <div class="card-header">
+                    <h3>Abdul Rehman</h3>
+                    <p>Customer Support</p>
+                </div>
+                <div class="card-body">
+                    <div class="contact-info">
+                        <a href="tel:03337504732">0333 - 7504732</a>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    Professional support for all your needs
+                </div>
+            </div>
+            
+            <!-- Team Member 3 -->
+            <div class="team-card">
+                <div class="card-header">
+                    <h3>Umair Ashfaq</h3>
+                    <p>Bulk Orders Specialist</p>
+                </div>
+                <div class="card-body">
+                    <div class="contact-info">
+                        <a href="tel:03119285582">0311 - 9285582</a>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    Special pricing for retailers and contractors
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
