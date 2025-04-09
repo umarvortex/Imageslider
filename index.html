@@ -134,17 +134,84 @@
 <script src="contact-form.js"></script>
 
 
+<style>
+        
+        h1 {
+            color: #0066cc;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        
+        .social-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .social-link {
+            display: inline-block;
+            margin: 0 15px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #0066cc;
+            font-weight: bold;
+        }
+        
+        .urdu-version {
+            text-align: center;
+            direction: rtl;
+            font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', sans-serif;
+            margin: 40px 0;
+            padding: 20px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .developer {
+            color: #ff6600;
+            font-weight: bold;
+        }
+    </style>
 
-
-
-
-
+    <h1>PAK PIPES INTERNATIONAL</h1>
+    <p class="tagline">Quality Pipes for a Stronger Tomorrow</p>
+    
+    <div class="social-section">
+        <a href="#" class="social-link">📘 Facebook</a>
+        <a href="#" class="social-link">📸 Instagram</a>
+    </div>
+    
+    <div class="urdu-version">
+        <h2>اردو ورژن</h2>
+        <p>پاک پائپس انٹرنیشنل – "مستقبل کی مضبوطی کے لیے معیاری پائپس"</p>
+    </div>
+    
     <footer>
-        <div class="container">
-            <h3>PAK PIPES INTERNATIONAL</h3>
-            <p>Quality piping solutions since 2005</p>
-            <p>Contact us: info@pakpipes.com | 042-1234567</p>
-        </div>
+        <p>&copy; <span id="year"></span> Pak Pipes International</p>
+        <p>Developed by <span class="developer">Umar Vortex</span> 🟧</p>
     </footer>
+
+    <script>
+        // Auto-updating year for copyright
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+
+
+
+
 </body>
 </html>
