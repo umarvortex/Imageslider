@@ -506,7 +506,73 @@
 }
 
 
+/* ----------------------------- */
+/* Existing 991px Query (No Changes) */
+@media (max-width: 991px) {
+    .about-content h2 {
+        margin-top: 2rem;
+        text-align: center;
+        font-size: 5rem;
+    }
+}
 
+/* ----------------------------- */
+/* New Additions for 786px */
+@media (max-width: 786px) {
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-img img {
+        width: 70vw;
+        margin-top: 4rem;
+    }
+    .about-content {
+        text-align: center;
+        padding: 0;
+    }
+    .about-content h2 {
+        text-align: center;
+    }
+    /* New Classes Responsive */
+    .benefit-item {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .benefit-item p {
+        text-align: center;
+        font-size: 1.8rem;
+    }
+}
+
+/* ----------------------------- */
+/* New Additions for 617px */
+@media (max-width: 617px) {
+    .about-img img {
+        width: 80vw;
+    }
+    .benefit-item p {
+        font-size: 1.6rem;
+    }
+    .location-btn {
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+/* ----------------------------- */
+/* New Additions for 450px */
+@media (max-width: 450px) {
+    .about-content h2 {
+        font-size: 4rem;
+    }
+    .benefit-item p {
+        font-size: 1.4rem;
+    }
+    .location-btn span {
+        font-size: 1.2rem;
+    }
+}
 
 </style>
 
