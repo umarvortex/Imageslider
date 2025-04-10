@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,40 +9,126 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         body {
-            background-color: #0e1618;
-            padding: 40px 20px;
-            color: #ffffff;
+            background-color: #f5f7fa;
+            padding: 60px 20px;
+            min-height: 100vh;
         }
         
         .team-container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
         
         .team-card {
-            background: #17242a;
-            border: 1px solid #45ffca;
-            border-radius: 8px;
-            width: 240px;
-            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1;
+        }
+        
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
         }
         
         .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            border-color: #5dffd1;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .member-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .member-name {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .phone-number {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .phone-number::before {
+            content: '📱';
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .contact-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .call-btn {
+            background-color: #3b82f6;
+            color: white;
+            flex: 1;
+        }
+        
+        .sms-btn {
+            background-color: white;
+            color: #3b82f6;
+            border: 1px solid #e2e8f0;
+            flex: 1;
+        }
+        
+        .call-btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .sms-btn:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(203, 213, 225, 0.3);
         }
         
         .team-card::after {
@@ -51,11 +137,12 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #45ffca, transparent);
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
             transform: scaleX(0);
-            transform-origin: right;
             transition: transform 0.4s ease;
+            transform-origin: right;
+            z-index: -1;
         }
         
         .team-card:hover::after {
@@ -63,83 +150,13 @@
             transform-origin: left;
         }
         
-        .member-name {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: #45ffca;
-            font-weight: 600;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .member-name::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: #45ffca;
-        }
-        
-        .contact-info {
-            margin-top: 20px;
-        }
-        
-        .phone-number {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .phone-number::before {
-            content: '📱';
-            margin-right: 8px;
-            font-size: 1rem;
-        }
-        
-        .contact-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .contact-btn {
-            padding: 8px 15px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            font-weight: 500;
-        }
-        
-        .call-btn {
-            background-color: #45ffca;
-            color: #17242a;
-        }
-        
-        .sms-btn {
-            background-color: transparent;
-            color: #45ffca;
-            border: 1px solid #45ffca;
-        }
-        
-        .call-btn:hover {
-            background-color: #35e5b0;
-            transform: translateY(-2px);
-        }
-        
-        .sms-btn:hover {
-            background-color: rgba(69, 255, 202, 0.1);
-            transform: translateY(-2px);
-        }
-        
         @media (max-width: 768px) {
+            .team-container {
+                grid-template-columns: 1fr;
+            }
+            
             .team-card {
-                width: 100%;
-                max-width: 300px;
+                padding: 25px;
             }
         }
     </style>
@@ -148,6 +165,7 @@
     <div class="team-container">
         <!-- Team Member 1 -->
         <div class="team-card">
+            <div class="member-photo">T</div>
             <h3 class="member-name">Tahir</h3>
             <div class="phone-number">0319 - 2017909</div>
             <div class="contact-actions">
@@ -158,6 +176,7 @@
         
         <!-- Team Member 2 -->
         <div class="team-card">
+            <div class="member-photo">A</div>
             <h3 class="member-name">Abdul Rehman</h3>
             <div class="phone-number">0333 - 7504732</div>
             <div class="contact-actions">
@@ -168,6 +187,7 @@
         
         <!-- Team Member 3 -->
         <div class="team-card">
+            <div class="member-photo">U</div>
             <h3 class="member-name">Umair Ashfaq</h3>
             <div class="phone-number">0311 - 9285582</div>
             <div class="contact-actions">
