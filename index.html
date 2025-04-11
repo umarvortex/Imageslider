@@ -1,33 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>JavaScript Test</title>
+  <meta charset="UTF-8">
+  <title>Favorite Subject</title>
 </head>
 <body>
-
-  <h1 id="welcome">Welcome, Umar!</h1>
-  <button onclick="changeText()">Click Me</button>
+  <h1>Welcome to Umar's Page</h1>
 
   <script>
-    function changeText() {
-      document.getElementById("welcome").innerHTML = "You're a future coding king!";
-    }
+    let favSubject = prompt("What’s your favorite subject?");
+    alert("Wow! " + favSubject + " is amazing!");
   </script>
-
-
-
-
-<script>
-  let firstName = "Umar";
-  let age = 17;
-  let city = "Digri";
-
-  console.log("My name is " + firstName);
-  console.log("I am " + age + " years old");
-  console.log("I live in " + city);
-</script>
-
-
-
 </body>
 </html>
