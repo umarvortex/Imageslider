@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Access Quiz</title>
+    <title>Advanced Website Access Quiz</title>
     <style>
         #quiz-overlay {
             position: fixed;
@@ -11,213 +11,424 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         #quiz-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 500px;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
             width: 90%;
-            max-height: 80vh;
+            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            max-height: 90vh;
             overflow-y: auto;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .question {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
+            display: none;
+        }
+        
+        .question.active {
+            display: block;
+            animation: slideIn 0.4s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .options label:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .options input[type="radio"] {
+            margin-right: 10px;
         }
         
         button {
             background-color: #4CAF50;
             color: white;
-            padding: 10px 15px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
+            font-size: 16px;
+            transition: all 0.3s;
         }
         
         button:hover {
             background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        #timer {
+            font-size: 18px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+        
+        #progress-container {
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        #progress-bar {
+            height: 10px;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        #hint-btn {
+            background-color: #3498db;
+            margin-left: 10px;
+        }
+        
+        #hint-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .hint-text {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        #result-message {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+            text-align: center;
+            display: none;
+        }
+        
+        .correct {
+            color: #27ae60;
+        }
+        
+        .wrong {
+            color: #e74c3c;
+        }
+        
+        #retry-count {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        #admin-bypass {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        #admin-input {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-right: 5px;
         }
     </style>
 </head>
 <body>
     <div id="quiz-overlay">
         <div id="quiz-container">
-            <h2>Website Access Quiz</h2>
-            <p>Please answer all 15 questions correctly to access the website.</p>
+            <h2 style="text-align: center; color: #2c3e50;">Website Access Quiz</h2>
+            <p style="text-align: center;">Answer all 3 questions correctly to access the website</p>
+            
+            <div id="timer">Time remaining: 02:00</div>
+            <div id="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div id="retry-count">Attempts left: 3</div>
             
             <form id="quiz-form">
-                <div class="question">
+                <!-- Question 1 -->
+                <div class="question active" id="q1">
                     <p>1. What is the capital of France?</p>
-                    <input type="radio" name="q1" value="a"> a) London<br>
-                    <input type="radio" name="q1" value="b"> b) Paris<br>
-                    <input type="radio" name="q1" value="c"> c) Berlin<br>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="a"> London</label>
+                        <label><input type="radio" name="q1" value="b"> Paris</label>
+                        <label><input type="radio" name="q1" value="c"> Berlin</label>
+                    </div>
+                    <button type="button" class="hint-btn" id="hint-btn-1">Show Hint</button>
+                    <div class="hint-text" id="hint-1">Hint: It's known as the "City of Light"</div>
                 </div>
                 
-                <div class="question">
+                <!-- Question 2 -->
+                <div class="question" id="q2">
                     <p>2. Which planet is known as the Red Planet?</p>
-                    <input type="radio" name="q2" value="a"> a) Venus<br>
-                    <input type="radio" name="q2" value="b"> b) Mars<br>
-                    <input type="radio" name="q2" value="c"> c) Jupiter<br>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="a"> Venus</label>
+                        <label><input type="radio" name="q2" value="b"> Mars</label>
+                        <label><input type="radio" name="q2" value="c"> Jupiter</label>
+                    </div>
+                    <button type="button" class="hint-btn" id="hint-btn-2">Show Hint</button>
+                    <div class="hint-text" id="hint-2">Hint: NASA has sent rovers to this planet</div>
                 </div>
                 
-                <div class="question">
+                <!-- Question 3 -->
+                <div class="question" id="q3">
                     <p>3. What is 2 + 2?</p>
-                    <input type="radio" name="q3" value="a"> a) 3<br>
-                    <input type="radio" name="q3" value="b"> b) 4<br>
-                    <input type="radio" name="q3" value="c"> c) 5<br>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="a"> 3</label>
+                        <label><input type="radio" name="q3" value="b"> 4</label>
+                        <label><input type="radio" name="q3" value="c"> 5</label>
+                    </div>
+                    <button type="button" class="hint-btn" id="hint-btn-3">Show Hint</button>
+                    <div class="hint-text" id="hint-3">Hint: It's the number of sides in a square</div>
                 </div>
                 
-                <div class="question">
-                    <p>4. Which language runs in a web browser?</p>
-                    <input type="radio" name="q4" value="a"> a) Java<br>
-                    <input type="radio" name="q4" value="b"> b) C<br>
-                    <input type="radio" name="q4" value="c"> c) JavaScript<br>
+                <div id="result-message"></div>
+                
+                <div style="display: flex; justify-content: space-between;">
+                    <button type="button" id="prev-btn" disabled>Previous</button>
+                    <button type="button" id="next-btn">Next</button>
                 </div>
                 
-                <div class="question">
-                    <p>5. What does HTML stand for?</p>
-                    <input type="radio" name="q5" value="a"> a) Hyper Text Markup Language<br>
-                    <input type="radio" name="q5" value="b"> b) Home Tool Markup Language<br>
-                    <input type="radio" name="q5" value="c"> c) Hyperlinks and Text Markup Language<br>
-                </div>
-                
-                <div class="question">
-                    <p>6. Which year was JavaScript launched?</p>
-                    <input type="radio" name="q6" value="a"> a) 1995<br>
-                    <input type="radio" name="q6" value="b"> b) 1990<br>
-                    <input type="radio" name="q6" value="c"> c) 2000<br>
-                </div>
-                
-                <div class="question">
-                    <p>7. What is the largest mammal?</p>
-                    <input type="radio" name="q7" value="a"> a) Elephant<br>
-                    <input type="radio" name="q7" value="b"> b) Blue Whale<br>
-                    <input type="radio" name="q7" value="c"> c) Giraffe<br>
-                </div>
-                
-                <div class="question">
-                    <p>8. Which country has the most population?</p>
-                    <input type="radio" name="q8" value="a"> a) India<br>
-                    <input type="radio" name="q8" value="b"> b) China<br>
-                    <input type="radio" name="q8" value="c"> c) USA<br>
-                </div>
-                
-                <div class="question">
-                    <p>9. What is the chemical symbol for gold?</p>
-                    <input type="radio" name="q9" value="a"> a) Go<br>
-                    <input type="radio" name="q9" value="b"> b) Au<br>
-                    <input type="radio" name="q9" value="c"> c) Ag<br>
-                </div>
-                
-                <div class="question">
-                    <p>10. Who painted the Mona Lisa?</p>
-                    <input type="radio" name="q10" value="a"> a) Vincent van Gogh<br>
-                    <input type="radio" name="q10" value="b"> b) Leonardo da Vinci<br>
-                    <input type="radio" name="q10" value="c"> c) Pablo Picasso<br>
-                </div>
-                
-                <div class="question">
-                    <p>11. Which is not a primary color?</p>
-                    <input type="radio" name="q11" value="a"> a) Red<br>
-                    <input type="radio" name="q11" value="b"> b) Green<br>
-                    <input type="radio" name="q11" value="c"> c) Purple<br>
-                </div>
-                
-                <div class="question">
-                    <p>12. How many continents are there?</p>
-                    <input type="radio" name="q12" value="a"> a) 5<br>
-                    <input type="radio" name="q12" value="b"> b) 6<br>
-                    <input type="radio" name="q12" value="c"> c) 7<br>
-                </div>
-                
-                <div class="question">
-                    <p>13. What is the hardest natural substance on Earth?</p>
-                    <input type="radio" name="q13" value="a"> a) Gold<br>
-                    <input type="radio" name="q13" value="b"> b) Diamond<br>
-                    <input type="radio" name="q13" value="c"> c) Iron<br>
-                </div>
-                
-                <div class="question">
-                    <p>14. Which planet is closest to the Sun?</p>
-                    <input type="radio" name="q14" value="a"> a) Venus<br>
-                    <input type="radio" name="q14" value="b"> b) Earth<br>
-                    <input type="radio" name="q14" value="c"> c) Mercury<br>
-                </div>
-                
-                <div class="question">
-                    <p>15. What is the largest ocean on Earth?</p>
-                    <input type="radio" name="q15" value="a"> a) Atlantic Ocean<br>
-                    <input type="radio" name="q15" value="b"> b) Indian Ocean<br>
-                    <input type="radio" name="q15" value="c"> c) Pacific Ocean<br>
-                </div>
-                
-                <button type="submit">Submit Answers</button>
+                <button type="submit" id="submit-btn" style="display: none; width: 100%;">Submit Answers</button>
             </form>
+            
+            <div id="admin-bypass">
+                <p>Admin? Enter password to bypass:</p>
+                <input type="password" id="admin-input" placeholder="Enter admin password">
+                <button type="button" id="admin-btn">Submit</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Correct answers
-        const correctAnswers = {
-            q1: "b",
-            q2: "b",
-            q3: "b",
-            q4: "c",
-            q5: "a",
-            q6: "a",
-            q7: "b",
-            q8: "b",
-            q9: "b",
-            q10: "b",
-            q11: "c",
-            q12: "c",
-            q13: "b",
-            q14: "c",
-            q15: "c"
+        // Quiz configuration
+        const quizConfig = {
+            totalQuestions: 3,
+            timeLimit: 120, // 2 minutes in seconds
+            maxAttempts: 3,
+            adminPassword: "admin123", // Change this to your secure password
+            correctAnswers: {
+                q1: "b",
+                q2: "b",
+                q3: "b"
+            }
         };
         
-        // Check answers when form is submitted
-        document.getElementById('quiz-form').addEventListener('submit', function(e) {
+        // Quiz state
+        let currentQuestion = 1;
+        let timeLeft = quizConfig.timeLimit;
+        let attemptsLeft = quizConfig.maxAttempts;
+        let timer;
+        
+        // DOM elements
+        const quizForm = document.getElementById('quiz-form');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const timerDisplay = document.getElementById('timer');
+        const progressBar = document.getElementById('progress-bar');
+        const retryCount = document.getElementById('retry-count');
+        const resultMessage = document.getElementById('result-message');
+        const adminInput = document.getElementById('admin-input');
+        const adminBtn = document.getElementById('admin-btn');
+        
+        // Initialize the quiz
+        function initQuiz() {
+            updateProgressBar();
+            startTimer();
+            updateButtonStates();
+            
+            // Add event listeners for hint buttons
+            for (let i = 1; i <= quizConfig.totalQuestions; i++) {
+                document.getElementById(`hint-btn-${i}`).addEventListener('click', () => {
+                    document.getElementById(`hint-${i}`).style.display = 'block';
+                });
+            }
+            
+            // Admin bypass
+            adminBtn.addEventListener('click', checkAdminPassword);
+        }
+        
+        // Start the countdown timer
+        function startTimer() {
+            updateTimerDisplay();
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    endQuiz(false, "Time's up! You didn't finish in time.");
+                }
+            }, 1000);
+        }
+        
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = `Time remaining: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Change color when time is running low
+            if (timeLeft <= 30) {
+                timerDisplay.style.color = "#e74c3c";
+                timerDisplay.style.animation = "blink 1s infinite";
+            }
+        }
+        
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = (currentQuestion / quizConfig.totalQuestions) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        // Show question
+        function showQuestion(questionNum) {
+            document.querySelectorAll('.question').forEach(q => {
+                q.classList.remove('active');
+            });
+            document.getElementById(`q${questionNum}`).classList.add('active');
+        }
+        
+        // Update button states
+        function updateButtonStates() {
+            prevBtn.disabled = currentQuestion === 1;
+            nextBtn.disabled = false;
+            
+            if (currentQuestion === quizConfig.totalQuestions) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            } else {
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
+            }
+        }
+        
+        // Navigation functions
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < quizConfig.totalQuestions) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+                updateProgressBar();
+                updateButtonStates();
+            }
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+                updateProgressBar();
+                updateButtonStates();
+            }
+        });
+        
+        // Submit quiz
+        quizForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+            checkAnswers();
+        });
+        
+        // Check answers
+        function checkAnswers() {
             let allCorrect = true;
-            let score = 0;
             
-            // Check each question
-            for (let i = 1; i <= 15; i++) {
-                const questionName = 'q' + i;
+            for (let i = 1; i <= quizConfig.totalQuestions; i++) {
+                const questionName = `q${i}`;
                 const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
                 
-                if (!selectedOption || selectedOption.value !== correctAnswers[questionName]) {
+                if (!selectedOption || selectedOption.value !== quizConfig.correctAnswers[questionName]) {
                     allCorrect = false;
-                } else {
-                    score++;
+                    break;
                 }
             }
             
             if (allCorrect) {
-                alert('Congratulations! All answers are correct. You can now access the website.');
+                endQuiz(true, "Congratulations! All answers are correct. You can now access the website.");
+            } else {
+                attemptsLeft--;
+                retryCount.textContent = `Attempts left: ${attemptsLeft}`;
+                
+                if (attemptsLeft <= 0) {
+                    endQuiz(false, "You've used all your attempts. Please try again later.");
+                } else {
+                    resultMessage.textContent = "Some answers are incorrect. Please try again.";
+                    resultMessage.className = "wrong";
+                    resultMessage.style.display = "block";
+                    
+                    // Reset to first question
+                    currentQuestion = 1;
+                    showQuestion(currentQuestion);
+                    updateProgressBar();
+                    updateButtonStates();
+                }
+            }
+        }
+        
+        // End quiz
+        function endQuiz(success, message) {
+            clearInterval(timer);
+            resultMessage.textContent = message;
+            resultMessage.className = success ? "correct" : "wrong";
+            resultMessage.style.display = "block";
+            
+            if (success) {
+                setTimeout(() => {
+                    document.getElementById('quiz-overlay').style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        // Admin password check
+        function checkAdminPassword() {
+            if (adminInput.value === quizConfig.adminPassword) {
+                alert("Admin access granted. You can now access the website.");
                 document.getElementById('quiz-overlay').style.display = 'none';
             } else {
-                alert(`You got ${score}/15 correct. All answers must be correct to access the website. Please try again.`);
+                alert("Incorrect admin password.");
             }
-        });
+        }
         
         // Prevent closing the quiz
         window.addEventListener('beforeunload', function(e) {
             e.preventDefault();
             e.returnValue = 'You must complete the quiz to access the website.';
         });
+        
+        // Initialize the quiz when page loads
+        window.addEventListener('DOMContentLoaded', initQuiz);
     </script>
 </body>
 </html>
