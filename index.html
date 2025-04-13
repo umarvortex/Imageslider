@@ -1,144 +1,608 @@
-<!-- WhatsApp Live Chat Widget - Dark Green Theme -->
-
-<!-- HTML -->
-<div class="whatsapp-chat-container">
-  <div class="whatsapp-button" onclick="toggleWhatsAppChat()">
-    Chat with Us
-  </div>
-
-  <div class="whatsapp-popup" id="whatsappPopup">
-    <div class="whatsapp-header">
-      <h4>Live Support</h4>
-      <span onclick="toggleWhatsAppChat()" class="close-whatsapp">×</span>
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Perfect Pipe</title>
+    <style>
+        /* Modern Color Scheme */
+        :root {
+            --pipe-blue: #0066cc;
+            --pipe-orange: #ff6600;
+            --pipe-gray: #4d4d4d;
+            --pipe-light: #f2f2f2;
+            --pipe-white: #ffffff;
+            --pipe-green: #33cc33;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .pipe-quiz-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: var(--pipe-white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: none; /* Hidden by default */
+        }
+        
+        .pipe-quiz-header {
+            background: linear-gradient(135deg, var(--pipe-blue), var(--pipe-orange));
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .pipe-quiz-header h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .pipe-quiz-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .pipe-quiz-progress {
+            height: 8px;
+            background-color: #e0e0e0;
+            position: relative;
+        }
+        
+        .pipe-quiz-progress-bar {
+            height: 100%;
+            background: var(--pipe-green);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .pipe-quiz-body {
+            padding: 25px;
+        }
+        
+        .pipe-quiz-question {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .pipe-quiz-question.active {
+            display: block;
+        }
+        
+        .pipe-quiz-question h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--pipe-gray);
+        }
+        
+        .pipe-quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .pipe-quiz-option {
+            padding: 18px;
+            background: var(--pipe-light);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pipe-quiz-option:hover {
+            background: #e6f0ff;
+            border-color: var(--pipe-blue);
+        }
+        
+        .pipe-quiz-option.selected {
+            background: var(--pipe-blue);
+            color: white;
+            border-color: var(--pipe-blue);
+        }
+        
+        .pipe-quiz-option-icon {
+            margin-right: 15px;
+            font-size: 24px;
+        }
+        
+        .pipe-quiz-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .pipe-quiz-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+        
+        .pipe-quiz-btn-prev {
+            background: var(--pipe-light);
+            color: var(--pipe-gray);
+        }
+        
+        .pipe-quiz-btn-prev:hover {
+            background: #e0e0e0;
+        }
+        
+        .pipe-quiz-btn-next {
+            background: var(--pipe-orange);
+            color: white;
+        }
+        
+        .pipe-quiz-btn-next:hover {
+            background: #e65c00;
+        }
+        
+        .pipe-quiz-btn-submit {
+            background: var(--pipe-green);
+            color: white;
+            display: none;
+        }
+        
+        .pipe-quiz-btn-submit:hover {
+            background: #29a329;
+        }
+        
+        .pipe-quiz-result {
+            display: none;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .pipe-quiz-result h3 {
+            font-size: 26px;
+            color: var(--pipe-blue);
+            margin-bottom: 20px;
+        }
+        
+        .pipe-quiz-result-img {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            background: var(--pipe-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--pipe-blue);
+        }
+        
+        .pipe-quiz-result-desc {
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .pipe-quiz-result-product {
+            background: var(--pipe-light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .pipe-quiz-result-product h4 {
+            color: var(--pipe-orange);
+            margin-bottom: 10px;
+        }
+        
+        .pipe-quiz-result-cta {
+            background: var(--pipe-orange);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .pipe-quiz-result-cta:hover {
+            background: #e65c00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+        
+        .pipe-quiz-launcher {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--pipe-blue), var(--pipe-orange));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .pipe-quiz-launcher:hover {
+            transform: scale(1.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .pipe-quiz-container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .pipe-quiz-header h2 {
+                font-size: 24px;
+            }
+            
+            .pipe-quiz-option {
+                padding: 15px;
+            }
+            
+            .pipe-quiz-launcher {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Quiz Launcher Button (Fixed Position) -->
+    <button class="pipe-quiz-launcher">?</button>
+    
+    <!-- Quiz Container (Hidden by Default) -->
+    <div class="pipe-quiz-container" id="pipeQuiz">
+        <div class="pipe-quiz-header">
+            <h2>Find Your Perfect Pipe</h2>
+            <p>Answer 5 simple questions to get personalized recommendations</p>
+        </div>
+        
+        <div class="pipe-quiz-progress">
+            <div class="pipe-quiz-progress-bar" id="quizProgress"></div>
+        </div>
+        
+        <div class="pipe-quiz-body">
+            <!-- Question 1 -->
+            <div class="pipe-quiz-question active" data-question="1">
+                <h3>What is your primary use for the pipe?</h3>
+                <div class="pipe-quiz-options">
+                    <div class="pipe-quiz-option" data-value="residential">
+                        <span class="pipe-quiz-option-icon">🏠</span>
+                        Residential Plumbing
+                    </div>
+                    <div class="pipe-quiz-option" data-value="agriculture">
+                        <span class="pipe-quiz-option-icon">🚜</span>
+                        Agricultural Irrigation
+                    </div>
+                    <div class="pipe-quiz-option" data-value="industrial">
+                        <span class="pipe-quiz-option-icon">🏗️</span>
+                        Industrial/Construction
+                    </div>
+                    <div class="pipe-quiz-option" data-value="sewage">
+                        <span class="pipe-quiz-option-icon">🚽</span>
+                        Sewage/Drainage
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div class="pipe-quiz-question" data-question="2">
+                <h3>What size pipe do you need?</h3>
+                <div class="pipe-quiz-options">
+                    <div class="pipe-quiz-option" data-value="0.5">
+                        <span class="pipe-quiz-option-icon">📏</span>
+                        ½ inch
+                    </div>
+                    <div class="pipe-quiz-option" data-value="1">
+                        <span class="pipe-quiz-option-icon">📏</span>
+                        1 inch
+                    </div>
+                    <div class="pipe-quiz-option" data-value="2">
+                        <span class="pipe-quiz-option-icon">📏</span>
+                        2 inches
+                    </div>
+                    <div class="pipe-quiz-option" data-value="4">
+                        <span class="pipe-quiz-option-icon">📏</span>
+                        4 inches
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="pipe-quiz-question" data-question="3">
+                <h3>What pressure rating do you require?</h3>
+                <div class="pipe-quiz-options">
+                    <div class="pipe-quiz-option" data-value="low">
+                        <span class="pipe-quiz-option-icon">🔵</span>
+                        Low (Up to 50 PSI)
+                    </div>
+                    <div class="pipe-quiz-option" data-value="medium">
+                        <span class="pipe-quiz-option-icon">🟢</span>
+                        Medium (50-100 PSI)
+                    </div>
+                    <div class="pipe-quiz-option" data-value="high">
+                        <span class="pipe-quiz-option-icon">🔴</span>
+                        High (100+ PSI)
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="pipe-quiz-question" data-question="4">
+                <h3>Preferred Material?</h3>
+                <div class="pipe-quiz-options">
+                    <div class="pipe-quiz-option" data-value="pvc">
+                        <span class="pipe-quiz-option-icon">🟦</span>
+                        PVC (Affordable, lightweight, corrosion-resistant)
+                    </div>
+                    <div class="pipe-quiz-option" data-value="hdpe">
+                        <span class="pipe-quiz-option-icon">🟩</span>
+                        HDPE (Flexible, durable, good for underground)
+                    </div>
+                    <div class="pipe-quiz-option" data-value="cpvc">
+                        <span class="pipe-quiz-option-icon">🟧</span>
+                        CPVC (Heat-resistant, ideal for hot water)
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="pipe-quiz-question" data-question="5">
+                <h3>What's your budget range?</h3>
+                <div class="pipe-quiz-options">
+                    <div class="pipe-quiz-option" data-value="budget">
+                        <span class="pipe-quiz-option-icon">💰</span>
+                        Budget-Friendly
+                    </div>
+                    <div class="pipe-quiz-option" data-value="standard">
+                        <span class="pipe-quiz-option-icon">💲</span>
+                        Standard Quality
+                    </div>
+                    <div class="pipe-quiz-option" data-value="premium">
+                        <span class="pipe-quiz-option-icon">💎</span>
+                        Premium (Best Performance)
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results Screen -->
+            <div class="pipe-quiz-result" id="quizResult">
+                <div class="pipe-quiz-result-img">
+                    ✅
+                </div>
+                <h3>Perfect Pipe Found!</h3>
+                <div class="pipe-quiz-result-desc" id="resultDesc">
+                    Based on your needs, we recommend:
+                </div>
+                <div class="pipe-quiz-result-product" id="resultProduct">
+                    <h4>Recommended Product</h4>
+                    <p id="productDetails">Product details will appear here</p>
+                </div>
+                <a href="#contact" class="pipe-quiz-result-cta">Get Your Custom Quote Now</a>
+                <p style="margin-top: 15px; font-size: 14px;">Special discount for quiz takers!</p>
+            </div>
+        </div>
+        
+        <div class="pipe-quiz-footer">
+            <button class="pipe-quiz-btn pipe-quiz-btn-prev" id="prevBtn">Previous</button>
+            <button class="pipe-quiz-btn pipe-quiz-btn-next" id="nextBtn">Next</button>
+            <button class="pipe-quiz-btn pipe-quiz-btn-submit" id="submitBtn">Get Results</button>
+        </div>
     </div>
-    <div class="whatsapp-body">
-      <input type="text" id="userName" placeholder="Your Name" />
-      <input type="text" id="userPhone" placeholder="Your WhatsApp Number" />
-      <textarea id="userMessage" placeholder="Your Message..."></textarea>
-      <button onclick="sendToWhatsApp()">Send</button>
-    </div>
-    <div class="whatsapp-footer" id="autoReply"></div>
-  </div>
-</div>
 
-<!-- CSS -->
-<style>
-  .whatsapp-chat-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-family: 'Segoe UI', sans-serif;
-    z-index: 9999;
-  }
-
-  .whatsapp-button {
-    background-color: #145A32;
-    color: #fff;
-    padding: 12px 20px;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    font-weight: bold;
-    transition: background 0.3s;
-  }
-
-  .whatsapp-button:hover {
-    background-color: #117A65;
-  }
-
-  .whatsapp-popup {
-    display: none;
-    width: 320px;
-    background-color: #1C1C1C;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    color: white;
-  }
-
-  .whatsapp-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #D5F5E3;
-    margin-bottom: 15px;
-  }
-
-  .close-whatsapp {
-    font-size: 22px;
-    cursor: pointer;
-  }
-
-  .whatsapp-body input,
-  .whatsapp-body textarea {
-    width: 100%;
-    background: #2E2E2E;
-    color: #fff;
-    border: 1px solid #555;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 6px;
-  }
-
-  .whatsapp-body textarea {
-    height: 80px;
-    resize: none;
-  }
-
-  .whatsapp-body button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28B463;
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-
-  .whatsapp-body button:hover {
-    background-color: #239B56;
-  }
-
-  .whatsapp-footer {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #A9DFBF;
-  }
-</style>
-
-<!-- JavaScript -->
-<script>
-  function toggleWhatsAppChat() {
-    const popup = document.getElementById("whatsappPopup");
-    popup.style.display = popup.style.display === "block" ? "none" : "block";
-  }
-
-  function sendToWhatsApp() {
-    const name = document.getElementById("userName").value.trim();
-    const phone = document.getElementById("userPhone").value.trim();
-    const message = document.getElementById("userMessage").value.trim();
-
-    if (!name || !phone || !message) {
-      alert("Please fill in all fields.");
-      return;
-    }
-
-    // WhatsApp Number (dummy for now — replace with your number like '923001234567')
-    const businessNumber = "923455370104";
-
-    // Construct WhatsApp message
-    const text = `New Inquiry from Website:
-Name: ${name}
-Phone: ${phone}
-Message: ${message}`;
-
-    // Open WhatsApp chat
-    const whatsappURL = `https://wa.me/${businessNumber}?text=${encodeURIComponent(text)}`;
-    window.open(whatsappURL, '_blank');
-
-    // Auto Reply
-    document.getElementById("autoReply").innerText =
-      "Thanks! I've sent you a message on WhatsApp. Waiting for your reply!";
-  }
-</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quiz Elements
+            const quizContainer = document.querySelector('.pipe-quiz-container');
+            const quizLauncher = document.querySelector('.pipe-quiz-launcher');
+            const questions = document.querySelectorAll('.pipe-quiz-question');
+            const options = document.querySelectorAll('.pipe-quiz-option');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            const progressBar = document.getElementById('quizProgress');
+            const resultScreen = document.getElementById('quizResult');
+            const resultDesc = document.getElementById('resultDesc');
+            const productDetails = document.getElementById('productDetails');
+            
+            // Quiz State
+            let currentQuestion = 1;
+            const totalQuestions = questions.length;
+            const answers = {};
+            
+            // Product Database
+            const products = {
+                pvc: {
+                    residential: {
+                        low: "PVC-U Plumbing Pipe (Class 4)",
+                        medium: "PVC-U Pressure Pipe (Class 6)",
+                        high: "PVC-U Pressure Pipe (Class 9)"
+                    },
+                    agriculture: "PVC Agricultural Pipe (Blue Stripe)",
+                    industrial: "PVC Industrial Pipe (Gray)",
+                    sewage: "PVC Sewer Pipe (Orange)"
+                },
+                hdpe: {
+                    residential: "HDPE PN6 Water Supply Pipe",
+                    agriculture: "HDPE Drip Irrigation Pipe",
+                    industrial: "HDPE PN10 Industrial Pipe",
+                    sewage: "HDPE Corrugated Sewer Pipe"
+                },
+                cpvc: {
+                    residential: "CPVC Hot Water Pipe (90°C Rating)",
+                    industrial: "CPVC Industrial Chemical Pipe"
+                }
+            };
+            
+            // Open Quiz
+            quizLauncher.addEventListener('click', function() {
+                quizContainer.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Close Quiz when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!quizContainer.contains(e.target) && e.target !== quizLauncher) {
+                    quizContainer.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Option Selection
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options in this question
+                    const question = this.closest('.pipe-quiz-question');
+                    question.querySelectorAll('.pipe-quiz-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Store answer
+                    const questionNum = parseInt(question.dataset.question);
+                    answers[`q${questionNum}`] = this.dataset.value;
+                    
+                    // Enable next button
+                    if (currentQuestion < totalQuestions) {
+                        nextBtn.disabled = false;
+                    } else {
+                        submitBtn.style.display = 'inline-block';
+                        nextBtn.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Navigation
+            nextBtn.addEventListener('click', function() {
+                if (currentQuestion < totalQuestions) {
+                    document.querySelector(`.pipe-quiz-question[data-question="${currentQuestion}"]`).classList.remove('active');
+                    currentQuestion++;
+                    document.querySelector(`.pipe-quiz-question[data-question="${currentQuestion}"]`).classList.add('active');
+                    updateProgress();
+                    prevBtn.disabled = false;
+                    nextBtn.disabled = true;
+                }
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentQuestion > 1) {
+                    document.querySelector(`.pipe-quiz-question[data-question="${currentQuestion}"]`).classList.remove('active');
+                    currentQuestion--;
+                    document.querySelector(`.pipe-quiz-question[data-question="${currentQuestion}"]`).classList.add('active');
+                    updateProgress();
+                    nextBtn.disabled = false;
+                    submitBtn.style.display = 'none';
+                    nextBtn.style.display = 'inline-block';
+                }
+                
+                if (currentQuestion === 1) {
+                    prevBtn.disabled = true;
+                }
+            });
+            
+            // Submit Quiz
+            submitBtn.addEventListener('click', function() {
+                // Hide all questions
+                questions.forEach(q => q.classList.remove('active'));
+                
+                // Show results
+                resultScreen.style.display = 'block';
+                
+                // Generate recommendation
+                generateRecommendation();
+            });
+            
+            // Update Progress Bar
+            function updateProgress() {
+                const progress = (currentQuestion / totalQuestions) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            // Generate Product Recommendation
+            function generateRecommendation() {
+                const useCase = answers.q1;
+                const material = answers.q4 || 'pvc';
+                const pressure = answers.q3 || 'medium';
+                const size = answers.q2 || '1';
+                const budget = answers.q5 || 'standard';
+                
+                let product = "";
+                let benefits = "";
+                let priceRange = "";
+                
+                // Determine product
+                if (material === 'pvc') {
+                    if (useCase === 'residential') {
+                        product = products.pvc.residential[pressure];
+                    } else {
+                        product = products.pvc[useCase];
+                    }
+                    benefits = "Excellent chemical resistance, lightweight, easy to install";
+                } else if (material === 'hdpe') {
+                    product = products.hdpe[useCase];
+                    benefits = "Flexible, durable, leak-proof joints, resistant to cracks";
+                } else if (material === 'cpvc') {
+                    product = products.cpvc[useCase] || products.cpvc.residential;
+                    benefits = "Withstands high temperatures, ideal for hot water lines";
+                }
+                
+                // Determine price range
+                if (budget === 'budget') {
+                    priceRange = "Most economical option";
+                } else if (budget === 'standard') {
+                    priceRange = "Best value for money";
+                } else {
+                    priceRange = "Premium quality with extended warranty";
+                }
+                
+                // Display results
+                resultDesc.innerHTML = `For <strong>${useCase.replace(/-/g, ' ')}</strong> using <strong>${material.toUpperCase()}</strong> pipes:`;
+                
+                productDetails.innerHTML = `
+                    <p><strong>Recommended:</strong> ${product}</p>
+                    <p><strong>Size:</strong> ${size} inch</p>
+                    <p><strong>Pressure Rating:</strong> ${pressure} pressure</p>
+                    <p><strong>Key Benefits:</strong> ${benefits}</p>
+                    <p><strong>Price Range:</strong> ${priceRange}</p>
+                `;
+            }
+            
+            // Initialize
+            updateProgress();
+            prevBtn.disabled = true;
+            nextBtn.disabled = true;
+        });
+    </script>
+</body>
+</html>
