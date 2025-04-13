@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Photo Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <script src="js/firebase-config.js"></script>
+  <meta charset="UTF-8">
+  <title>Semantic HTML Example</title>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Family Photo Gallery</h1>
-            <p>Share and cherish our family memories forever</p>
-        </header>
+  <header>
+    <h1>Welcome to My Website</h1>
+    <nav>
+      <a href="#">Home</a> |
+      <a href="#">About</a> |
+      <a href="#">Contact</a>
+    </nav>
+  </header>
 
-        <div class="upload-section">
-            <input type="file" id="imageUpload" accept="image/*" multiple>
-            <button id="uploadBtn">Upload Photos</button>
-            <div id="progressContainer">
-                <div id="progressBar"></div>
-                <span id="progressText">0%</span>
-            </div>
-        </div>
+  <main>
+    <section>
+      <h2>About Us</h2>
+      <p>This section contains information about our company.</p>
+    </section>
 
-        <div class="gallery" id="imageGallery">
-            <!-- Images will load here -->
-            <div class="loading">Loading family memories...</div>
-        </div>
+    <article>
+      <h2>Latest News</h2>
+      <p>Here is an article about our latest updates.</p>
+    </article>
 
-        <footer>
-            <p>Made with ❤️ for our family</p>
-        </footer>
-    </div>
+    <aside>
+      <h2>Related Links</h2>
+      <ul>
+        <li><a href="#">External Resource 1</a></li>
+        <li><a href="#">External Resource 2</a></li>
+      </ul>
+    </aside>
+  </main>
 
-    <script src="js/app.js"></script>
+  <footer>
+    <p>&copy; 2025 My Website</p>
+  </footer>
 </body>
 </html>
