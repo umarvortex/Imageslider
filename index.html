@@ -458,5 +458,14 @@
             }, 100);
         });
     </script>
+
+<script>
+    // ... existing countdown code ...
+    
+    if (distance < 0) {
+        clearInterval(countdownTimer);
+        window.location.href = "test.html"; // Redirect to test page
+    }
+</script>
 </body>
 </html>
