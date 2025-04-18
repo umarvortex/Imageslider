@@ -1,4 +1,36 @@
-// MCQs data - Computer science, cybersecurity, and AI related questions
+// Constants
+const TOTAL_QUESTIONS = 100;
+const MAX_SECURITY_VIOLATIONS = 3;
+const ADMIN_EMAIL = "umarvortex@gmail.com";
+
+// Store user data and test progress in localStorage
+let userData = JSON.parse(localStorage.getItem('userData')) || null;
+let testProgress = JSON.parse(localStorage.getItem('testProgress')) || null;
+let currentQuestionIndex = parseInt(localStorage.getItem('currentQuestion')) || 0;
+let userAnswers = JSON.parse(localStorage.getItem('userAnswers')) || {};
+let testStartTime = localStorage.getItem('testStartTime') || null;
+let remainingTime = localStorage.getItem('remainingTime') || 5400; // 90 minutes in seconds
+
+// Security measures
+let securityViolations = 0;
+let isFullscreen = false;
+let lastActiveTime = Date.now();
+
+// Global variables
+let timeLeft = 90 * 60; // 1 hour 30 minutes in seconds
+let timer;
+let userName = "";
+let userEmail = "";
+let userAge = "";
+let userCity = "";
+let userFavoriteSubject = "";
+let countdownEnded = false;
+
+// Set the countdown date (5 days from now)
+const countdownDate = new Date();
+countdownDate.setDate(countdownDate.getDate() + 5);
+
+// Update or extend the MCQs list to 100 questions
 const mcqs = [
     { question: "Which of the following is a type of cyber attack that involves tricking users into revealing sensitive information?", options: ["DDoS", "Phishing", "Spoofing", "Brute Force"], answer: 1 },
     { question: "What does 'SQL' stand for in database technology?", options: ["Structured Query Language", "Simple Query Language", "Standard Query Logic", "System Query Language"], answer: 0 },
@@ -10,6 +42,7 @@ const mcqs = [
     { question: "Which of the following is an example of a statically typed programming language?", options: ["Python", "JavaScript", "Java", "PHP"], answer: 2 },
     { question: "What is the time complexity of a binary search algorithm?", options: ["O(n)", "O(n²)", "O(log n)", "O(n log n)"], answer: 2 },
     { question: "Which data structure follows the Last In First Out (LIFO) principle?", options: ["Queue", "Stack", "Linked List", "Tree"], answer: 1 },
+    // Add more MCQ questions here to total 100
     { question: "What is Cross-Site Scripting (XSS)?", options: ["A virus that affects multiple websites", "A vulnerability allowing attackers to inject malicious scripts into web pages", "A method for sharing scripts between websites", "A technique for optimizing website loading"], answer: 1 },
     { question: "Which of the following authentication factors relies on something a user possesses?", options: ["Password", "Fingerprint", "Security token", "PIN"], answer: 2 },
     { question: "What is the purpose of a Virtual Private Network (VPN)?", options: ["Increase internet speed", "Create a secure connection over a public network", "Store large amounts of data", "Host multiple websites"], answer: 1 },
@@ -48,51 +81,53 @@ const mcqs = [
     { question: "Which of the following is a common use of data mining?", options: ["Extracting minerals from data centers", "Finding patterns in large datasets", "Creating digital currency", "Securing databases"], answer: 1 },
     { question: "What is the primary goal of DevOps practices?", options: ["Replace developers with automation", "Improve collaboration between development and operations teams", "Develop operations software", "Outsource IT operations"], answer: 1 },
     { question: "What is a sandbox in software security?", options: ["A testing environment isolated from the production network", "A game development platform", "A database management system", "A coding challenge platform"], answer: 0 }
+    // Extend to 100 total questions (copy and modify existing ones)
 ];
 
-// Global variables
-let currentQuestionIndex = 0;
-let userAnswers = [];
-let timeLeft = 90 * 60; // 1 hour 30 minutes in seconds
-let timer;
-let userName = "";
-let userEmail = "";
-let userAge = "";
-let userCity = "";
-let userFavoriteSubject = "";
-let countdownEnded = false;
-
-// Set the countdown date (5 days from now)
-const countdownDate = new Date();
-countdownDate.setDate(countdownDate.getDate() + 5);
-
-// Store user data and test progress in localStorage
-let userData = JSON.parse(localStorage.getItem('userData')) || null;
-let testProgress = JSON.parse(localStorage.getItem('testProgress')) || null;
-let currentQuestion = parseInt(localStorage.getItem('currentQuestion')) || 0;
-let userAnswers = JSON.parse(localStorage.getItem('userAnswers')) || {};
-let testStartTime = localStorage.getItem('testStartTime') || null;
-let remainingTime = localStorage.getItem('remainingTime') || 5400; // 90 minutes in seconds
-
-// Security measures
-let securityViolations = 0;
-let isFullscreen = false;
-let lastActiveTime = Date.now();
-
-// Constants
-const TOTAL_QUESTIONS = 150;
-const MAX_SECURITY_VIOLATIONS = 3;
-
 // Initialize the application
-document.addEventListener('DOMContentLoaded', () => {
-    // Check if user has already registered
-    if (userData) {
-        document.getElementById('popup').classList.add('hidden');
+document.addEventListener('DOMContentLoaded', function() {
+    const userForm = document.getElementById('userForm');
+    const popup = document.getElementById('popup');
+    const mcqSection = document.getElementById('mcqSection');
+
+    // Check if user has already registered and test is in progress
+    if (userData && testProgress && !testProgress.completed) {
+        popup.classList.add('hidden');
         initializeTest();
     }
 
-    // Handle registration form
-    document.getElementById('userForm').addEventListener('submit', handleRegistration);
+    // Handle form submission
+    if (userForm) {
+        userForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form from submitting normally
+            
+            // Get form data
+            userData = {
+                name: document.getElementById('name').value,
+                age: document.getElementById('age').value,
+                city: document.getElementById('city').value,
+                favoriteSubject: document.getElementById('favoriteSubject').value,
+                phoneNumber: document.getElementById('phoneNumber').value,
+                registrationTime: new Date().toISOString()
+            };
+
+            // Save to localStorage
+            localStorage.setItem('userData', JSON.stringify(userData));
+            
+            // Hide registration popup
+            popup.classList.add('hidden');
+            
+            // Initialize test
+            initializeTest();
+        });
+    }
+
+    // Add event listeners for navigation buttons
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    if (nextBtn) nextBtn.addEventListener('click', nextQuestion);
+    if (submitBtn) submitBtn.addEventListener('click', submitTest);
 
     // Security event listeners
     document.addEventListener('visibilitychange', handleVisibilityChange);
@@ -101,33 +136,159 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(checkUserActivity, 1000);
 });
 
-// Handle user registration
-function handleRegistration(e) {
-    e.preventDefault();
-    userData = {
-        name: document.getElementById('name').value,
-        age: document.getElementById('age').value,
-        city: document.getElementById('city').value,
-        favoriteSubject: document.getElementById('favoriteSubject').value,
-        registrationTime: new Date().toISOString()
-    };
-    localStorage.setItem('userData', JSON.stringify(userData));
-    document.getElementById('popup').classList.add('hidden');
-    initializeTest();
-}
-
 // Initialize or resume test
 function initializeTest() {
+    const mcqSection = document.getElementById('mcqSection');
+    if (!mcqSection) return;
+
     if (!testStartTime) {
         testStartTime = Date.now();
         localStorage.setItem('testStartTime', testStartTime);
     }
 
-    document.getElementById('mcqSection').classList.remove('hidden');
-    loadQuestions();
+    // Initialize test progress
+    testProgress = testProgress || {
+        started: true,
+        completed: false
+    };
+    localStorage.setItem('testProgress', JSON.stringify(testProgress));
+
+    // Show MCQ section
+    mcqSection.classList.remove('hidden');
+    
+    // Initialize the test interface
+    loadQuestion(currentQuestionIndex);
+    initializeQuestionIndicators();
     updateTimer();
     setInterval(updateTimer, 1000);
     requestFullscreen();
+}
+
+// Initialize question indicators
+function initializeQuestionIndicators() {
+    const questionIndicators = document.getElementById('questionIndicators');
+    if (!questionIndicators) return;
+
+    const indicatorsHTML = mcqs.map((_, index) => {
+        const isAnswered = userAnswers[index] !== undefined;
+        const isCurrent = index === currentQuestionIndex;
+        // Display indicators but disable click functionality
+        return `
+            <div class="question-indicator ${isAnswered ? 'answered' : ''} ${isCurrent ? 'current' : ''}">
+                ${index + 1}
+            </div>`;
+    }).join('');
+    
+    questionIndicators.innerHTML = indicatorsHTML;
+}
+
+// Load and display current question
+function loadQuestion(index) {
+    const mcqContainer = document.getElementById('mcqs');
+    if (!mcqContainer) return;
+
+    // Ensure index is within bounds
+    if (index >= mcqs.length) {
+        index = mcqs.length - 1;
+        currentQuestionIndex = index;
+    }
+
+    const currentQuestion = mcqs[index];
+    
+    const optionsHTML = currentQuestion.options.map((option, optIndex) => {
+        const isSelected = userAnswers[index] === optIndex;
+        return `
+            <div class="option-item ${isSelected ? 'selected' : ''}" onclick="selectOption(${index}, ${optIndex})">
+                <input type="radio" name="option" id="option${optIndex}" ${isSelected ? 'checked' : ''}>
+                <label for="option${optIndex}">${option}</label>
+            </div>
+        `;
+    }).join('');
+
+    mcqContainer.innerHTML = `
+        <div class="question">
+            <div class="question-header">
+                <div class="question-number">Question ${index + 1} of ${mcqs.length}</div>
+                <div class="question-text">${currentQuestion.question}</div>
+            </div>
+            <div class="options-container">
+                ${optionsHTML}
+            </div>
+        </div>
+    `;
+
+    updateNavigationButtons();
+    updateProgressBar();
+    initializeQuestionIndicators();
+
+    // Add click event listeners to options
+    document.querySelectorAll('.option-item').forEach((option, optIndex) => {
+        option.addEventListener('click', function() {
+            selectOption(index, optIndex);
+        });
+    });
+}
+
+// Select an option
+function selectOption(questionIndex, optionIndex) {
+    userAnswers[questionIndex] = optionIndex;
+    localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+    
+    // After selecting an option, automatically go to next question after a short delay
+    setTimeout(() => {
+        if (questionIndex < mcqs.length - 1) {
+            nextQuestion();
+        } else {
+            showSubmitButton();
+        }
+    }, 500);
+}
+
+// Show submit button when all questions are answered
+function showSubmitButton() {
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    if (nextBtn) nextBtn.classList.add('hidden');
+    if (submitBtn) submitBtn.classList.remove('hidden');
+}
+
+// Navigation function - only forward
+function nextQuestion() {
+    if (currentQuestionIndex < mcqs.length - 1) {
+        currentQuestionIndex++;
+        localStorage.setItem('currentQuestion', currentQuestionIndex);
+        loadQuestion(currentQuestionIndex);
+    } else {
+        // If on last question, show submit button
+        showSubmitButton();
+    }
+}
+
+// Update progress bar
+function updateProgressBar() {
+    const progressBar = document.getElementById('progressBar');
+    if (!progressBar) return;
+
+    const answeredCount = Object.keys(userAnswers).length;
+    const progress = (answeredCount / mcqs.length) * 100;
+    progressBar.style.width = `${progress}%`;
+}
+
+// Update navigation buttons
+function updateNavigationButtons() {
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    if (nextBtn && submitBtn) {
+        if (currentQuestionIndex === mcqs.length - 1) {
+            nextBtn.classList.add('hidden');
+            submitBtn.classList.remove('hidden');
+        } else {
+            nextBtn.classList.remove('hidden');
+            submitBtn.classList.add('hidden');
+        }
+    }
 }
 
 // Security Functions
@@ -162,9 +323,19 @@ function recordSecurityViolation(reason) {
     securityViolations++;
     console.warn(`Security violation (${securityViolations}/${MAX_SECURITY_VIOLATIONS}): ${reason}`);
     
+    // Show security warning
+    const securityWarning = document.getElementById('securityWarning');
+    if (securityWarning) {
+        securityWarning.classList.add('visible');
+        
+        // Hide warning after 5 seconds
+        setTimeout(() => {
+            securityWarning.classList.remove('visible');
+        }, 5000);
+    }
+    
     if (securityViolations >= MAX_SECURITY_VIOLATIONS) {
         alert('Multiple security violations detected. This incident will be reported.');
-        // You can add additional consequences here
     }
 }
 
@@ -194,37 +365,24 @@ function updateTimer() {
     const minutes = Math.floor((remainingTime % 3600) / 60);
     const seconds = remainingTime % 60;
     
-    document.getElementById('timer').textContent = 
-        `Time Left: ${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-}
-
-// Question Navigation
-function nextQuestion() {
-    if (currentQuestion < TOTAL_QUESTIONS - 1) {
-        currentQuestion++;
-        localStorage.setItem('currentQuestion', currentQuestion);
-        loadQuestions();
+    const timerElement = document.getElementById('timer');
+    if (timerElement) {
+        timerElement.textContent = 
+            `Time Left: ${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
 }
 
-function prevQuestion() {
-    if (currentQuestion > 0) {
-        currentQuestion--;
-        localStorage.setItem('currentQuestion', currentQuestion);
-        loadQuestions();
+// Calculate score for the test
+function calculateScore() {
+    let correctAnswers = 0;
+    
+    for (let i = 0; i < mcqs.length; i++) {
+        if (userAnswers[i] === mcqs[i].answer) {
+            correctAnswers++;
+        }
     }
-}
-
-// Save answer and update progress
-function saveAnswer(questionId, answer) {
-    userAnswers[questionId] = answer;
-    localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
-    updateProgressBar();
-}
-
-function updateProgressBar() {
-    const progress = (Object.keys(userAnswers).length / TOTAL_QUESTIONS) * 100;
-    document.getElementById('progressBar').style.width = `${progress}%`;
+    
+    return Math.round((correctAnswers / mcqs.length) * 100);
 }
 
 // Submit test and show results
@@ -235,24 +393,89 @@ function submitTest() {
         userData: userData,
         score: score,
         completionTime: new Date().toISOString(),
-        securityViolations: securityViolations
+        securityViolations: securityViolations,
+        answers: userAnswers
+    };
+    
+    // Mark test as completed
+    testProgress = {
+        ...testProgress,
+        completed: true
     };
     
     localStorage.setItem('testResults', JSON.stringify(results));
-    showResults(results);
+    localStorage.setItem('testProgress', JSON.stringify(testProgress));
+    
+    // Hide MCQ section and show congratulations
+    const mcqSection = document.getElementById('mcqSection');
+    const congratsSection = document.getElementById('congratsSection');
+    
+    if (mcqSection) mcqSection.classList.add('hidden');
+    if (congratsSection) congratsSection.classList.remove('hidden');
+    
+    // Send results to admin email
+    sendResultsEmail(results);
 }
 
-function showResults(results) {
-    document.getElementById('mcqSection').classList.add('hidden');
-    document.getElementById('resultsSection').classList.remove('hidden');
+// Send results to admin via email
+function sendResultsEmail(results) {
+    // Prepare the results data
+    const answeredCount = Object.keys(results.answers).length;
+    const correctCount = calculateCorrectAnswers(results.answers);
     
-    document.getElementById('candidateName').textContent = results.userData.name;
-    document.getElementById('candidateScore').textContent = `${results.score}%`;
-    document.getElementById('certificateDate').textContent = new Date().toLocaleDateString();
-    
-    if (results.score >= 60) {
-        document.getElementById('certificateContainer').classList.remove('hidden');
+    // Format answers for email
+    let answersDetail = '';
+    for (let i = 0; i < mcqs.length; i++) {
+        const userAnswer = results.answers[i] !== undefined ? results.answers[i] : 'Not answered';
+        const correctAnswer = mcqs[i].answer;
+        const isCorrect = userAnswer === correctAnswer;
+        
+        answersDetail += `Question ${i+1}: ${isCorrect ? 'Correct' : 'Incorrect'}\n`;
     }
+    
+    const emailParams = {
+        to_email: ADMIN_EMAIL,
+        subject: `Test Results: ${results.userData.name}`,
+        message: `
+Name: ${results.userData.name}
+Age: ${results.userData.age}
+City: ${results.userData.city}
+Favorite Subject: ${results.userData.favoriteSubject}
+WhatsApp: ${results.userData.phoneNumber}
+Test Completion Time: ${new Date(results.completionTime).toLocaleString()}
+Total Questions: ${mcqs.length}
+Answered Questions: ${answeredCount}
+Correct Answers: ${correctCount}
+Score: ${results.score}%
+Security Violations: ${results.securityViolations}
+
+Answer Details:
+${answersDetail}
+        `
+    };
+    
+    // Send email using EmailJS (you need to set up EmailJS with your service ID and template ID)
+    emailjs.send('default_service', 'template_test_results', emailParams)
+        .then(function(response) {
+            console.log('Email sent successfully!', response);
+            // After 5 seconds, show message that results have been sent
+            setTimeout(() => {
+                document.querySelector('.loading-spinner').innerHTML = '<i class="fas fa-check"></i><p>Results sent successfully!</p>';
+            }, 5000);
+        }, function(error) {
+            console.error('Failed to send email', error);
+        });
+}
+
+// Calculate total correct answers
+function calculateCorrectAnswers(answers) {
+    let correct = 0;
+    for (let i = 0; i < mcqs.length; i++) {
+        if (answers[i] === mcqs[i].answer) {
+            correct++;
+        }
+    }
+    return correct;
 }
 
 // Prevent right-click
@@ -264,251 +487,8 @@ document.addEventListener('paste', (e) => e.preventDefault());
 
 // Handle page refresh/unload
 window.addEventListener('beforeunload', (e) => {
-    if (!testProgress?.completed) {
+    if (testProgress && !testProgress.completed) {
         e.preventDefault();
         e.returnValue = '';
-    }
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Get DOM elements
-    const userForm = document.getElementById('userForm');
-    const popup = document.getElementById('popup');
-    const mcqSection = document.getElementById('mcqSection');
-    const resultsSection = document.getElementById('resultsSection');
-    const timerElement = document.getElementById('timer');
-    const progressBar = document.getElementById('progressBar');
-    const questionIndicators = document.getElementById('questionIndicators');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const submitBtn = document.getElementById('submitBtn');
-
-    // Initialize question indicators
-    function initializeQuestionIndicators() {
-        const indicatorsHTML = mcqs.map((_, index) => {
-            return `<div class="question-indicator" data-index="${index}" onclick="jumpToQuestion(${index})">${index + 1}</div>`;
-        }).join('');
-        
-        questionIndicators.innerHTML = indicatorsHTML;
-        
-        // Add click event to question indicators
-        document.querySelectorAll('.question-indicator').forEach(indicator => {
-            indicator.addEventListener('click', function() {
-                const index = parseInt(this.getAttribute('data-index'));
-                jumpToQuestion(index);
-            });
-        });
-    }
-
-    // Timer function
-    function startTimer() {
-        timer = setInterval(() => {
-            if (timeLeft <= 0) {
-                clearInterval(timer);
-                submitTest();
-            } else {
-                timeLeft--;
-                const hours = Math.floor(timeLeft / 3600);
-                const minutes = Math.floor((timeLeft % 3600) / 60);
-                const seconds = timeLeft % 60;
-                timerElement.textContent = `Time Left: ${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-            }
-        }, 1000);
-    }
-
-    // Display question
-    function displayQuestion(index) {
-        const mcqContainer = document.getElementById('mcqs');
-        const currentQuestion = mcqs[index];
-        
-        // Create options HTML
-        const optionsHTML = currentQuestion.options.map((option, optIndex) => {
-            const isSelected = userAnswers[index] === optIndex;
-            return `
-                <div class="option-item ${isSelected ? 'selected' : ''}" onclick="selectOption(${index}, ${optIndex})">
-                    <input type="radio" name="option" id="option${optIndex}" class="option-radio" ${isSelected ? 'checked' : ''}>
-                    <label for="option${optIndex}">${option}</label>
-                </div>
-            `;
-        }).join('');
-        
-        // Create question HTML
-        mcqContainer.innerHTML = `
-            <div class="question-header">
-                <div class="question-number">Question ${index + 1} of ${mcqs.length}</div>
-                <div class="question-text">${currentQuestion.question}</div>
-            </div>
-            <div class="options-container">
-                ${optionsHTML}
-            </div>
-        `;
-        
-        // Add click event to options
-        document.querySelectorAll('.option-item').forEach((option, optIndex) => {
-            option.addEventListener('click', function() {
-                selectOption(index, optIndex);
-            });
-        });
-        
-        // Update UI elements
-        updateQuestionIndicators();
-        updateNavigationButtons();
-    }
-
-    // Select an option
-    window.selectOption = function(questionIndex, optionIndex) {
-        userAnswers[questionIndex] = optionIndex;
-        updateQuestionIndicators();
-        displayQuestion(questionIndex);
-    };
-
-    // Navigation functions
-    window.prevQuestion = function() {
-        if (currentQuestionIndex > 0) {
-            currentQuestionIndex--;
-            displayQuestion(currentQuestionIndex);
-            updateProgressBar();
-        }
-    };
-
-    window.nextQuestion = function() {
-        if (currentQuestionIndex < mcqs.length - 1) {
-            currentQuestionIndex++;
-            displayQuestion(currentQuestionIndex);
-            updateProgressBar();
-        } else {
-            // Show submit button if on last question
-            submitBtn.classList.remove('hidden');
-            nextBtn.classList.add('hidden');
-        }
-    };
-
-    window.jumpToQuestion = function(index) {
-        currentQuestionIndex = index;
-        displayQuestion(currentQuestionIndex);
-        updateProgressBar();
-        updateNavigationButtons();
-    };
-
-    // Update progress bar
-    function updateProgressBar() {
-        const progress = ((currentQuestionIndex + 1) / mcqs.length) * 100;
-        progressBar.style.width = `${progress}%`;
-    }
-
-    // Update question indicators
-    function updateQuestionIndicators() {
-        document.querySelectorAll('.question-indicator').forEach((indicator, index) => {
-            // Remove all classes first
-            indicator.classList.remove('active', 'answered');
-            
-            // Add appropriate classes
-            if (index === currentQuestionIndex) {
-                indicator.classList.add('active');
-            }
-            if (userAnswers[index] !== undefined) {
-                indicator.classList.add('answered');
-            }
-        });
-    }
-
-    // Update navigation buttons
-    function updateNavigationButtons() {
-        prevBtn.disabled = currentQuestionIndex === 0;
-        
-        if (currentQuestionIndex === mcqs.length - 1) {
-            nextBtn.classList.add('hidden');
-            submitBtn.classList.remove('hidden');
-        } else {
-            nextBtn.classList.remove('hidden');
-            submitBtn.classList.add('hidden');
-        }
-    }
-
-    // Submit test
-    window.submitTest = function() {
-        clearInterval(timer);
-        calculateResults();
-    };
-
-    // Calculate results
-    function calculateResults() {
-        let correctAnswers = 0;
-        let wrongAnswers = 0;
-        let unansweredQuestions = 0;
-        
-        mcqs.forEach((mcq, index) => {
-            if (userAnswers[index] === undefined) {
-                unansweredQuestions++;
-            } else if (userAnswers[index] === mcq.answer) {
-                correctAnswers++;
-            } else {
-                wrongAnswers++;
-            }
-        });
-        
-        const score = Math.round((correctAnswers / mcqs.length) * 100);
-        
-        // Display results
-        mcqSection.classList.add('hidden');
-        resultsSection.classList.remove('hidden');
-        
-        document.getElementById('resultsSummary').innerHTML = `
-            <h2>Test Completed!</h2>
-            <div class="results-item">
-                <span>Candidate Name:</span>
-                <span>${userName}</span>
-            </div>
-            <div class="results-item">
-                <span>Email:</span>
-                <span>${userEmail}</span>
-            </div>
-            <div class="results-item">
-                <span>Age:</span>
-                <span>${userAge}</span>
-            </div>
-            <div class="results-item">
-                <span>City:</span>
-                <span>${userCity}</span>
-            </div>
-            <div class="results-item">
-                <span>Favorite Subject:</span>
-                <span>${userFavoriteSubject}</span>
-            </div>
-            <div class="results-item">
-                <span>Total Questions:</span>
-                <span>${mcqs.length}</span>
-            </div>
-            <div class="results-item">
-                <span>Correct Answers:</span>
-                <span>${correctAnswers}</span>
-            </div>
-            <div class="results-item">
-                <span>Wrong Answers:</span>
-                <span>${wrongAnswers}</span>
-            </div>
-            <div class="results-item">
-                <span>Unanswered Questions:</span>
-                <span>${unansweredQuestions}</span>
-            </div>
-            <div class="result-score">Final Score: ${score}%</div>
-        `;
-        
-        // Show certificate if score is good
-        if (score >= 40) {
-            showCertificate(userName, score);
-        }
-    }
-
-    // Show certificate
-    function showCertificate(name, score) {
-        const certificateContainer = document.getElementById('certificateContainer');
-        certificateContainer.classList.remove('hidden');
-        
-        document.getElementById('candidateName').textContent = name;
-        document.getElementById('candidateScore').textContent = `${score}%`;
-        
-        const today = new Date();
-        document.getElementById('certificateDate').textContent = today.toDateString();
     }
 }); 
