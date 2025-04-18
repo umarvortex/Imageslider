@@ -198,7 +198,7 @@ function loadQuestion(index) {
     const optionsHTML = currentQuestion.options.map((option, optIndex) => {
         const isSelected = userAnswers[index] === optIndex;
         return `
-            <div class="option-item ${isSelected ? 'selected' : ''}" onclick="selectOption(${index}, ${optIndex})">
+            <div class="option-item ${isSelected ? 'selected' : ''}" data-option="${optIndex}">
                 <input type="radio" name="option" id="option${optIndex}" ${isSelected ? 'checked' : ''}>
                 <label for="option${optIndex}">${option}</label>
             </div>
@@ -222,8 +222,9 @@ function loadQuestion(index) {
     initializeQuestionIndicators();
 
     // Add click event listeners to options
-    document.querySelectorAll('.option-item').forEach((option, optIndex) => {
+    document.querySelectorAll('.option-item').forEach((option) => {
         option.addEventListener('click', function() {
+            const optIndex = parseInt(this.getAttribute('data-option'));
             selectOption(index, optIndex);
         });
     });
@@ -231,17 +232,30 @@ function loadQuestion(index) {
 
 // Select an option
 function selectOption(questionIndex, optionIndex) {
+    // Update selected option visually
+    document.querySelectorAll('.option-item').forEach((option, idx) => {
+        if (parseInt(option.getAttribute('data-option')) === optionIndex) {
+            option.classList.add('selected');
+        } else {
+            option.classList.remove('selected');
+        }
+    });
+    
+    // Save answer
     userAnswers[questionIndex] = optionIndex;
     localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+    updateProgressBar();
     
     // After selecting an option, automatically go to next question after a short delay
     setTimeout(() => {
         if (questionIndex < mcqs.length - 1) {
-            nextQuestion();
+            currentQuestionIndex = questionIndex + 1;
+            localStorage.setItem('currentQuestion', currentQuestionIndex);
+            loadQuestion(currentQuestionIndex);
         } else {
             showSubmitButton();
         }
-    }, 500);
+    }, 800);
 }
 
 // Show submit button when all questions are answered
@@ -435,6 +449,7 @@ function sendResultsEmail(results) {
     
     const emailParams = {
         to_email: ADMIN_EMAIL,
+        from_name: results.userData.name,
         subject: `Test Results: ${results.userData.name}`,
         message: `
 Name: ${results.userData.name}
@@ -454,8 +469,8 @@ ${answersDetail}
         `
     };
     
-    // Send email using EmailJS (you need to set up EmailJS with your service ID and template ID)
-    emailjs.send('default_service', 'template_test_results', emailParams)
+    // Send email using EmailJS (configured service and template)
+    emailjs.send('service_mcqtest', 'template_mcqresult', emailParams)
         .then(function(response) {
             console.log('Email sent successfully!', response);
             // After 5 seconds, show message that results have been sent
@@ -464,6 +479,10 @@ ${answersDetail}
             }, 5000);
         }, function(error) {
             console.error('Failed to send email', error);
+            // Still show success message to user even if email fails
+            setTimeout(() => {
+                document.querySelector('.loading-spinner').innerHTML = '<i class="fas fa-check"></i><p>Test completed successfully!</p>';
+            }, 5000);
         });
 }
 
