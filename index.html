@@ -81,8 +81,34 @@
 
 
 
+<div id="popup" style="position:fixed; top:0; left:0; width:100%; height:100%; background:white; color:black; display:flex; justify-content:center; align-items:center; z-index:9999; flex-direction:column; text-align:center; padding:20px;">
+  <h2>Website Access Restricted</h2>
+  <p>This site will be available after a limited time. Please come back later.</p>
+</div>
 
 
+<script>
+
+// Set the date when the popup should disappear
+const startDate = new Date("2025-04-18"); // Replace with the date you activate the popup
+const daysToBlock = 12; // 11 to 12 days limit
+const endDate = new Date(startDate.getTime() + daysToBlock * 24 * 60 * 60 * 1000);
+
+// Current date
+const today = new Date();
+
+if (today < endDate) {
+  // Show the popup and prevent interaction
+  document.body.style.overflow = "hidden";
+  document.getElementById("popup").style.display = "flex";
+} else {
+  // Hide the popup and allow normal website access
+  const popup = document.getElementById("popup");
+  if (popup) popup.remove();
+  document.body.style.overflow = "auto";
+}
+
+</script>
 
 
 
