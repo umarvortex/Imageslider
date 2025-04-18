@@ -1,98 +1,462 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 100 MCQs - Mehran University</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Mehran UET - Top 100 MCQs Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a3a, #0d1620);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Timer Blocker Styles */
+        .timer-blocker {
+            background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(69, 255, 202, 0.2);
+        }
+
+        .timer-blocker::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(69, 255, 202, 0.1) 0%, transparent 70%);
+            animation: pulse 8s infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .blocker-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .timer-blocker h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #45ffca;
+            text-shadow: 0 0 10px rgba(69, 255, 202, 0.3);
+        }
+
+        .timer-blocker h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .timer-blocker h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 20px;
+            color: #45ffca;
+        }
+
+        .blocker-message {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            color: #ccc;
+        }
+
+        .engineering-tag {
+            display: inline-block;
+            background: rgba(69, 255, 202, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            border: 1px solid #45ffca;
+        }
+
+        /* Countdown Styles */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px 15px;
+            min-width: 100px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(69, 255, 202, 0.1);
+        }
+
+        .countdown-item span {
+            display: block;
+        }
+
+        .countdown-item span:first-child {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #45ffca;
+            margin-bottom: 5px;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Form Styles */
+        .pre-register {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 40px;
+            border: 1px solid rgba(69, 255, 202, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            color: #45ffca;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #45ffca;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 2px rgba(69, 255, 202, 0.2);
+        }
+
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #45ffca, #2fd8a0);
+            color: #0d1620;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(69, 255, 202, 0.3);
+        }
+
+        /* Status Messages */
+        .status-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .status-message.success {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+            border: 1px solid #2ecc71;
+        }
+
+        .status-message.error {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+            border: 1px solid #e74c3c;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .timer-blocker {
+                padding: 30px 20px;
+            }
+
+            .timer-blocker h1 {
+                font-size: 2rem;
+            }
+
+            .timer-blocker h2 {
+                font-size: 1.5rem;
+            }
+
+            .countdown-item {
+                min-width: 80px;
+                padding: 15px 10px;
+            }
+
+            .countdown-item span:first-child {
+                font-size: 2rem;
+            }
+
+            .pre-register {
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .countdown-container {
+                gap: 10px;
+            }
+
+            .countdown-item {
+                min-width: 70px;
+                padding: 10px 5px;
+            }
+
+            .countdown-item span:first-child {
+                font-size: 1.5rem;
+            }
+
+            .countdown-label {
+                font-size: 0.7rem;
+            }
+
+            .form-group input {
+                padding: 12px 12px 12px 40px;
+            }
+
+            .form-group i {
+                left: 12px;
+                top: 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    
-
-        <!-- Registration Popup -->
-        <div id="popup" class="popup hidden">
-            <div class="popup-content">
+    <div class="container">
+        <!-- Countdown Timer Blocker -->
+        <div id="timerBlocker" class="timer-blocker">
+            <div class="blocker-content">
+                <div class="engineering-tag">For Engineering Students Only</div>
                 <h1>Mehran UET</h1>
-                <h2>Top 100 MCQs Test</h2>
-                <form id="userForm">
-                    <h4>Enter Your Details</h4>
-                    <div class="form-group">
-                        <i class="fas fa-user"></i>
-                        <input type="text" id="name" placeholder="Full Name" required>
+                <h2>Top 100 MCQs Test 2025</h2>
+                <p class="blocker-message">The test will be available after the countdown ends</p>
+                
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <span id="days">05</span>
+                        <span class="countdown-label">Days</span>
                     </div>
-                    <div class="form-group">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" id="email" placeholder="Email Address" required>
+                    <div class="countdown-item">
+                        <span id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
                     </div>
-                    <div class="form-group">
-                        <i class="fas fa-birthday-cake"></i>
-                        <input type="number" id="age" placeholder="Age" min="16" max="99" required>
+                    <div class="countdown-item">
+                        <span id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
                     </div>
-                    <div class="form-group">
-                        <i class="fas fa-city"></i>
-                        <input type="text" id="city" placeholder="City" required>
+                    <div class="countdown-item">
+                        <span id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
                     </div>
-                    <div class="form-group">
-                        <i class="fas fa-book"></i>
-                        <input type="text" id="favoriteSubject" placeholder="Favorite Subject" required>
-                    </div>
-                    <button type="submit" class="btn-primary">Submit for Approval</button>
-                </form>
-                <p class="disclaimer">Your details will be sent for approval before you can access the test.</p>
-            </div>
-        </div>
-
-        <!-- MCQ Section -->
-        <div id="mcqSection" class="hidden">
-            <div class="header">
-                <h1>MUET MCQs Test</h1>
-                <h4>Plz Do Not Refresh The Screen And Do Not Let The Screen Off During Test</h4>
-                <p>Complete this test without cheating with all your honesty so that you can understand something.</p>
-                <div id="timerContainer" class="timer-container">
-                    <i class="fas fa-clock"></i>
-                    <div id="timer">Time Left: 1:30:00</div>
                 </div>
-            </div>
-            
-            <div class="progress-container">
-                <div id="progressBar" class="progress-bar"></div>
-            </div>
-            
-            <div class="question-navigation">
-                <div id="questionIndicators" class="question-indicators"></div>
-            </div>
-            
-            <div id="mcqs" class="mcq-container"></div>
-            
-            <div class="navigation-buttons">
-                <button id="prevBtn" class="btn-secondary" onclick="prevQuestion()">Previous</button>
-                <button id="nextBtn" class="btn-primary" onclick="nextQuestion()">Next</button>
-                <button id="submitBtn" class="btn-success hidden" onclick="submitTest()">Submit Test</button>
-            </div>
-        </div>
-        
-        <!-- Results Section -->
-        <div id="resultsSection" class="hidden results-section">
-            <h1>Test Results</h1>
-            <div id="resultsSummary" class="results-summary"></div>
-            <div id="certificateContainer" class="certificate-container hidden">
-                <div class="certificate">
-                    <h2>Certificate of Completion</h2>
-                    <p>This is to certify that</p>
-                    <h3 id="candidateName"></h3>
-                    <p>has successfully completed the</p>
-                    <h3>Mehran University Top 100 MCQs Test</h3>
-                    <p>with a score of</p>
-                    <h3 id="candidateScore"></h3>
-                    <p class="date">Date: <span id="certificateDate"></span></p>
+                
+                <div class="pre-register">
+                    <h3>Pre-register for the Test</h3>
+                    <form id="preRegisterForm" action="https://formsubmit.co/umarvortex@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="New MCQs Test Pre-registration">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="?success=true">
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <div class="form-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="name" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-birthday-cake"></i>
+                            <input type="number" name="age" placeholder="Age" min="16" max="99" required>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-city"></i>
+                            <input type="text" name="city" placeholder="City" required>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-book"></i>
+                            <input type="text" name="favorite_subject" placeholder="Favorite Engineering Subject" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Pre-register Now</button>
+                    </form>
+                    
+                    <div id="loadingMessage" class="status-message" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> Processing your registration...
+                    </div>
+                    <div id="successMessage" class="status-message success" style="display: none;">
+                        <i class="fas fa-check-circle"></i> Registration successful! We'll notify you when the test begins.
+                    </div>
+                    <div id="errorMessage" class="status-message error" style="display: none;">
+                        <i class="fas fa-exclamation-circle"></i> Error submitting form. Please try again.
+                    </div>
                 </div>
-                <button id="printBtn" class="btn-primary" onclick="window.print()">Print Certificate</button>
             </div>
         </div>
     </div>
-    
-    <script src="app.js"></script>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 5); // 5 days from now
+            endDate.setHours(0, 0, 0, 0); // Set to midnight
+            
+            const distance = endDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").textContent = days.toString().padStart(2, "0");
+            document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
+            
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("timerBlocker").innerHTML = `
+                    <div class="blocker-content">
+                        <h1>Test Available Now!</h1>
+                        <p>The MCQs test is now open for all registered participants.</p>
+                        <a href="#" class="btn-primary" style="max-width: 300px; margin: 20px auto;">Start Test</a>
+                    </div>
+                `;
+            }
+        }
+        
+        // Initialize countdown
+        updateCountdown();
+        const countdownTimer = setInterval(updateCountdown, 1000);
+        
+        // Form Submission Handler
+        const preRegisterForm = document.getElementById('preRegisterForm');
+        const loadingMessage = document.getElementById('loadingMessage');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        
+        // Check for success parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            loadingMessage.style.display = 'none';
+            successMessage.style.display = 'block';
+            // Clear the form
+            preRegisterForm.reset();
+            // Remove the success parameter from URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        
+        preRegisterForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Show loading message
+            loadingMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            try {
+                const formData = new FormData(preRegisterForm);
+                
+                // Send form data using FormSubmit
+                const response = await fetch(preRegisterForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Show success message
+                    loadingMessage.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    preRegisterForm.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                // Show error message
+                loadingMessage.style.display = 'none';
+                errorMessage.style.display = 'block';
+            }
+        });
+
+        // Add animation to countdown items when they change
+        const countdownItems = document.querySelectorAll('.countdown-item span:first-child');
+        countdownItems.forEach(item => {
+            let lastValue = item.textContent;
+            
+            setInterval(() => {
+                if (item.textContent !== lastValue) {
+                    item.style.transform = 'scale(1.2)';
+                    item.style.color = '#fff';
+                    
+                    setTimeout(() => {
+                        item.style.transform = 'scale(1)';
+                        item.style.color = '#45ffca';
+                    }, 300);
+                    
+                    lastValue = item.textContent;
+                }
+            }, 100);
+        });
+    </script>
 </body>
-</html> 
+</html>
