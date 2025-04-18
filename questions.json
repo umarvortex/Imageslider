@@ -1,0 +1,53 @@
+ [
+    {
+        "question": "Which data structure uses LIFO (Last In First Out) principle?",
+        "options": [
+            "Queue",
+            "Stack",
+            "Array",
+            "Linked List"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "What is the time complexity of binary search?",
+        "options": [
+            "O(n)",
+            "O(n log n)",
+            "O(log n)",
+            "O(1)"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Which language is used for Android app development?",
+        "options": [
+            "Swift",
+            "Java/Kotlin",
+            "C#",
+            "Python"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "What does SQL stand for?",
+        "options": [
+            "Structured Query Language",
+            "Sequential Query Language",
+            "Simple Question Language",
+            "Server Query List"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Which protocol is used to send email?",
+        "options": [
+            "SMTP",
+            "HTTP",
+            "FTP",
+            "POP3"
+        ],
+        "correctAnswer": 0
+    }
+    // Add 95 more questions in the same format
+]
