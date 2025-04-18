@@ -80,33 +80,72 @@
 
 
 
+<div id="blocker" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#111; color:white; z-index:9999; display:flex; justify-content:center; align-items:center; flex-direction:column; padding:20px; text-align:center;">
+  <h2 style="font-size: 2rem; margin-bottom: 10px;">Register for this test</h2>
+  <p style="margin-bottom: 20px;">Website access will be granted after the timer ends.</p>
+  <div id="countdown" style="font-size: 1.5rem; margin-bottom: 30px;"></div>
 
-<div id="popup" style="position:fixed; top:0; left:0; width:100%; height:100%; background:white; color:black; display:flex; justify-content:center; align-items:center; z-index:9999; flex-direction:column; text-align:center; padding:20px;">
-  <h2>Website Access Restricted</h2>
-  <p>This site will be available after a limited time. Please come back later.</p>
+  <form id="popupForm" style="display:flex; flex-direction:column; gap:10px; width:100%; max-width:400px;">
+    <input type="text" id="name" placeholder="Your Name" required style="padding:10px; border-radius:5px;">
+    <input type="email" id="email" placeholder="Your Email" required style="padding:10px; border-radius:5px;">
+    <input type="text" id="city" placeholder="Your City" required style="padding:10px; border-radius:5px;">
+    <button type="submit" style="padding:10px; background:#28a745; color:white; border:none; border-radius:5px; font-weight:bold;">Send</button>
+  </form>
 </div>
 
 
 <script>
 
-// Set the date when the popup should disappear
-const startDate = new Date("2025-04-18"); // Replace with the date you activate the popup
-const daysToBlock = 12; // 11 to 12 days limit
-const endDate = new Date(startDate.getTime() + daysToBlock * 24 * 60 * 60 * 1000);
+// Set start and end time
+const startDate = new Date("2025-04-18T00:00:00");
+const endDate = new Date(startDate.getTime() + 12 * 24 * 60 * 60 * 1000); // 12 days later
 
-// Current date
-const today = new Date();
+function updateCountdown() {
+  const now = new Date();
+  const distance = endDate - now;
 
-if (today < endDate) {
-  // Show the popup and prevent interaction
-  document.body.style.overflow = "hidden";
-  document.getElementById("popup").style.display = "flex";
-} else {
-  // Hide the popup and allow normal website access
-  const popup = document.getElementById("popup");
-  if (popup) popup.remove();
-  document.body.style.overflow = "auto";
+  if (distance <= 0) {
+    // Time expired: remove blocker
+    document.getElementById("blocker").remove();
+    document.body.style.overflow = "auto";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML =
+    `Time Left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// Handle form submission (sends to your Gmail via FormSubmit)
+document.getElementById("popupForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const city = document.getElementById("city").value.trim();
+
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("email", email);
+  formData.append("city", city);
+
+  fetch("https://formsubmit.co/asliyatkidunya@gmail.com", {
+    method: "POST",
+    body: formData
+  }).then(response => {
+    alert("Thank you! Your form has been submitted.");
+    document.getElementById("popupForm").reset();
+  }).catch(error => {
+    alert("Error submitting form. Try again later.");
+  });
+});
 
 </script>
 
