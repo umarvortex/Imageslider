@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 100 MCQs - Mehran University</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Countdown Timer Blocker -->
+        <div id="timerBlocker" class="timer-blocker">
+            <div class="blocker-content">
+                <h1>Mehran UET</h1>
+                <h2>Top 100 MCQs Test</h2>
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <span id="days">05</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+                <p class="blocker-message">This test will be available after the timer ends</p>
+                
+                <div class="pre-register">
+                    <h3>Pre-register for the test</h3>
+                    <form id="preRegisterForm" action="https://formsubmit.co/umarvortex@example.com" method="POST">
+                        <div class="form-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-birthday-cake"></i>
+                            <input type="number" name="age" placeholder="Age" min="16" max="99" required>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-city"></i>
+                            <input type="text" name="city" placeholder="City" required>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-book"></i>
+                            <input type="text" name="favoriteSubject" placeholder="Favorite Subject" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Pre-register Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registration Popup -->
+        <div id="popup" class="popup hidden">
+            <div class="popup-content">
+                <h1>Mehran UET</h1>
+                <h2>Top 100 MCQs Test</h2>
+                <form id="userForm">
+                    <h4>Enter Your Details</h4>
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-birthday-cake"></i>
+                        <input type="number" id="age" placeholder="Age" min="16" max="99" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-city"></i>
+                        <input type="text" id="city" placeholder="City" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-book"></i>
+                        <input type="text" id="favoriteSubject" placeholder="Favorite Subject" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Submit for Approval</button>
+                </form>
+                <p class="disclaimer">Your details will be sent for approval before you can access the test.</p>
+            </div>
+        </div>
+
+        <!-- MCQ Section -->
+        <div id="mcqSection" class="hidden">
+            <div class="header">
+                <h1>MUET MCQs Test</h1>
+                <h4>Plz Do Not Refresh The Screen And Do Not Let The Screen Off During Test</h4>
+                <p>Complete this test without cheating with all your honesty so that you can understand something.</p>
+                <div id="timerContainer" class="timer-container">
+                    <i class="fas fa-clock"></i>
+                    <div id="timer">Time Left: 1:30:00</div>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+            
+            <div class="question-navigation">
+                <div id="questionIndicators" class="question-indicators"></div>
+            </div>
+            
+            <div id="mcqs" class="mcq-container"></div>
+            
+            <div class="navigation-buttons">
+                <button id="prevBtn" class="btn-secondary" onclick="prevQuestion()">Previous</button>
+                <button id="nextBtn" class="btn-primary" onclick="nextQuestion()">Next</button>
+                <button id="submitBtn" class="btn-success hidden" onclick="submitTest()">Submit Test</button>
+            </div>
+        </div>
+        
+        <!-- Results Section -->
+        <div id="resultsSection" class="hidden results-section">
+            <h1>Test Results</h1>
+            <div id="resultsSummary" class="results-summary"></div>
+            <div id="certificateContainer" class="certificate-container hidden">
+                <div class="certificate">
+                    <h2>Certificate of Completion</h2>
+                    <p>This is to certify that</p>
+                    <h3 id="candidateName"></h3>
+                    <p>has successfully completed the</p>
+                    <h3>Mehran University Top 100 MCQs Test</h3>
+                    <p>with a score of</p>
+                    <h3 id="candidateScore"></h3>
+                    <p class="date">Date: <span id="certificateDate"></span></p>
+                </div>
+                <button id="printBtn" class="btn-primary" onclick="window.print()">Print Certificate</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html> 
