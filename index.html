@@ -77,6 +77,131 @@
             </div>
         </div>
     </div>
+
+
+
+
+<!-- Add this HTML form to your page -->
+<div id="registrationPopup" class="popup-overlay">
+    <div class="popup-content">
+        <h2>Registration Required</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
+
+<!-- Add this CSS -->
+<style>
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+</style>
+
+<!-- Add this JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if user is approved
+    if (!localStorage.getItem('isApproved')) {
+        document.getElementById('registrationPopup').style.display = 'flex';
+    }
+
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = {
+            username: document.getElementById('username').value,
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        };
+
+        // Create and send form data to your backend
+        fetch('YOUR_BACKEND_ENDPOINT', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Registration submitted! Please wait for admin approval.');
+            // You can optionally hide the popup here
+            // document.getElementById('registrationPopup').style.display = 'none';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        });
+    });
+});
+
+// Function to check if user is approved (call this before showing MCQs)
+function checkAccess() {
+    if (!localStorage.getItem('isApproved')) {
+        alert('Please wait for admin approval to access MCQs.');
+        return false;
+    }
+    return true;
+}
+</script>
+
+
+
+
+
+
+
     
     <script src="app.js"></script>
 </body>
