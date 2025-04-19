@@ -27,19 +27,20 @@ let userCity = "";
 let userFavoriteSubject = "";
 let countdownEnded = false;
 let instructionsShown = false;
+let resultsSent = false;
 
 // Set the countdown date (5 days from now)
 const countdownDate = new Date();
 countdownDate.setDate(countdownDate.getDate() + 5);
 
-// Additional MCQs to make a total of 100
+// MCQs - Adding 10 more computer science questions related to entry tests in Pakistan
 const mcqs = [
     { question: "Which of the following is a type of cyber attack that involves tricking users into revealing sensitive information?", options: ["DDoS", "Phishing", "Spoofing", "Brute Force"], answer: 1 },
     { question: "What does 'SQL' stand for in database technology?", options: ["Structured Query Language", "Simple Query Language", "Standard Query Logic", "System Query Language"], answer: 0 },
     { question: "Which encryption method uses the same key for both encryption and decryption?", options: ["Asymmetric encryption", "Symmetric encryption", "Hashing", "PKI"], answer: 1 },
     { question: "What is the primary function of a firewall in network security?", options: ["Detect malware", "Block unauthorized access", "Encrypt data", "Speed up connection"], answer: 1 },
     { question: "What type of AI focuses on making machines think and behave like humans?", options: ["Neural Networks", "Machine Learning", "Strong AI", "Weak AI"], answer: 2 },
-    { question: "Which of the following is not one of the three main types of machine learning?", options: ["Supervised Learning", "Reinforcement Learning", "Unsupervised Learning", "Distributed Learning"], answer: 3 },
+    { question: "Which of the following is not one of the three main types of machine learning?", options: ["Supervised Learning", "Reinforcement Learning", "Unsupervised Learning", "Distributive Programming"], answer: 3 },
     { question: "What does HTTPS stand for?", options: ["Hyper Text Transfer Protocol Secure", "Hyper Text Transport Protocol Secure", "Hyper Text Transfer Program Secure", "High Transfer Text Protocol System"], answer: 0 },
     { question: "Which of the following is an example of a statically typed programming language?", options: ["Python", "JavaScript", "Java", "PHP"], answer: 2 },
     { question: "What is the time complexity of a binary search algorithm?", options: ["O(n)", "O(n²)", "O(log n)", "O(n log n)"], answer: 2 },
@@ -123,7 +124,31 @@ const mcqs = [
     { question: "What is the purpose of Kafka in distributed systems?", options: ["Testing framework", "Stream processing platform", "Data visualization", "Front-end framework"], answer: 1 },
     { question: "What is the purpose of MongoDB?", options: ["Monitor database growth", "NoSQL document database", "Mobile device gateway", "Memory optimization database"], answer: 1 },
     { question: "What is the purpose of Docker Compose?", options: ["Create Docker images", "Define and run multi-container Docker applications", "Compress Docker containers", "Create development environments"], answer: 1 },
-    { question: "What is the purpose of Jenkins?", options: ["JavaScript enhancement", "Continuous integration server", "Job scheduling", "Java extension management"], answer: 1 }
+    { question: "What is the purpose of Jenkins?", options: ["JavaScript enhancement", "Continuous integration server", "Job scheduling", "Java extension management"], answer: 1 },
+    
+    // Adding 10 more computer science questions for Pakistan entry tests
+    { question: "Which sorting algorithm has the worst-case time complexity of O(n²)?", options: ["Merge Sort", "Heap Sort", "Bubble Sort", "Quick Sort"], answer: 2 },
+    { question: "In which year was the first computer virus created?", options: ["1971", "1983", "1986", "1990"], answer: 0 },
+    { question: "What does HTML stand for?", options: ["Hyper Text Markup Language", "High Tech Multi Language", "Hyper Transfer Markup Language", "Home Tool Markup Language"], answer: 0 },
+    { question: "What is the full form of DBMS?", options: ["Data Backup Management System", "Database Management System", "Data Block Management System", "Digital Backup Management Software"], answer: 1 },
+    { question: "Which of the following is NOT a primary component of Von Neumann architecture?", options: ["Control Unit", "ALU", "Internet Interface", "Memory Unit"], answer: 2 },
+    { question: "Which gate is known as the universal gate?", options: ["OR", "AND", "NAND", "XOR"], answer: 2 },
+    { question: "Which of the following is a valid IPv4 address?", options: ["192.168.300.1", "127.0.0.0.1", "192.168.1.1", "256.256.256.256"], answer: 2 },
+    { question: "The complexity of Binary Search Algorithm is:", options: ["O(n)", "O(log n)", "O(n²)", "O(n log n)"], answer: 1 },
+    { question: "What is the Unicode value of 'A'?", options: ["65", "97", "48", "32"], answer: 0 },
+    { question: "Which language is primarily used in Android app development?", options: ["Java", "Swift", "C#", "Ruby"], answer: 0 },
+    
+    // Final 10 questions specifically for Mehran University entry tests
+    { question: "Which data structure is used for implementing recursion?", options: ["Queue", "Stack", "Array", "Linked List"], answer: 1 },
+    { question: "What is the purpose of the 'volatile' keyword in C programming?", options: ["Indicates the variable can be changed by external factors", "Makes the variable read-only", "Increases variable access speed", "Allocates the variable in ROM"], answer: 0 },
+    { question: "Which protocol is used to convert domain names to IP addresses?", options: ["HTTP", "FTP", "DNS", "SMTP"], answer: 2 },
+    { question: "Which of the following is a lossless image compression format?", options: ["JPEG", "PNG", "GIF", "BMP"], answer: 1 },
+    { question: "What is the full form of SDLC?", options: ["System Design Life Cycle", "Software Development Life Cycle", "System Development Logic Control", "Software Design Logic Cycle"], answer: 1 },
+    { question: "Which number system is used in digital electronics?", options: ["Decimal", "Binary", "Hexadecimal", "Octal"], answer: 1 },
+    { question: "What is the purpose of an accumulator in a CPU?", options: ["To store memory addresses", "To store intermediate arithmetic and logic results", "To control program flow", "To decode instructions"], answer: 1 },
+    { question: "Which of the following is an example of an interpreted language?", options: ["C", "C++", "Python", "Pascal"], answer: 2 },
+    { question: "What is the maximum number of IP addresses possible in IPv4?", options: ["2^16", "2^24", "2^32", "2^64"], answer: 2 },
+    { question: "Which logic gate produces an output of 1 when all inputs are 0?", options: ["AND", "OR", "NOT", "NOR"], answer: 3 }
 ];
 
 // Initialize the application
@@ -131,6 +156,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const userForm = document.getElementById('userForm');
     const popup = document.getElementById('popup');
     const mcqSection = document.getElementById('mcqSection');
+
+    // Add theme toggle button to the header
+    const header = document.querySelector('.header');
+    if (header) {
+        const themeToggle = document.createElement('div');
+        themeToggle.className = 'theme-toggle';
+        themeToggle.innerHTML = `
+            <button id="themeToggleBtn">
+                <i class="fas fa-moon"></i>
+            </button>
+        `;
+        header.appendChild(themeToggle);
+        
+        // Initialize theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            document.getElementById('themeToggleBtn').innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        // Add event listener for theme toggle
+        document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme);
+    }
 
     // Reset answers when starting a new session
     if (!testProgress || !testProgress.started) {
@@ -143,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Get user identifier from stored data or generate a new one
     const userIdentifier = localStorage.getItem('userIdentifier') || 
-                          Date.now().toString() + Math.random().toString(36).substr(2, 5);
+                           Date.now().toString() + Math.random().toString(36).substr(2, 5);
     localStorage.setItem('userIdentifier', userIdentifier);
     
     // Count attempts by this user
@@ -233,6 +281,25 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', handleKeyPress);
     setInterval(checkUserActivity, 1000);
 });
+
+// Toggle between light and dark theme
+function toggleTheme() {
+    const body = document.body;
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    
+    if (body.classList.contains('dark-theme')) {
+        body.classList.remove('dark-theme');
+        localStorage.setItem('theme', 'light');
+        themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+    } else {
+        body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark');
+        themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+    
+    // Play toggle sound
+    playSound('screenshot');
+}
 
 // Show the instructions popup
 function showInstructionsPopup() {
@@ -390,6 +457,39 @@ function selectOption(questionIndex, optionIndex) {
     localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
     updateProgressBar();
     
+    // Visual feedback and sound effect for answer
+    const isCorrect = optionIndex === mcqs[questionIndex].answer;
+    const selectedOption = document.querySelector(`.option-item[data-option="${optionIndex}"]`);
+    
+    if (selectedOption) {
+        // Apply temporary highlight class based on correct/incorrect
+        if (isCorrect) {
+            selectedOption.classList.add('correct-answer');
+            playSound('correct');
+        } else {
+            selectedOption.classList.add('wrong-answer');
+            playSound('wrong');
+        }
+        
+        // Show brief feedback message
+        const feedbackDiv = document.createElement('div');
+        feedbackDiv.className = `answer-feedback ${isCorrect ? 'correct' : 'wrong'}`;
+        feedbackDiv.innerHTML = isCorrect ? 
+            '<i class="fas fa-check-circle"></i> Correct!' : 
+            '<i class="fas fa-times-circle"></i> Incorrect';
+        
+        // Insert feedback after options
+        const optionsContainer = document.querySelector('.options-container');
+        if (optionsContainer && !optionsContainer.querySelector('.answer-feedback')) {
+            optionsContainer.appendChild(feedbackDiv);
+            
+            // Animate feedback entrance
+            setTimeout(() => {
+                feedbackDiv.classList.add('show-feedback');
+            }, 50);
+        }
+    }
+    
     // After selecting an option, automatically go to next question after a short delay
     setTimeout(() => {
         if (questionIndex < mcqs.length - 1) {
@@ -399,7 +499,7 @@ function selectOption(questionIndex, optionIndex) {
         } else {
             showSubmitButton();
         }
-    }, 800);
+    }, 1200); // Increase delay to show feedback
 }
 
 // Show submit button when all questions are answered
@@ -612,7 +712,17 @@ function displayResults(results) {
                 </div>
             </div>
             
-            <div class="results-details">
+            <div class="results-details" id="certificate-content">
+                <div class="certificate-header">
+                    <div class="certificate-title">
+                        <h3>Certificate of Completion</h3>
+                        <p>This certifies that</p>
+                        <h4>${results.userData.name}</h4>
+                        <p>has successfully completed the MCQ test with a score of</p>
+                        <div class="certificate-score">${results.score}%</div>
+                    </div>
+                </div>
+                
                 <div class="score-display">
                     <div class="score-circle">
                         <span class="score-value">${results.score}%</span>
@@ -643,9 +753,19 @@ function displayResults(results) {
                     <p><strong>Test Completed:</strong> ${new Date().toLocaleString()}</p>
                 </div>
                 
-                <div class="message">
-                    <p>Your test has been successfully completed and results have been recorded.</p>
+                <div class="certificate-footer">
+                    <p>Date: ${new Date().toLocaleDateString()}</p>
+                    <div class="certificate-stamp">
+                        <i class="fas fa-certificate"></i>
+                    </div>
                 </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="screenshotBtn" class="screenshot-btn">
+                    <i class="fas fa-camera"></i> Take Screenshot
+                </button>
+                <button id="closeResultsBtn" class="close-results-btn">Close Results</button>
             </div>
             
             <div class="confetti-container" id="confetti-container"></div>
@@ -665,7 +785,151 @@ function displayResults(results) {
         if (scoreCircle) {
             scoreCircle.style.setProperty('--score-percent', `${results.score}%`);
         }
+        
+        // Add screenshot button functionality
+        document.getElementById('screenshotBtn').addEventListener('click', function() {
+            takeScreenshot();
+        });
+        
+        // Add close button functionality
+        document.getElementById('closeResultsBtn').addEventListener('click', function() {
+            // Show confirmation
+            if (confirm("Are you sure you want to close the results? You won't be able to see them again.")) {
+                document.getElementById('resultsPopup').remove();
+                
+                // Show completed message
+                document.body.innerHTML = `
+                    <div class="already-completed">
+                        <div class="already-completed-content">
+                            <i class="fas fa-check-circle"></i>
+                            <h1>Test Successfully Completed</h1>
+                            <p>Thank you for taking the test.</p>
+                            <p>Your results have been recorded.</p>
+                            <p>You have used 1 of your ${MAX_TEST_ATTEMPTS} allowed attempts.</p>
+                            <button onclick="window.location.reload()" class="restart-btn">Return to Home</button>
+                        </div>
+                    </div>
+                `;
+            }
+        });
     }, 300);
+}
+
+// Take screenshot function
+function takeScreenshot() {
+    // Create a modal with loading indicator
+    const modal = document.createElement('div');
+    modal.className = 'screenshot-modal';
+    modal.innerHTML = `
+        <div class="screenshot-loading">
+            <div class="spinner"></div>
+            <p>Creating your certificate...</p>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    
+    // Load html2canvas dynamically
+    const script = document.createElement('script');
+    script.src = 'https://html2canvas.hertzen.com/dist/html2canvas.min.js';
+    script.onload = function() {
+        // Once the script is loaded, use it to take a screenshot
+        const element = document.getElementById('certificate-content');
+        
+        // Apply special styling for screenshot
+        element.classList.add('screenshot-mode');
+        
+        html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: '#ffffff'
+        }).then(canvas => {
+            // Remove special styling
+            element.classList.remove('screenshot-mode');
+            
+            // Convert canvas to image
+            const image = canvas.toDataURL('image/png');
+            
+            // Create link to download image
+            const link = document.createElement('a');
+            link.download = `${document.querySelector('.certificate-title h4').textContent}-Certificate.png`;
+            link.href = image;
+            
+            // Update modal content
+            modal.innerHTML = `
+                <div class="screenshot-preview">
+                    <h3>Your Certificate</h3>
+                    <img src="${image}" alt="Certificate" class="certificate-image">
+                    <div class="screenshot-actions">
+                        <button id="downloadBtn" class="download-btn">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button id="cancelBtn" class="cancel-btn">
+                            <i class="fas fa-times"></i> Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add event listeners to new buttons
+            document.getElementById('downloadBtn').addEventListener('click', function() {
+                link.click();
+                playSound('success');
+            });
+            
+            document.getElementById('cancelBtn').addEventListener('click', function() {
+                modal.remove();
+            });
+            
+            // Play success sound
+            playSound('screenshot');
+        }).catch(err => {
+            console.error('Screenshot error:', err);
+            modal.innerHTML = `
+                <div class="screenshot-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h3>Error Creating Screenshot</h3>
+                    <p>There was a problem creating your certificate.</p>
+                    <button id="errorCloseBtn" class="cancel-btn">Close</button>
+                </div>
+            `;
+            document.getElementById('errorCloseBtn').addEventListener('click', function() {
+                modal.remove();
+            });
+        });
+    };
+    
+    script.onerror = function() {
+        modal.innerHTML = `
+            <div class="screenshot-error">
+                <i class="fas fa-exclamation-circle"></i>
+                <h3>Error Loading Screenshot Tool</h3>
+                <p>Could not load the screenshot tool. Please try again later.</p>
+                <button id="errorCloseBtn" class="cancel-btn">Close</button>
+            </div>
+        `;
+        document.getElementById('errorCloseBtn').addEventListener('click', function() {
+            modal.remove();
+        });
+    };
+    
+    document.body.appendChild(script);
+}
+
+// Play sound effects
+function playSound(type) {
+    const sounds = {
+        correct: 'https://assets.mixkit.co/active_storage/sfx/2205/2205-preview.mp3',
+        wrong: 'https://assets.mixkit.co/active_storage/sfx/2275/2275-preview.mp3',
+        screenshot: 'https://assets.mixkit.co/active_storage/sfx/1111/1111-preview.mp3',
+        success: 'https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3'
+    };
+    
+    if (!sounds[type]) return;
+    
+    const audio = new Audio(sounds[type]);
+    audio.volume = 0.3;
+    audio.play().catch(err => console.log('Audio play error:', err));
 }
 
 // Create confetti animation
@@ -697,6 +961,10 @@ function createConfetti() {
 
 // Send results to admin via email
 function sendResultsEmail(results) {
+    if (resultsSent) return; // Prevent multiple submissions
+    
+    resultsSent = true;
+    
     // Prepare the results data
     const answeredCount = Object.keys(results.answers).length;
     const correctCount = calculateCorrectAnswers(results.answers);
@@ -721,6 +989,7 @@ function sendResultsEmail(results) {
     form.method = 'POST';
     form.action = formUrl;
     form.style.display = 'none';
+    form.target = '_blank'; // Open in new tab to prevent redirect
     
     // Add form fields
     const addField = (name, value) => {
@@ -752,8 +1021,22 @@ function sendResultsEmail(results) {
     // Disable captcha
     addField('_captcha', 'false');
     
+    // Add redirect back to current page
+    addField('_next', window.location.href);
+    
     // Add the form to the document and submit it
     document.body.appendChild(form);
+    
+    // Create a background iframe to send the form without redirecting
+    const iframe = document.createElement('iframe');
+    iframe.name = 'hidden_iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    
+    // Set form target to the iframe
+    form.target = 'hidden_iframe';
+    
+    // Submit the form after a delay to ensure all animations are visible
     setTimeout(() => {
         try {
             form.submit();

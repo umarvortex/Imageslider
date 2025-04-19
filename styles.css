@@ -260,20 +260,53 @@ body {
 .option-item {
     display: flex;
     align-items: center;
-    padding: 12px 15px;
+    padding: 15px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-bottom: 8px;
+    position: relative;
+    overflow: hidden;
 }
 
 .option-item:hover {
     background-color: #f5f7fb;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .option-item.selected {
     background-color: #e3f2fd;
     border-color: #2196f3;
+}
+
+.option-item.correct-answer {
+    background-color: rgba(76, 175, 80, 0.2);
+    border-color: #4CAF50;
+}
+
+.option-item.wrong-answer {
+    background-color: rgba(244, 67, 54, 0.2);
+    border-color: #F44336;
+}
+
+.option-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0%;
+    height: 0%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.option-item:active::before {
+    width: 300%;
+    height: 300%;
 }
 
 .option-radio {
@@ -1075,4 +1108,465 @@ body {
     .score-value {
         font-size: 1.75rem;
     }
+}
+
+.close-results-btn {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin-top: 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.close-results-btn:hover {
+    background-color: #0d8aee;
+}
+
+.restart-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin-top: 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.restart-btn:hover {
+    background-color: #3e8e41;
+}
+
+/* Screenshot Button and Certificate Styles */
+.screenshot-btn {
+    background-color: #673ab7;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin-right: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.screenshot-btn i {
+    margin-right: 8px;
+}
+
+.screenshot-btn:hover {
+    background-color: #5e35b1;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+/* Certificate styles */
+.certificate-header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 15px;
+}
+
+.certificate-title {
+    margin-bottom: 15px;
+}
+
+.certificate-title h3 {
+    font-size: 24px;
+    color: #2196F3;
+    margin-bottom: 10px;
+}
+
+.certificate-title h4 {
+    font-size: 28px;
+    color: #4a4a4a;
+    margin: 15px 0;
+    text-transform: uppercase;
+}
+
+.certificate-score {
+    font-size: 36px;
+    font-weight: bold;
+    color: #4CAF50;
+    margin: 15px 0;
+}
+
+.certificate-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.certificate-stamp {
+    font-size: 48px;
+    color: #FFC107;
+    opacity: 0.8;
+    animation: rotate-stamp 10s infinite linear;
+}
+
+@keyframes rotate-stamp {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Screenshot modal */
+.screenshot-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.screenshot-loading {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.screenshot-preview {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+}
+
+.screenshot-preview h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.certificate-image {
+    max-width: 100%;
+    max-height: 70vh;
+    border: 1px solid #ddd;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.screenshot-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.download-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.download-btn i {
+    margin-right: 8px;
+}
+
+.cancel-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.cancel-btn i {
+    margin-right: 8px;
+}
+
+.screenshot-error {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    color: #f44336;
+}
+
+.screenshot-error i {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+/* Special styling for screenshot mode */
+.screenshot-mode {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.screenshot-mode:before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    border: 2px solid #f0f0f0;
+    border-radius: 10px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.screenshot-mode .certificate-header {
+    border-color: #2196F3;
+}
+
+.screenshot-mode .certificate-footer {
+    border-color: #2196F3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .screenshot-btn {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .certificate-title h3 {
+        font-size: 20px;
+    }
+    
+    .certificate-title h4 {
+        font-size: 24px;
+    }
+    
+    .certificate-score {
+        font-size: 28px;
+    }
+    
+    .certificate-stamp {
+        font-size: 36px;
+    }
+    
+    .screenshot-preview {
+        padding: 15px;
+    }
+}
+
+/* Answer feedback */
+.answer-feedback {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.answer-feedback.show-feedback {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.answer-feedback.correct {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #2e7d32;
+    border-left: 4px solid #2e7d32;
+}
+
+.answer-feedback.wrong {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #d32f2f;
+    border-left: 4px solid #d32f2f;
+}
+
+.answer-feedback i {
+    margin-right: 5px;
+    font-size: 1.2em;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    margin-left: auto;
+}
+
+#themeToggleBtn {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#themeToggleBtn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: rotate(30deg);
+}
+
+/* Dark Theme */
+.dark-theme {
+    background-color: #121212;
+    color: #f5f5f5;
+}
+
+.dark-theme #themeToggleBtn {
+    color: #f5f5f5;
+}
+
+.dark-theme #themeToggleBtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .question {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .question-text {
+    color: #f5f5f5;
+}
+
+.dark-theme .question-number {
+    color: #aaa;
+}
+
+.dark-theme .option-item {
+    border-color: #333;
+    color: #f5f5f5;
+}
+
+.dark-theme .option-item:hover {
+    background-color: #2a2a2a;
+}
+
+.dark-theme .option-item.selected {
+    background-color: #1a365d;
+    border-color: #2196f3;
+}
+
+.dark-theme .option-item.correct-answer {
+    background-color: rgba(76, 175, 80, 0.2);
+    border-color: #4CAF50;
+}
+
+.dark-theme .option-item.wrong-answer {
+    background-color: rgba(244, 67, 54, 0.2);
+    border-color: #F44336;
+}
+
+.dark-theme .progress-container {
+    background: #333;
+}
+
+.dark-theme .header h1 {
+    color: #f5f5f5;
+}
+
+.dark-theme .timer-container {
+    background: #1e1e1e;
+    color: #f5f5f5;
+}
+
+.dark-theme .question-indicator {
+    background: #333;
+    color: #f5f5f5;
+}
+
+.dark-theme .question-indicator.answered {
+    background: #4CAF50;
+}
+
+.dark-theme .results-content {
+    background: #1e1e1e;
+    color: #f5f5f5;
+}
+
+.dark-theme .results-header h1 {
+    color: #4caf50;
+}
+
+.dark-theme .results-header h2 {
+    color: #f5f5f5;
+}
+
+.dark-theme .user-details {
+    background-color: #2a2a2a;
+}
+
+.dark-theme .screenshot-mode {
+    background: #1e1e1e;
+    color: #f5f5f5;
+}
+
+.dark-theme .screenshot-mode:before {
+    border-color: #333;
+}
+
+.dark-theme .screenshot-preview {
+    background: #1e1e1e;
+    color: #f5f5f5;
+}
+
+.dark-theme .certificate-title h4 {
+    color: #f5f5f5;
+}
+
+.dark-theme .already-completed-content {
+    background: #1e1e1e;
+    color: #f5f5f5;
+}
+
+.dark-theme .already-completed-content h1 {
+    color: #f44336;
+}
+
+.dark-theme .screenshot-loading,
+.dark-theme .screenshot-error {
+    background: #1e1e1e;
+    color: #f5f5f5;
 }
