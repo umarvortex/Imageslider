@@ -600,21 +600,158 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Already completed message */
+.already-completed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
 }
 
-@keyframes slide-up {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+.already-completed-content {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+    padding: 3rem;
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
 }
 
-.fade-in {
-    animation: fadeIn 0.5s ease;
+.already-completed-content i {
+    font-size: 5rem;
+    color: #f44336;
+    margin-bottom: 1.5rem;
 }
 
-.slide-up {
-    animation: slide-up 0.7s ease;
-} 
+.already-completed-content h1 {
+    color: #f44336;
+    margin-bottom: 1.5rem;
+}
+
+.already-completed-content p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Responsive styling for congratulations and already completed screens */
+@media (max-width: 768px) {
+    .congrats-content, .already-completed-content {
+        padding: 2rem;
+        width: 95%;
+    }
+    
+    .congrats-content i, .already-completed-content i {
+        font-size: 4rem;
+    }
+    
+    .congrats-content h1, .already-completed-content h1 {
+        font-size: 1.75rem;
+    }
+    
+    .congrats-content h2 {
+        font-size: 1.25rem;
+    }
+    
+    .congrats-content p, .already-completed-content p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .congrats-content, .already-completed-content {
+        padding: 1.5rem;
+    }
+    
+    .congrats-content i, .already-completed-content i {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .congrats-content h1, .already-completed-content h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .congrats-content h2 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .spinner {
+        width: 30px;
+        height: 30px;
+        border-width: 3px;
+    }
+}
+
+/* Add styles for the instructions popup */
+.instructions-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.instructions-content {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    text-align: left;
+}
+
+.instructions-content h2 {
+    color: #3498db;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.instructions-content hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+.instructions-content ul {
+    padding-left: 20px;
+    margin: 15px 0;
+}
+
+.instructions-content li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.start-test-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin-top: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.start-test-btn:hover {
+    background-color: #2980b9;
+}
