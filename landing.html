@@ -209,52 +209,68 @@
                 font-size: 0.9rem;
             }
         }
-        
-        /* Music control button */
-        .music-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
+
+        /* Neon Click Animation */
+        .neon-ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 1.2s ease-out;
+            z-index: 9;
+            pointer-events: none;
+            background: radial-gradient(
+                circle,
+                rgba(0, 255, 157, 0.8) 0%,
+                rgba(0, 255, 157, 0.4) 40%,
+                rgba(0, 255, 157, 0.2) 60%,
+                rgba(0, 255, 157, 0) 100%
+            );
+            box-shadow: 
+                0 0 10px rgba(0, 255, 157, 0.8),
+                0 0 20px rgba(0, 255, 157, 0.6),
+                0 0 30px rgba(0, 255, 157, 0.4),
+                0 0 40px rgba(0, 255, 157, 0.2);
         }
-        
-        #musicToggleBtn {
-            background: rgba(0, 255, 157, 0.2);
-            color: #00ff9d;
-            border: 1px solid rgba(0, 255, 157, 0.5);
-            border-radius: 50px;
-            padding: 10px 15px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 5px;
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
         }
-        
-        #musicToggleBtn:hover {
-            background: rgba(0, 255, 157, 0.3);
-            transform: translateY(-2px);
+
+        /* Smaller particle animations triggered by click */
+        .neon-particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #00ff9d;
+            box-shadow: 0 0 10px #00ff9d, 0 0 20px #00ff9d;
+            animation: particle-float 1.5s ease-out forwards;
+            z-index: 8;
+            pointer-events: none;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(var(--x-move)) scale(0);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Particles Background -->
     <div class="particles" id="particles"></div>
-
-    <!-- Background Music (Hidden) -->
-    <audio id="backgroundMusic" loop preload="auto" style="display: none;">
-        <source src="https://www.chosic.com/wp-content/uploads/2021/04/Lofi-Study.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
-    <!-- Add visible music control for better user experience -->
-    <div class="music-control">
-        <button id="musicToggleBtn">
-            <i class="fas fa-volume-up"></i> Play Music
-        </button>
-    </div>
 
     <!-- Main Content -->
     <div class="container">
@@ -318,28 +334,6 @@
         
         // Countdown timer logic
         document.addEventListener('DOMContentLoaded', function() {
-            // Set up music controls
-            const backgroundMusic = document.getElementById('backgroundMusic');
-            const musicToggleBtn = document.getElementById('musicToggleBtn');
-            
-            // Set volume higher
-            if (backgroundMusic) {
-                backgroundMusic.volume = 0.7; // 70% volume
-            }
-            
-            // Add music button functionality
-            if (musicToggleBtn && backgroundMusic) {
-                musicToggleBtn.addEventListener('click', function() {
-                    if (backgroundMusic.paused) {
-                        backgroundMusic.play();
-                        this.innerHTML = '<i class="fas fa-volume-up"></i> Pause Music';
-                    } else {
-                        backgroundMusic.pause();
-                        this.innerHTML = '<i class="fas fa-volume-mute"></i> Play Music';
-                    }
-                });
-            }
-            
             // 2 minutes in milliseconds
             let countDownTime = 2 * 60 * 1000;
             const countdownElement = document.getElementById('countdown');
@@ -357,10 +351,6 @@
                 
                 if (countDownTime < 0) {
                     clearInterval(countdownInterval);
-                    // Stop music when countdown ends
-                    if (backgroundMusic) {
-                        backgroundMusic.pause();
-                    }
                     // Set session storage to indicate countdown is complete
                     sessionStorage.setItem('countdownCompleted', 'true');
                     // Redirect to the main test page
@@ -371,6 +361,77 @@
             // Update the countdown every second
             updateCountdown();
             const countdownInterval = setInterval(updateCountdown, 1000);
+
+            // Add click/touch effect to the entire document
+            document.addEventListener('click', createRippleEffect);
+            document.addEventListener('touchstart', function(e) {
+                // Convert touch to coordinates
+                const touch = e.touches[0];
+                createRippleEffect({
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+            });
+
+            function createRippleEffect(event) {
+                // Create main ripple effect
+                const ripple = document.createElement('div');
+                ripple.className = 'neon-ripple';
+                
+                // Position at click coordinates
+                ripple.style.left = `${event.clientX}px`;
+                ripple.style.top = `${event.clientY}px`;
+                
+                // Size based on window dimensions
+                const size = Math.max(window.innerWidth, window.innerHeight);
+                ripple.style.width = `${size * 2}px`;
+                ripple.style.height = `${size * 2}px`;
+                ripple.style.marginLeft = `-${size}px`;
+                ripple.style.marginTop = `-${size}px`;
+                
+                document.body.appendChild(ripple);
+                
+                // Create smaller particle effects
+                for (let i = 0; i < 12; i++) {
+                    createParticleEffect(event.clientX, event.clientY, i);
+                }
+                
+                // Remove the ripple element after animation completes
+                setTimeout(() => {
+                    ripple.remove();
+                }, 1200);
+            }
+            
+            function createParticleEffect(x, y, i) {
+                const particle = document.createElement('div');
+                particle.className = 'neon-particle';
+                
+                // Position at click coordinates
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                // Random size for variety
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Set random movement direction
+                const angle = (i / 12) * Math.PI * 2;
+                const distance = Math.random() * 100 + 50;
+                const xMove = Math.cos(angle) * distance;
+                particle.style.setProperty('--x-move', `${xMove}px`);
+                
+                // Random animation duration
+                const duration = Math.random() * 1 + 0.5;
+                particle.style.animationDuration = `${duration}s`;
+                
+                document.body.appendChild(particle);
+                
+                // Remove the particle element after animation completes
+                setTimeout(() => {
+                    particle.remove();
+                }, duration * 1000);
+            }
         });
         
         // Initialize the page
