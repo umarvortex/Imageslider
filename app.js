@@ -297,8 +297,8 @@ function toggleTheme() {
         themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
     }
     
-    // Play toggle sound
-    playSound('screenshot');
+    // Play theme toggle sound
+    playSound('theme');
 }
 
 // Show the instructions popup
@@ -310,23 +310,34 @@ function showInstructionsPopup() {
         <div class="instructions-content">
             <h2><i class="fas fa-info-circle"></i> Important Instructions</h2>
             <hr>
-            <p><strong>Time Limit:</strong> You have 1 hour and 30 minutes to complete this test.</p>
-            <p><strong>Please Note:</strong></p>
-            <ul>
-                <li>Do not refresh the page or navigate away during the test.</li>
-                <li>Do not attempt to cheat or use external resources.</li>
-                <li>Answer the questions with honesty and integrity.</li>
-                <li>The system will detect and record any suspicious activities.</li>
-                <li>You cannot go back to previous questions once answered.</li>
-                <li>Multiple security violations will be reported.</li>
-            </ul>
-            <p>By continuing, you agree to abide by these rules and acknowledge that your actions are being monitored.</p>
+            <div class="instructions-scroll">
+                <p><strong>Time Limit:</strong> You have 1 hour and 30 minutes to complete this test.</p>
+                <p><strong>Please Note:</strong></p>
+                <ul>
+                    <li>Do not refresh the page or navigate away during the test.</li>
+                    <li>Do not attempt to cheat or use external resources.</li>
+                    <li>Answer the questions with honesty and integrity.</li>
+                    <li>The system will detect and record any suspicious activities.</li>
+                    <li>You cannot go back to previous questions once answered.</li>
+                    <li>Multiple security violations will be reported.</li>
+                </ul>
+                <p>By continuing, you agree to abide by these rules and acknowledge that your actions are being monitored.</p>
+            </div>
             <button id="startTestBtn" class="start-test-btn">I Understand, Start Test</button>
         </div>
     `;
     
     // Add the instructions popup to the body
     document.body.appendChild(instructionsPopup);
+    
+    // Ensure the popup is fully visible on mobile
+    setTimeout(() => {
+        const startBtn = document.getElementById('startTestBtn');
+        if (startBtn) {
+            // Make sure button is visible in viewport
+            startBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, 300);
     
     // Add event listener to the start test button
     document.getElementById('startTestBtn').addEventListener('click', function() {
@@ -457,7 +468,7 @@ function selectOption(questionIndex, optionIndex) {
     localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
     updateProgressBar();
     
-    // Visual feedback and sound effect for answer
+    // Visual feedback without sound
     const isCorrect = optionIndex === mcqs[questionIndex].answer;
     const selectedOption = document.querySelector(`.option-item[data-option="${optionIndex}"]`);
     
@@ -465,10 +476,10 @@ function selectOption(questionIndex, optionIndex) {
         // Apply temporary highlight class based on correct/incorrect
         if (isCorrect) {
             selectedOption.classList.add('correct-answer');
-            playSound('correct');
+            // No sound
         } else {
             selectedOption.classList.add('wrong-answer');
-            playSound('wrong');
+            // No sound
         }
         
         // Show brief feedback message
@@ -832,71 +843,8 @@ function takeScreenshot() {
     const script = document.createElement('script');
     script.src = 'https://html2canvas.hertzen.com/dist/html2canvas.min.js';
     script.onload = function() {
-        // Once the script is loaded, use it to take a screenshot
-        const element = document.getElementById('certificate-content');
-        
-        // Apply special styling for screenshot
-        element.classList.add('screenshot-mode');
-        
-        html2canvas(element, {
-            scale: 2,
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: '#ffffff'
-        }).then(canvas => {
-            // Remove special styling
-            element.classList.remove('screenshot-mode');
-            
-            // Convert canvas to image
-            const image = canvas.toDataURL('image/png');
-            
-            // Create link to download image
-            const link = document.createElement('a');
-            link.download = `${document.querySelector('.certificate-title h4').textContent}-Certificate.png`;
-            link.href = image;
-            
-            // Update modal content
-            modal.innerHTML = `
-                <div class="screenshot-preview">
-                    <h3>Your Certificate</h3>
-                    <img src="${image}" alt="Certificate" class="certificate-image">
-                    <div class="screenshot-actions">
-                        <button id="downloadBtn" class="download-btn">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                        <button id="cancelBtn" class="cancel-btn">
-                            <i class="fas fa-times"></i> Close
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            // Add event listeners to new buttons
-            document.getElementById('downloadBtn').addEventListener('click', function() {
-                link.click();
-                playSound('success');
-            });
-            
-            document.getElementById('cancelBtn').addEventListener('click', function() {
-                modal.remove();
-            });
-            
-            // Play success sound
-            playSound('screenshot');
-        }).catch(err => {
-            console.error('Screenshot error:', err);
-            modal.innerHTML = `
-                <div class="screenshot-error">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <h3>Error Creating Screenshot</h3>
-                    <p>There was a problem creating your certificate.</p>
-                    <button id="errorCloseBtn" class="cancel-btn">Close</button>
-                </div>
-            `;
-            document.getElementById('errorCloseBtn').addEventListener('click', function() {
-                modal.remove();
-            });
-        });
+        // Once the script is loaded, prepare a dedicated certificate for screenshot
+        prepareCertificateForScreenshot();
     };
     
     script.onerror = function() {
@@ -914,14 +862,257 @@ function takeScreenshot() {
     };
     
     document.body.appendChild(script);
+    
+    function prepareCertificateForScreenshot() {
+        // Get user data and score
+        const resultsData = JSON.parse(localStorage.getItem('testResults'));
+        if (!resultsData) {
+            modal.innerHTML = `
+                <div class="screenshot-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h3>Error Creating Certificate</h3>
+                    <p>Could not find test result data.</p>
+                    <button id="errorCloseBtn" class="cancel-btn">Close</button>
+                </div>
+            `;
+            document.getElementById('errorCloseBtn').addEventListener('click', function() {
+                modal.remove();
+            });
+            return;
+        }
+        
+        // Create a dedicated container for the certificate screenshot
+        const screenshotContainer = document.createElement('div');
+        screenshotContainer.id = 'certificate-screenshot-container';
+        screenshotContainer.style.position = 'absolute';
+        screenshotContainer.style.left = '-9999px';
+        screenshotContainer.style.top = '0';
+        screenshotContainer.style.width = '800px';
+        document.body.appendChild(screenshotContainer);
+        
+        // Create certificate with clean layout for screenshot
+        screenshotContainer.innerHTML = `
+            <div class="certificate-screenshot">
+                <h2 class="certificate-title">Certificate of Completion</h2>
+                <p>This certifies that</p>
+                <h3 class="user-name">${resultsData.userData.name}</h3>
+                <p>has successfully completed the MCQ test with a score of</p>
+                <div class="certificate-score">${resultsData.score}%</div>
+                
+                <div class="certificate-details">
+                    <div class="cert-detail">
+                        <span class="detail-label">Correct Answers:</span>
+                        <span class="detail-value">${resultsData.correctAnswers}</span>
+                    </div>
+                    <div class="cert-detail">
+                        <span class="detail-label">Wrong Answers:</span>
+                        <span class="detail-value">${resultsData.wrongAnswers}</span>
+                    </div>
+                    <div class="cert-detail">
+                        <span class="detail-label">Skipped Questions:</span>
+                        <span class="detail-value">${resultsData.skippedQuestions}</span>
+                    </div>
+                    <div class="cert-detail">
+                        <span class="detail-label">Total Questions:</span>
+                        <span class="detail-value">${resultsData.totalQuestions}</span>
+                    </div>
+                </div>
+                
+                <div class="certificate-user-info">
+                    <div><strong>Name:</strong> ${resultsData.userData.name}</div>
+                    <div><strong>Phone:</strong> ${resultsData.userData.phoneNumber}</div>
+                    <div><strong>City:</strong> ${resultsData.userData.city}</div>
+                </div>
+                
+                <div class="certificate-footer">
+                    <div class="date">Date: ${new Date().toLocaleDateString()}</div>
+                    <div class="certificate-stamp">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Add temporary styling to the certificate
+        const style = document.createElement('style');
+        style.id = 'certificate-screenshot-style';
+        style.textContent = `
+            .certificate-screenshot {
+                background-color: #121212;
+                color: white;
+                padding: 40px;
+                text-align: center;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0,0,0,0.3);
+                position: relative;
+                font-family: 'Poppins', sans-serif;
+            }
+            .certificate-screenshot:before {
+                content: '';
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                bottom: 10px;
+                left: 10px;
+                border: 2px solid #555;
+                border-radius: 5px;
+                pointer-events: none;
+            }
+            .certificate-screenshot .certificate-title {
+                color: #2196F3;
+                font-size: 30px;
+                margin-bottom: 20px;
+            }
+            .certificate-screenshot p {
+                margin: 10px 0;
+                font-size: 18px;
+            }
+            .certificate-screenshot .user-name {
+                font-size: 36px;
+                margin: 15px 0;
+                color: white;
+                text-transform: uppercase;
+            }
+            .certificate-screenshot .certificate-score {
+                font-size: 42px;
+                font-weight: bold;
+                color: #4CAF50;
+                margin: 20px 0;
+            }
+            .certificate-screenshot .certificate-details {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+                margin: 30px 0;
+                background-color: rgba(255,255,255,0.05);
+                padding: 20px;
+                border-radius: 8px;
+            }
+            .certificate-screenshot .cert-detail {
+                text-align: center;
+                padding: 10px 15px;
+                border-radius: 5px;
+                min-width: 150px;
+            }
+            .certificate-screenshot .detail-label {
+                display: block;
+                font-size: 14px;
+                margin-bottom: 5px;
+                opacity: 0.8;
+            }
+            .certificate-screenshot .detail-value {
+                display: block;
+                font-size: 24px;
+                font-weight: bold;
+            }
+            .certificate-screenshot .certificate-user-info {
+                text-align: left;
+                margin: 30px 0;
+                font-size: 16px;
+                background-color: rgba(255,255,255,0.05);
+                padding: 15px;
+                border-radius: 8px;
+            }
+            .certificate-screenshot .certificate-user-info div {
+                margin: 8px 0;
+            }
+            .certificate-screenshot .certificate-footer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 30px;
+                border-top: 1px solid #555;
+                padding-top: 20px;
+            }
+            .certificate-screenshot .date {
+                font-size: 16px;
+            }
+            .certificate-screenshot .certificate-stamp {
+                font-size: 48px;
+                color: #FFC107;
+                opacity: 0.8;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Use html2canvas to create screenshot
+        setTimeout(() => {
+            html2canvas(screenshotContainer.querySelector('.certificate-screenshot'), {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#121212',
+                logging: false
+            }).then(canvas => {
+                // Clean up the temporary elements
+                screenshotContainer.remove();
+                document.getElementById('certificate-screenshot-style').remove();
+                
+                // Convert canvas to image
+                const image = canvas.toDataURL('image/png');
+                
+                // Create link to download image
+                const link = document.createElement('a');
+                link.download = `${resultsData.userData.name}-Certificate.png`;
+                link.href = image;
+                
+                // Update modal content
+                modal.innerHTML = `
+                    <div class="screenshot-preview">
+                        <h3>Your Certificate</h3>
+                        <img src="${image}" alt="Certificate" class="certificate-image">
+                        <div class="screenshot-actions">
+                            <button id="downloadBtn" class="download-btn">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <button id="cancelBtn" class="cancel-btn">
+                                <i class="fas fa-times"></i> Close
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Add event listeners to new buttons
+                document.getElementById('downloadBtn').addEventListener('click', function() {
+                    link.click();
+                    playSound('theme');
+                });
+                
+                document.getElementById('cancelBtn').addEventListener('click', function() {
+                    modal.remove();
+                });
+                
+                // Play success sound
+                playSound('theme');
+                
+            }).catch(err => {
+                console.error('Screenshot error:', err);
+                modal.innerHTML = `
+                    <div class="screenshot-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <h3>Error Creating Screenshot</h3>
+                        <p>There was a problem creating your certificate.</p>
+                        <button id="errorCloseBtn" class="cancel-btn">Close</button>
+                    </div>
+                `;
+                document.getElementById('errorCloseBtn').addEventListener('click', function() {
+                    modal.remove();
+                });
+            });
+        }, 500);
+    }
 }
 
 // Play sound effects
 function playSound(type) {
-    // Simple tick sound for all interactions
-    const tickSound = 'https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3';
+    // Only play sound for theme toggle
+    if (type !== 'theme') return;
     
-    const audio = new Audio(tickSound);
+    // Cool sound for theme toggle
+    const themeSound = 'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3';
+    
+    const audio = new Audio(themeSound);
     audio.volume = 0.3;
     audio.play().catch(err => console.log('Audio play error:', err));
 }

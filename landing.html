@@ -215,6 +215,12 @@
     <!-- Particles Background -->
     <div class="particles" id="particles"></div>
 
+    <!-- Background Music (Hidden) -->
+    <audio id="backgroundMusic" loop preload="auto" style="display: none;">
+        <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_c9d4818e4d.mp3?filename=relaxing-mountains-rivers-141190.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <!-- Main Content -->
     <div class="container">
         <div class="logo">
@@ -222,15 +228,15 @@
         </div>
         
         <h1>Mehran University</h1>
-        <h2>Top 100 MCQs Test</h2>
+        <h2>Top 110 MCQs Test</h2>
         
         <div class="message">
-            Get ready for your test! The test will automatically begin after the countdown completes. Please ensure you're prepared with all necessary materials.
+            Get ready for your test! The test will automatically begin after the countdown completes. Please ensure you're prepared for all questions.
         </div>
         
         <div class="countdown-container">
             <div class="countdown-item">
-                <span class="countdown-value" id="minutes">03</span>
+                <span class="countdown-value" id="minutes">02</span>
                 <span class="countdown-label">Minutes</span>
             </div>
             <div class="countdown-item">
@@ -277,8 +283,41 @@
         
         // Countdown timer logic
         document.addEventListener('DOMContentLoaded', function() {
-            // 3 minutes in milliseconds
-            let countDownTime = 3 * 60 * 1000;
+            // Play background music
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            if (backgroundMusic) {
+                backgroundMusic.volume = 0.3; // Set volume to 30%
+                // Try to play music (may be blocked by browser autoplay policies)
+                backgroundMusic.play().catch(err => {
+                    console.log('Auto-play was prevented by the browser. User interaction required.');
+                    
+                    // Add a play button to start music
+                    const musicBtn = document.createElement('button');
+                    musicBtn.innerHTML = '<i class="fas fa-music"></i> Play Music';
+                    musicBtn.className = 'music-btn';
+                    musicBtn.style.position = 'fixed';
+                    musicBtn.style.bottom = '20px';
+                    musicBtn.style.right = '20px';
+                    musicBtn.style.padding = '10px 15px';
+                    musicBtn.style.background = 'rgba(0, 255, 157, 0.2)';
+                    musicBtn.style.border = '1px solid rgba(0, 255, 157, 0.5)';
+                    musicBtn.style.color = '#00ff9d';
+                    musicBtn.style.borderRadius = '5px';
+                    musicBtn.style.cursor = 'pointer';
+                    musicBtn.style.zIndex = '100';
+                    musicBtn.style.boxShadow = '0 0 10px rgba(0, 255, 157, 0.3)';
+                    
+                    musicBtn.addEventListener('click', function() {
+                        backgroundMusic.play();
+                        this.remove();
+                    });
+                    
+                    document.body.appendChild(musicBtn);
+                });
+            }
+            
+            // 2 minutes in milliseconds
+            let countDownTime = 2 * 60 * 1000;
             const countdownElement = document.getElementById('countdown');
             const minutesElement = document.getElementById('minutes');
             const secondsElement = document.getElementById('seconds');
@@ -294,6 +333,10 @@
                 
                 if (countDownTime < 0) {
                     clearInterval(countdownInterval);
+                    // Stop music when countdown ends
+                    if (backgroundMusic) {
+                        backgroundMusic.pause();
+                    }
                     // Set session storage to indicate countdown is complete
                     sessionStorage.setItem('countdownCompleted', 'true');
                     // Redirect to the main test page
