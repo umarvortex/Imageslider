@@ -1,10 +1,10 @@
-# Mehran University Top 100 MCQs
+# Mehran University Top 110 MCQs
 
-A web application for Mehran University students to take a timed test of 100 multiple-choice questions (MCQs). The application includes a user registration system with WhatsApp approval, a timed test interface, and a comprehensive results summary.
+A web application for Mehran University students to take a timed test of 110 multiple-choice questions (MCQs). The application includes a user registration system with WhatsApp approval, a timed test interface, and a comprehensive results summary.
 
 ## Features
 
-- **User Registration**: Collect user's name and email before granting access to the test
+- **User Registration**: Collect user's information before granting access to the test
 - **WhatsApp Approval**: User details are sent to the administrator's WhatsApp for approval
 - **Timed Test**: 1 hour and 30 minutes timer for test completion
 - **Interactive UI**: Modern, responsive interface with easy navigation between questions
@@ -35,11 +35,11 @@ A web application for Mehran University students to take a timed test of 100 mul
    npm start
    ```
    
-5. Access the application at `http://localhost:3000`
+5. Access the application at `https://umarvortex.github.io/MUET-TEST/landing.html`
 
 ## Usage
 
-1. Users enter their name and email in the popup form
+1. Users enter their information in the popup form
 2. Administrator receives the details on WhatsApp and approves access
 3. Upon approval, users can access the test and have 1 hour 30 minutes to complete it
 4. After completion or when time expires, users see their test results
@@ -55,6 +55,6 @@ A web application for Mehran University students to take a timed test of 100 mul
 
 This project is open source and available under the MIT License.
 
-## Author
+## Author 
 
-Created for Mehran University students. 
+Created by Umar vortex for Mehran University students. 
