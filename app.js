@@ -1,6 +1,7 @@
 // Constants
 const TOTAL_QUESTIONS = 100;
 const MAX_SECURITY_VIOLATIONS = 3;
+const MAX_TEST_ATTEMPTS = 3;
 const ADMIN_EMAIL = "umarvortex@gmail.com";
 
 // Store user data and test progress in localStorage
@@ -131,17 +132,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const popup = document.getElementById('popup');
     const mcqSection = document.getElementById('mcqSection');
 
+    // Reset answers when starting a new session
+    if (!testProgress || !testProgress.started) {
+        userAnswers = {};
+        localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+    }
+
     // Check if a test has already been completed from this device
-    const completedTest = localStorage.getItem('testCompleted');
-    if (completedTest === 'true') {
-        // Show already completed message
+    const previousTests = JSON.parse(localStorage.getItem('previousTests')) || [];
+    
+    // Get user identifier from stored data or generate a new one
+    const userIdentifier = localStorage.getItem('userIdentifier') || 
+                          Date.now().toString() + Math.random().toString(36).substr(2, 5);
+    localStorage.setItem('userIdentifier', userIdentifier);
+    
+    // Count attempts by this user
+    const attemptCount = previousTests.filter(test => 
+        test.identifier === userIdentifier
+    ).length;
+    
+    if (attemptCount >= MAX_TEST_ATTEMPTS) {
+        // Show max attempts reached message
         document.body.innerHTML = `
             <div class="already-completed">
                 <div class="already-completed-content">
                     <i class="fas fa-exclamation-circle"></i>
-                    <h1>Test Already Completed</h1>
-                    <p>You have already completed this test from this device.</p>
-                    <p>Each student is allowed to take the test only once.</p>
+                    <h1>Maximum Attempts Reached</h1>
+                    <p>You have already taken this test ${MAX_TEST_ATTEMPTS} times, which is the maximum allowed.</p>
+                    <p>Each student is allowed to take the test only ${MAX_TEST_ATTEMPTS} times.</p>
                     <p>If you believe this is an error, please contact the administrator.</p>
                 </div>
             </div>
@@ -172,14 +190,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Check if this device/student has already taken the test by looking at previous submissions
             const previousTests = JSON.parse(localStorage.getItem('previousTests')) || [];
-            const isDuplicate = previousTests.some(test => 
+            
+            // Count attempts for this specific user (by phone number or name+city)
+            const userAttempts = previousTests.filter(test => 
                 test.phoneNumber === userData.phoneNumber || 
                 (test.name.toLowerCase() === userData.name.toLowerCase() && 
                  test.city.toLowerCase() === userData.city.toLowerCase())
-            );
-
-            if (isDuplicate) {
-                alert("It appears you have already taken this test. Each student is allowed only one attempt.");
+            ).length;
+            
+            if (userAttempts >= MAX_TEST_ATTEMPTS) {
+                alert(`You have already taken this test ${MAX_TEST_ATTEMPTS} times. Each student is allowed only ${MAX_TEST_ATTEMPTS} attempts.`);
                 return;
             }
 
@@ -189,9 +209,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Hide registration popup
             popup.classList.add('hidden');
             
-            // Reset question index when starting a new test
+            // Reset question index and answers when starting a new test
             currentQuestionIndex = 0;
+            userAnswers = {};
             localStorage.setItem('currentQuestion', currentQuestionIndex);
+            localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
             
             // Show instructions popup
             showInstructionsPopup();
@@ -417,11 +439,13 @@ function updateNavigationButtons() {
     const submitBtn = document.getElementById('submitBtn');
     
     if (nextBtn && submitBtn) {
+        // Always hide the next button - user will navigate by selecting answers only
+        nextBtn.classList.add('hidden');
+        
+        // Only show submit button on last question
         if (currentQuestionIndex === mcqs.length - 1) {
-            nextBtn.classList.add('hidden');
             submitBtn.classList.remove('hidden');
         } else {
-            nextBtn.classList.remove('hidden');
             submitBtn.classList.add('hidden');
         }
     }
@@ -525,9 +549,17 @@ function calculateScore() {
 function submitTest() {
     // Calculate results
     const score = calculateScore();
+    const correctAnswers = calculateCorrectAnswers(userAnswers);
+    const wrongAnswers = Object.keys(userAnswers).length - correctAnswers;
+    const skippedQuestions = mcqs.length - Object.keys(userAnswers).length;
+    
     const results = {
         userData: userData,
         score: score,
+        correctAnswers: correctAnswers,
+        wrongAnswers: wrongAnswers,
+        skippedQuestions: skippedQuestions,
+        totalQuestions: mcqs.length,
         completionTime: new Date().toISOString(),
         securityViolations: securityViolations,
         answers: userAnswers
@@ -541,27 +573,126 @@ function submitTest() {
     
     localStorage.setItem('testResults', JSON.stringify(results));
     localStorage.setItem('testProgress', JSON.stringify(testProgress));
-    localStorage.setItem('testCompleted', 'true');
     
-    // Store this test data to prevent duplicate submissions
+    // Store this test data to track attempts
     const previousTests = JSON.parse(localStorage.getItem('previousTests')) || [];
+    const userIdentifier = localStorage.getItem('userIdentifier');
+    
     previousTests.push({
         name: results.userData.name,
         phoneNumber: results.userData.phoneNumber,
         city: results.userData.city,
+        identifier: userIdentifier,
         timestamp: new Date().toISOString()
     });
     localStorage.setItem('previousTests', JSON.stringify(previousTests));
     
-    // Hide MCQ section and show congratulations
+    // Hide MCQ section and show results
     const mcqSection = document.getElementById('mcqSection');
-    const congratsSection = document.getElementById('congratsSection');
     
     if (mcqSection) mcqSection.classList.add('hidden');
-    if (congratsSection) congratsSection.classList.remove('hidden');
+    
+    // Create and display results with animations
+    displayResults(results);
     
     // Send results to admin email
     sendResultsEmail(results);
+}
+
+// Display results with animations
+function displayResults(results) {
+    const resultsHTML = `
+    <div id="resultsPopup" class="results-popup">
+        <div class="results-content">
+            <div class="results-header">
+                <h1>Congratulations!</h1>
+                <h2>${results.userData.name}</h2>
+                <div class="celebration-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+            </div>
+            
+            <div class="results-details">
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span class="score-value">${results.score}%</span>
+                    </div>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-item correct">
+                        <div class="stat-value">${results.correctAnswers}</div>
+                        <div class="stat-label">Correct</div>
+                    </div>
+                    <div class="stat-item wrong">
+                        <div class="stat-value">${results.wrongAnswers}</div>
+                        <div class="stat-label">Wrong</div>
+                    </div>
+                    <div class="stat-item skipped">
+                        <div class="stat-value">${results.skippedQuestions}</div>
+                        <div class="stat-label">Skipped</div>
+                    </div>
+                </div>
+                
+                <div class="user-details">
+                    <p><strong>Name:</strong> ${results.userData.name}</p>
+                    <p><strong>Phone:</strong> ${results.userData.phoneNumber}</p>
+                    <p><strong>City:</strong> ${results.userData.city}</p>
+                    <p><strong>Age:</strong> ${results.userData.age}</p>
+                    <p><strong>Favorite Subject:</strong> ${results.userData.favoriteSubject}</p>
+                    <p><strong>Test Completed:</strong> ${new Date().toLocaleString()}</p>
+                </div>
+                
+                <div class="message">
+                    <p>Your test has been successfully completed and results have been recorded.</p>
+                </div>
+            </div>
+            
+            <div class="confetti-container" id="confetti-container"></div>
+        </div>
+    </div>`;
+    
+    // Add to document
+    document.body.insertAdjacentHTML('beforeend', resultsHTML);
+    
+    // Trigger animations
+    setTimeout(() => {
+        document.getElementById('resultsPopup').classList.add('show-results');
+        createConfetti();
+        
+        // Set score percentage for the circle animation
+        const scoreCircle = document.querySelector('.score-circle');
+        if (scoreCircle) {
+            scoreCircle.style.setProperty('--score-percent', `${results.score}%`);
+        }
+    }, 300);
+}
+
+// Create confetti animation
+function createConfetti() {
+    const confettiContainer = document.getElementById('confetti-container');
+    if (!confettiContainer) return;
+    
+    // Create confetti elements
+    for (let i = 0; i < 150; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        
+        // Random properties
+        const size = Math.random() * 10 + 5;
+        const color = ['#f44336', '#2196f3', '#ffeb3b', '#4caf50', '#9c27b0'][Math.floor(Math.random() * 5)];
+        
+        confetti.style.width = `${size}px`;
+        confetti.style.height = `${size}px`;
+        confetti.style.background = color;
+        
+        // Random position
+        confetti.style.left = `${Math.random() * 100}%`;
+        confetti.style.animationDelay = `${Math.random() * 5}s`;
+        confetti.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        
+        confettiContainer.appendChild(confetti);
+    }
 }
 
 // Send results to admin via email
@@ -630,11 +761,6 @@ function sendResultsEmail(results) {
             console.error('Form submission error:', e);
         }
     }, 2000);
-    
-    // Show success message
-    setTimeout(() => {
-        document.querySelector('.loading-spinner').innerHTML = '<i class="fas fa-check"></i><p>Test completed successfully!</p>';
-    }, 5000);
 }
 
 // Calculate total correct answers
