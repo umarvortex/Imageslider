@@ -918,16 +918,10 @@ function takeScreenshot() {
 
 // Play sound effects
 function playSound(type) {
-    const sounds = {
-        correct: 'https://assets.mixkit.co/active_storage/sfx/2205/2205-preview.mp3',
-        wrong: 'https://assets.mixkit.co/active_storage/sfx/2275/2275-preview.mp3',
-        screenshot: 'https://assets.mixkit.co/active_storage/sfx/1111/1111-preview.mp3',
-        success: 'https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3'
-    };
+    // Simple tick sound for all interactions
+    const tickSound = 'https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3';
     
-    if (!sounds[type]) return;
-    
-    const audio = new Audio(sounds[type]);
+    const audio = new Audio(tickSound);
     audio.volume = 0.3;
     audio.play().catch(err => console.log('Audio play error:', err));
 }
