@@ -1,6 +1,6 @@
-# Mehran University Top 100 MCQs
+# Mehran University Top 110 MCQs
 
-A web application for Mehran University students to take a timed test of 100 multiple-choice questions (MCQs). The application includes a user registration system with WhatsApp approval, a timed test interface, and a comprehensive results summary.
+A web application for Mehran University students to take a timed test of 110 multiple-choice questions (MCQs). The application includes a user registration system with WhatsApp approval, a timed test interface, and a comprehensive results summary.
 
 ## Features
 
@@ -18,24 +18,8 @@ A web application for Mehran University students to take a timed test of 100 mul
 - Node.js and Express for backend
 - Twilio API for WhatsApp integration
 
-## Setup and Installation
 
-1. Clone this repository
-2. Install dependencies:
-   ```
-   npm install
-   ```
-3. Set up Twilio:
-   - Create a Twilio account at [twilio.com](https://www.twilio.com)
-   - Set up WhatsApp sandbox
-   - Update the `accountSid` and `authToken` in `server.js` with your Twilio credentials
-
-4. Start the server:
-   ```
-   npm start
-   ```
    
-5. Access the application at `http://localhost:3000`
 
 ## Usage
 
@@ -57,4 +41,4 @@ This project is open source and available under the MIT License.
 
 ## Author
 
-Created for Mehran University students. 
+Created by Umar Vortex for Mehran University students. 
