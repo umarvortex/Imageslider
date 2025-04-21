@@ -1,7 +1,6 @@
 // Constants
 const TOTAL_QUESTIONS = 100;
 const MAX_SECURITY_VIOLATIONS = 3;
-const MAX_TEST_ATTEMPTS = 3;
 const ADMIN_EMAIL = "umarvortex@gmail.com";
 
 // Store user data and test progress in localStorage
@@ -199,22 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
         test.identifier === userIdentifier
     ).length;
     
-    if (attemptCount >= MAX_TEST_ATTEMPTS) {
-        // Show max attempts reached message
-        document.body.innerHTML = `
-            <div class="already-completed">
-                <div class="already-completed-content">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <h1>Maximum Attempts Reached</h1>
-                    <p>You have already taken this test ${MAX_TEST_ATTEMPTS} times, which is the maximum allowed.</p>
-                    <p>Each student is allowed to take the test only ${MAX_TEST_ATTEMPTS} times.</p>
-                    <p>If you believe this is an error, please contact the administrator.</p>
-                </div>
-            </div>
-        `;
-        return;
-    }
-
+    
     // Check if user has already registered and test is in progress
     if (userData && testProgress && !testProgress.completed) {
         popup.classList.add('hidden');
@@ -246,10 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
                  test.city.toLowerCase() === userData.city.toLowerCase())
             ).length;
             
-            if (userAttempts >= MAX_TEST_ATTEMPTS) {
-                alert(`You have already taken this test ${MAX_TEST_ATTEMPTS} times. Each student is allowed only ${MAX_TEST_ATTEMPTS} attempts.`);
-                return;
-            }
+           
 
             // Save to localStorage
             localStorage.setItem('userData', JSON.stringify(userData));
