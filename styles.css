@@ -778,13 +778,22 @@ body {
     background-color: #ddd;
 }
 
+.instructions-content p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #232225;
+}
+
+
 .instructions-content ul {
     margin-left: 20px;
     margin-bottom: 20px;
+    color: #555;
 }
 
 .instructions-content li {
     margin-bottom: 10px;
+    color: #555;
 }
 
 .start-test-btn {
