@@ -1,7 +1,6 @@
 // Constants
 const TOTAL_QUESTIONS = 100;
 const MAX_SECURITY_VIOLATIONS = 3;
-const MAX_TEST_ATTEMPTS = 3;
 const ADMIN_EMAIL = "umarvortex@gmail.com";
 
 // Store user data and test progress in localStorage
