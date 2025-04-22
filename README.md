@@ -1,4 +1,4 @@
-# Mehran University Top 100 MCQs
+# Computer science Top 100 MCQs
 
 A web application for Mehran University students to take a timed test of 100 multiple-choice questions (MCQs). The application includes a user registration system with WhatsApp approval, a timed test interface, and a comprehensive results summary.
 
@@ -57,4 +57,4 @@ This project is open source and available under the MIT License.
 
 ## Author
 
-Created for Mehran University students. 
+Created by Umarvortex for computer science students. 
