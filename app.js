@@ -216,20 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 registrationTime: new Date().toISOString()
             };
 
-            // Check if this device/student has already taken the test by looking at previous submissions
-            const previousTests = JSON.parse(localStorage.getItem('previousTests')) || [];
-            
-            // Count attempts for this specific user (by phone number or name+city)
-            const userAttempts = previousTests.filter(test => 
-                test.phoneNumber === userData.phoneNumber || 
-                (test.name.toLowerCase() === userData.name.toLowerCase() && 
-                 test.city.toLowerCase() === userData.city.toLowerCase())
-            ).length;
-            
-            if (userAttempts >= MAX_TEST_ATTEMPTS) {
-                alert(`You have already taken this test ${MAX_TEST_ATTEMPTS} times. Each student is allowed only ${MAX_TEST_ATTEMPTS} attempts.`);
-                return;
-            }
+          
 
             // Save to localStorage
             localStorage.setItem('userData', JSON.stringify(userData));
