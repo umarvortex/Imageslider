@@ -193,26 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
                            Date.now().toString() + Math.random().toString(36).substr(2, 5);
     localStorage.setItem('userIdentifier', userIdentifier);
     
-    // Count attempts by this user
-    const attemptCount = previousTests.filter(test => 
-        test.identifier === userIdentifier
-    ).length;
     
-    if (attemptCount >= MAX_TEST_ATTEMPTS) {
-        // Show max attempts reached message
-        document.body.innerHTML = `
-            <div class="already-completed">
-                <div class="already-completed-content">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <h1>Maximum Attempts Reached</h1>
-                    <p>You have already taken this test ${MAX_TEST_ATTEMPTS} times, which is the maximum allowed.</p>
-                    <p>Each student is allowed to take the test only ${MAX_TEST_ATTEMPTS} times.</p>
-                    <p>If you believe this is an error, please contact the administrator.</p>
-                </div>
-            </div>
-        `;
-        return;
-    }
 
     // Check if user has already registered and test is in progress
     if (userData && testProgress && !testProgress.completed) {
